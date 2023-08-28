@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>BetacomioAngular</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <title>Betacomio</title>
+
+  <link rel="shortcut icon" href="/media/favicon.svg" type="image/x-icon">
+
+  <!-- {{-- 𝗚𝗢𝗢𝗚𝗟𝗘 𝗳𝗼𝗻𝘁𝘀 --}} -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+
+  <!-- {{-- 𝗖𝗗𝗡 𝗳𝗼𝗻𝘁𝘀𝗮𝗱𝗼𝗯𝗲 --}} -->
+  <link rel="stylesheet" href="https://use.typekit.net/fah7yfc.css">
+
+  <!-- {{-- 𝗖𝗗𝗡 𝗳𝗼𝗻𝘁𝗮𝘄𝗲𝘀𝗼𝗺𝗲 --}} -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- {{-- 𝗖𝗦𝗦 𝘀𝘄𝗶𝗽𝗲𝗿 --}} -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+  <!-- {{-- 𝗖𝗗𝗡 𝗮𝗼𝘀 𝗷𝘀 --}} -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/src/styles.css">
+
+
+</head>
+<body style="margin: 0; padding: 0;">
+  <app-root></app-root>
+
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<!-- AosJS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+
+    var swiper = new Swiper(".mySwiper", {
+        grabCursor: true,
+        centeredSlides: false,
+        loop: true,
+        spaceBetween: 40,
+        //   navigation: {
+        //     nextEl: ".swiper-button-next",
+        //   },
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+
+        breakpoints: {
+            768: {
+                slidesPerView: "2",
+            },
+            1200: {
+                slidesPerView: "5",
+            },
+        }
+
+    });
+
+</script>
+
+
+<!-- {{-- inizialize aos --}} -->
+
+<script>
+    AOS.init({
+        delay: 500,
+        easing: 'linear',
+        offset: 10,
+    });
+</script>
+
+
+    <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+
+</body>
+</html>
