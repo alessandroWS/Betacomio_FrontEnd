@@ -9,11 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   categories: Category[] | undefined = [];
+  requestAdminCount: number | undefined = 0;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.loadCategories();
+    this.loadRequestAdminCount();
 
     const createAnnouncementButton = document.querySelector('#createAnnouncement') as HTMLElement | null;
     const imagesInput = document.querySelector('#images') as HTMLInputElement | null;
@@ -46,6 +48,16 @@ export class NavbarComponent implements OnInit {
 
 
 
+  private loadRequestAdminCount(): void {
+    this.http.get<responseRequestAdminCount>('http://localhost:5067/AdminRequest/GetAllCount', { observe: "response"}).subscribe(
+      (response) => {
+        this.requestAdminCount = response.body?.data;
+      },
+      (error) => {
+        console.error('Errore nel recupero dei dati:', error);
+      });
+  }
+
 
   private loadCategories(): void {
     this.http.get<responseCategory>('http://localhost:5067/api/ProductCategory/GetAll', { observe: "response"}).subscribe(
@@ -70,3 +82,8 @@ export interface responseCategory {
   message: string
 }
 
+export interface responseRequestAdminCount {
+  data: number,
+  success: boolean,
+  message: string
+}

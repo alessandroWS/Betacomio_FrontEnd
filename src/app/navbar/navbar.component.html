@@ -38,25 +38,19 @@
           <li><a class="dropdown-item my-2" href="">Registrati</a></li>
 
 
-          <!-- @endguest -->
 
-
-          <!-- @auth
-
-                  @if(Auth::user()->is_revisor) -->
 
           <li>
             <a class="dropdown-item my-2" href="">Area Revisore
-              <span class="badge textWhite bgMain">revisionCount</span></a>
+              <span class="badge textWhite bgMain" [ngClass]="{ 'vibrate-1': requestAdminCount && requestAdminCount > 0}">{{ requestAdminCount }}</span></a>
           </li>
 
-          <!-- @endif -->
+
 
           <li><button class="btn btn-dark my-2 rounded-0" href="#"
               onclick="event.preventDefault(); document.querySelector('#form-logout').submit();">Logout</button>
-            <form method="POST" action="" id="form-logout" class="d-none">@csrf</form>
+            <form method="POST" action="" id="form-logout" class="d-none"></form>
           </li>
-          <!-- @endauth -->
 
         </ul>
       </div>
