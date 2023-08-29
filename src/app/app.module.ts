@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { PageEvent } from '@angular/material/paginator';
+import { SinglepageComponent } from './ann/singlepage/singlepage.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PageEvent } from '@angular/material/paginator';
     RegisterComponent,
     LoginComponent,
     IndexComponent,
+    SinglepageComponent,
   ],
   imports: [
     MatPaginatorModule,
