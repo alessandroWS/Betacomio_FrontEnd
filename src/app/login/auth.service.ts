@@ -36,4 +36,13 @@ export class AuthService {
   private setJwtToken(token: string): void {
     localStorage.setItem(this.jwtTokenKey, token);
   }
+
+  
+  loggedUser = (): string | null => (localStorage.getItem(this.jwtTokenKey)) ? localStorage.getItem(this.jwtTokenKey) : "";
+
+  isLogged = (): boolean => (localStorage.getItem(this.jwtTokenKey)) ? true : false;
+
+  clearUser = (): void => localStorage.removeItem(this.jwtTokenKey); //metodo che toglie il token (logout)
+
+  clearAll = (): void => localStorage.clear(); //metodo che pulisce tutto
 }

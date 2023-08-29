@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../login/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ export class NavbarComponent implements OnInit {
   categories: Category[] | undefined = [];
   requestAdminCount: number | undefined = 0;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public BasicAuth: AuthService, public Logout: AuthService) {}
 
   ngOnInit() {
     this.loadCategories();
