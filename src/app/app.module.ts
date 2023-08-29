@@ -11,7 +11,12 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { IndexComponent } from './ann/index/index.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatPaginatorModule } from '@angular/material/paginator';
+
+import { PageEvent } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -19,15 +24,18 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     NavbarComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    IndexComponent,
   ],
   imports: [
+    MatPaginatorModule,
     RouterModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
