@@ -25,35 +25,26 @@
     <!-- {{-- menu utente + inserisci annuncio e bottone menu --}} -->
     <div class="d-flex justify-content-center align-items-center ms-auto">
 
-      <div class="dropdown mx-2">
+      <div class="dropdown mx-2" (mouseenter)="openDropdown()" (mouseleave)="closeDropdown()">
         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-solid fa-person-walking fa-xl textBlue userIcon"></i>
+            <i class="fa-solid fa-person-walking fa-xl textBlue userIcon"></i>
         </a>
-        <ul class="dropdown-menu shadow rounded-0 borderBlack text-center drop-user">
-
-          <!-- @guest -->
-
-          <li><a class="btn btn-dark rounded-0 my-2 px-4 text-white" routerLink="/login">Login</a></li>
-
-          <li><a class="dropdown-item my-2" href="">Registrati</a></li>
-
-
-
-
-          <li>
-            <a class="dropdown-item my-2" href="">Area Revisore
-              <span class="badge textWhite bgMain" [ngClass]="{ 'vibrate-1': requestAdminCount && requestAdminCount > 0}">{{ requestAdminCount }}</span></a>
-          </li>
-
-
-
-          <li><button class="btn btn-dark my-2 rounded-0" href="#"
-              onclick="event.preventDefault(); document.querySelector('#form-logout').submit();">Logout</button>
-            <form method="POST" action="" id="form-logout" class="d-none"></form>
-          </li>
-
+        <ul class="dropdown-menu shadow rounded-0 borderBlack text-center drop-user" [class.show]="isDropdownOpen">
+            <li><a class="btn btn-dark rounded-0 my-2 px-4 text-white" routerLink="/login">Login</a></li>
+            <li><a class="dropdown-item my-2" href="/register">Registrati</a></li>
+            <li>
+                <a class="dropdown-item my-2" href="">Area Revisore
+                    <span class="badge textWhite bgMain" [ngClass]="{ 'vibrate-1': requestAdminCount && requestAdminCount > 0}">{{ requestAdminCount }}</span>
+                </a>
+            </li>
+            <li>
+                <button class="btn btn-dark my-2 rounded-0" href="#"
+                    >Logout</button>
+                <form method="POST" action="" id="form-logout" class="d-none"></form>
+            </li>
         </ul>
-      </div>
+    </div>
+    
 
 
 

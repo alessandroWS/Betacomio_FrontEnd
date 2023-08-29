@@ -8,6 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  //Gestione del dropdown user (setTimeout per far rimanere il dropdown aperto per 0.6 sec)
+  isDropdownOpen: boolean = false;
+
+    openDropdown() 
+    {
+        this.isDropdownOpen = true;
+    }
+
+    closeDropdown() 
+    {
+        setTimeout(() => {
+            this.isDropdownOpen = false;
+        }, 600); 
+    }
+
   categories: Category[] | undefined = [];
   requestAdminCount: number | undefined = 0;
 
