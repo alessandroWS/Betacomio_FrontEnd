@@ -22,6 +22,7 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { AuthInterceptor } from './auth.interceptor';
 
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { ZonarevisioneComponent } from './zonarevisione/zonarevisione.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
     LoginComponent,
     IndexComponent,
     SinglepageComponent,
-    OrderListComponent
+    OrderListComponent,
+    ZonarevisioneComponent
   ],
   imports: [
     MatPaginatorModule,

@@ -1,0 +1,122 @@
+
+<header class="headerMargin container-fluid min-vh-100">
+
+  <!-- @if (session('message'))
+  <div class="message-alert alert alert-success text-center alert-dismissible" role="alert">
+      {{session('message')}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+      </div>
+      @endif
+
+
+      <div class="row justify-content-center mb-3">
+          <div class="col-10 p-5">
+              <h2 class="text-uppercase">Bentornato {{Auth::user()->name}} 👋</h2>
+          </div>
+      </div> -->
+
+      <!-- @if($announcement_to_recheck->isNotEmpty()) -->
+
+      <div class="row justify-content-center p-3 mb-3">
+          <div class="col-12 col-md-6 text-center bgMain p-3">
+
+              <h3>ANNUNCI DA REVISIONARE</h3>
+
+          </div>
+      </div>
+
+
+
+
+      <!-- {{-- 𝗧𝗔𝗕𝗟𝗘 𝗔𝗡𝗡𝗨𝗡𝗖𝗜𝗢 --}} -->
+
+      <div class="row justify-content-center mt-5">
+
+
+          <div class="col-12">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th scope="col" class="textBlue">DATA</th>
+                          <th scope="col" class="textBlue">AUTORE</th>
+                          <th scope="col" class="textBlue"></th>
+                          <th scope="col" class="textBlue"></th>
+                      </tr>
+                  </thead>
+
+
+                  <tbody class="p-4">
+                      <!-- @foreach($announcement_to_recheck as $announcement) -->
+                      <tr *ngFor="let requestAdmin of requestAdmins">
+
+                      <td>{{ requestAdmin.date }}</td>
+                      <td>{{ requestAdmin.user.username }}</td>
+                      <td>
+
+                          <form class="d-flex justify-content-center" method="POST" action="">
+
+
+
+                              <button type="submit" class="btn btn-success rounded-0" data-toggle="tooltip" title="Conferma l'inserimento del'annuncio">Accetta</button>
+                          </form>
+
+                      </td>
+
+                      <td>
+
+                          <form class="d-flex justify-content-center" method="POST" action="">
+
+
+
+                              <button type="submit" class="btn btn-danger rounded-0" data-toggle="tooltip" title="Rifiuta l'annuncio eliminandolo">Rifiuta</button>
+
+                          </form>
+
+                      </td>
+
+                  </tr>
+                  <!-- @endforeach -->
+              </tbody>
+          </table>
+
+      </div>
+  </div>
+<!--
+  @else
+
+
+  <div class="row justify-content-center p-3 mb-3">
+      <div class="col-12 col-md-6 text-center bgMain p-3">
+
+          <h3>NON CI SONO ANNUNCI DA REVISIONARE</h3>
+
+      </div>
+  </div>
+
+  @endif
+   -->
+
+</header>
+
+<!-- {{-- 𝗙𝗢𝗢𝗧𝗘𝗥 --}} -->
+
+<footer class="container-fluid footer bgGrey pt-5">
+
+  <div class="row justify-content-center">
+      <hr style="width:90%">
+      <div class="col-6">
+          <ul class="list-unstyled d-flex justify-content-around" style="font-size: 0.7rem">
+              <li><a href="">Copyright © GoodsSports Inc.</a></li>
+              <li> | </li>
+              <li><a href="">Privacy Policy</a></li>
+              <li> | </li>
+              <li><a href="">Termini di utilizzo</a></li>
+              <li> | </li>
+              <li><a href="">Legale</a></li>
+          </ul>
+      </div>
+
+  </div>
+
+</footer>
+
