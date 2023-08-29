@@ -21,7 +21,11 @@ import { SinglepageComponent } from './ann/singlepage/singlepage.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { AuthInterceptor } from './auth.interceptor';
 
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+
+
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     HomeComponent,

@@ -65,7 +65,7 @@ export interface ProductCategory {
 }
 
 export interface Product {
-  ProductID: number;
+  productId: number;
   name: string;
   standardCost: number;
   ProductNumber: string;

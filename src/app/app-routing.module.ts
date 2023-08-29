@@ -14,7 +14,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'index', component: IndexComponent },
   { path: 'orders', component: OrderListComponent },
-
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ]
 
