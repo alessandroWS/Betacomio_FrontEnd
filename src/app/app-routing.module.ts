@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { IndexComponent } from './ann/index/index.component';
+import { OrderListComponent } from './order-list/order-list.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'index', component: IndexComponent },
-
+  { path: 'orders', component: OrderListComponent },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ]

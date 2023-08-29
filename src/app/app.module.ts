@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // Importa HTTP_INTERCEPTORS
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
@@ -18,6 +18,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { PageEvent } from '@angular/material/paginator';
 import { SinglepageComponent } from './ann/singlepage/singlepage.component';
+import { OrderListComponent } from './order-list/order-list.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { SinglepageComponent } from './ann/singlepage/singlepage.component';
     LoginComponent,
     IndexComponent,
     SinglepageComponent,
+    OrderListComponent
   ],
   imports: [
     MatPaginatorModule,
@@ -39,7 +42,13 @@ import { SinglepageComponent } from './ann/singlepage/singlepage.component';
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor, // Usa il tuo interceptor
+    multi: true,
+  },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
