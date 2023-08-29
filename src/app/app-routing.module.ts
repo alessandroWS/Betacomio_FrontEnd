@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { IndexComponent } from './ann/index/index.component';
+import { SinglepageComponent } from './ann/singlepage/singlepage.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'index', component: IndexComponent },
+  { path: 'singlepage/:productId', component: SinglepageComponent }, // Aggiungi il parametro :productId
 
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },

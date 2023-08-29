@@ -19,7 +19,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { PageEvent } from '@angular/material/paginator';
 import { SinglepageComponent } from './ann/singlepage/singlepage.component';
 
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+
+
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     HomeComponent,
