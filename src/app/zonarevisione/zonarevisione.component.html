@@ -53,24 +53,24 @@
                       <td>{{ requestAdmin.user.username }}</td>
                       <td>
 
-                          <form class="d-flex justify-content-center" method="POST" action="">
+                          <div class="d-flex justify-content-center">
 
 
 
-                              <button type="submit" class="btn btn-success rounded-0" data-toggle="tooltip" title="Conferma l'inserimento del'annuncio">Accetta</button>
-                          </form>
+                              <button (click)="acceptRequest(requestAdmin.idRequest, true, requestAdmin.userId)" type="submit" class="btn btn-success rounded-0" data-toggle="tooltip" title="Conferma l'inserimento del'annuncio">Accetta</button>
+                          </div>
 
                       </td>
 
                       <td>
 
-                          <form class="d-flex justify-content-center" method="POST" action="">
+                          <div class="d-flex justify-content-center">
 
 
 
-                              <button type="submit" class="btn btn-danger rounded-0" data-toggle="tooltip" title="Rifiuta l'annuncio eliminandolo">Rifiuta</button>
+                              <button (click)="rejectRequest(requestAdmin.idRequest, false, requestAdmin.userId)" type="submit" class="btn btn-danger rounded-0" data-toggle="tooltip" title="Rifiuta l'annuncio eliminandolo">Rifiuta</button>
 
-                          </form>
+                          </div>
 
                       </td>
 
