@@ -26,7 +26,7 @@
 
                   <div class="justify-content-between d-flex align-items-center">
                     <a [routerLink]="['/singlepage/', product.productId]" class="btn btn-dark bgMain border-0 rounded-0 my-2">Visualizza</a>
-                    <a (click)="like(product.name, product.standardCost.toString(), 2, product.productId, product.productCategory.name)" class="btn btn-dark bgMain border-0 rounded-0 my-2">Like</a>
+                    <a (click)="like(product.name, product.standardCost.toString(), 0, product.productId, product.productCategory.name)" class="btn btn-dark bgMain border-0 rounded-0 my-2">Like</a>
 
                       <!-- <small class="fst-italic">{{product.ModifiedDate}}</small> -->
                   </div>

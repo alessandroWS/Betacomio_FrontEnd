@@ -25,23 +25,24 @@
   
         <form (ngSubmit)="onLogin()">
           <div class="mb-4">
-            <label for="exampleInputEmail" class="form-label">Username</label>
-            
-        <input type="text" id="username" name="username" [(ngModel)]="username" required><div class="text-danger">
+            <label for="exampleInputEmail" class="form-label me-2">Username</label>
+  
+            <input type="text" id="username" name="username" [(ngModel)]="username" required [formControl]="usnameField">
+            <div class="text-danger" *ngIf="usnameField.invalid && (usnameField.dirty || usnameField.touched)">
               Campo obbligatorio
             </div>
           </div>
   
           <div class="mb-4">
-            <label for="exampleInputPassword" class="form-label">Password</label>
-            
-        <input type="password" id="password" name="password" [(ngModel)]="password" required>
-        <div  class="text-danger">
-              La password deve contenere almeno una lettera maiuscola, una lettera minuscola e avere una lunghezza di almeno 8 caratteri
+            <label for="exampleInputPassword" class="form-label me-2">Password</label>
+  
+            <input type="password" id="password" name="password" [(ngModel)]="password" required [formControl]="pswField">
+            <div class="text-danger" *ngIf="pswField.invalid && (pswField.dirty || pswField.touched)">
+              Campo obbligatorio
             </div>
           </div>
   
-          <button type="submit" class="btn btn-primary">Invia</button>
+          <button type="submit" class="btn btn-log-reg btn-outline-dark borderMain rounded-0 textMain p-2" [disabled]="!username || !password">Invia</button>
         </form>
   
   
@@ -51,7 +52,8 @@
       <div class="col-12 col-md-6 text-center p-5">
   
         <h2 class="p-3">NON HAI UN ACCOUNT ?</h2>
-        <p class="textMain my-4">Effettua la registrazione per usufruire al meglio dei nostri servizi e scoprire le ultime novità</p>
+        <p class="textMain my-4">Effettua la registrazione per usufruire al meglio dei nostri servizi e scoprire le ultime
+          novità</p>
         <a routerLink="/register" class="btn btn-dark bgMain p-2 rounded-0 border-0" style="width: 200px">REGISTRATI</a>
   
       </div>
@@ -84,4 +86,3 @@
     </div>
   
   </footer>
-  

@@ -55,12 +55,12 @@ export class CategoryProductsComponent {
     );
   }
 
-  like(productName: string, price: string, userId: number, productNumber: number, categoryName: string) : void {
+  like(productName: string, price: string, userId: number, productId: number, categoryName: string) : void {
 
     const addlikedto = {
       productName : productName,
       price : price,
-      productNumber : productNumber,
+      productId : productId,
       userId : userId,
       categoryName: categoryName
 

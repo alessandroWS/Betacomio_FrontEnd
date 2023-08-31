@@ -11,7 +11,6 @@
   font-family: bradon;
   src: url(src/assets/font/BrandonGrotesque-Bold.ttf);
 }
-
 .bgMain{
   background-color: var(--main);
 }
@@ -305,6 +304,6 @@ h4, h5{
   border: none;
   margin-right: 15px;
 }
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

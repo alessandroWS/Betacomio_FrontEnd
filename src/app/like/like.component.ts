@@ -34,7 +34,7 @@ onPaginateChange(data:any) {
   }
 
   private loadlikes(): void {
-    this.http.get<responseLike>('http://localhost:5067/Likes', { observe: 'response' }).subscribe(
+    this.http.get<responseLike>('http://localhost:5067/Likes/GetAllLike', { observe: 'response' }).subscribe(
       (response) => {
         this.likes = response.body?.data;
         console.log('Fetched likes:', this.likes);
@@ -68,8 +68,8 @@ export interface Like {
   productName: string,
   price: string,
   productId: number,
-  userId: number,
   categoryName: string
+  userId: number
 }
 
 export interface responseLike {

@@ -1,0 +1,10 @@
+.avv-log {
+    border: 2px solid red;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(255, 0, 0, 0.425);
+    font-weight: bolder;
+}
+.btn-log-reg {
+    background-color: rgb(175, 175, 175) !important;
+  }

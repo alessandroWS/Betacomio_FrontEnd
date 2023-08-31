@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router'; // Importa il Router per il reindirizzamento
+import { ActivatedRoute, Router } from '@angular/router'; // Importa il Router per il reindirizzamento
+import { FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-register',
@@ -12,9 +14,27 @@ export class RegisterComponent {
     username: '',
     password: '',
     password_confirmation: '',
+    
+    
   };
+  loginFailed: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router) {}
+
+  nameField = new FormControl('', Validators.required);
+  pswField = new FormControl('', Validators.required);
+
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    // Check if the login failed query parameter is present
+    this.route.queryParams.subscribe(params => {
+      if (params['loginFailed']) {
+        this.loginFailed = true;
+      }
+    });
+  }
+
+  
 
   register() {
     if(this.userData.password_confirmation == this.userData.password && this.userData.username.includes('@'))

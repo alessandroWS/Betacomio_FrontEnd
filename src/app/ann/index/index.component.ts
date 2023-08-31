@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -16,7 +17,7 @@ export class IndexComponent implements OnInit {
   paginator!: MatPaginator;
   filteredArray: any[] | undefined = []
 
-defaultRecords: any = 12;
+  defaultRecords: any = 12;
 
 
 onPaginateChange(data:any) {
@@ -63,13 +64,13 @@ onPaginateChange(data:any) {
       productName : productName,
       price : price,
       productNumber : productNumber,
-      userId : userId,
-      categoryName: categoryName
+      categoryName: categoryName,
+      userId : userId
 
     }
 
 
-    this.http.post<Response>('http://localhost:5067/Likes', addlikedto, { observe: "response"}).subscribe(
+    this.http.post<Response>('http://localhost:5067/Likes/AddLike', addlikedto, { observe: "response"}).subscribe(
       (response) => {
         console.log(response);
 
