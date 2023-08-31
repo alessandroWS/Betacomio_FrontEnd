@@ -2,7 +2,7 @@
 
   <div class="row align-items-center shadow bgWhite mb-5 p-4">
       <div class="col-12 px-5">
-          <h2 class="p-3 textMain ms-5 roundContent">TUTTI GLI ANNUNCI</h2>
+          <h2 class="p-3 textMain ms-5 roundContent">TUTTI I TUOI PREFERITI</h2>
       </div>
   </div>
 
@@ -11,7 +11,7 @@
 
 
 
-      <div class="col-12 col-md-3 p-2 mt-3 d-flex justify-content-center" *ngFor="let product of pageslice">
+      <div class="col-12 col-md-3 p-2 mt-3 d-flex justify-content-center" *ngFor="let like of likes">
 
 
           <div class="card rounded-0 border-0" style="width: 16rem;">
@@ -19,16 +19,13 @@
               <img src="/src/assets/media/bottombrackets.jpg" class="card-img-top rounded-0" alt="">
 
               <div class="card-body ps-3 mt-2">
-                  <h5 class="textBlue text-end">{{product.standardCost}}€</h5>
-                  <h5 class="card-title fs-6 text-uppercase">{{product.name}}</h5>
+                  <h5 class="textBlue text-end">{{like.price}}€</h5>
+                  <h5 class="card-title fs-6 text-uppercase">{{like.productName}}</h5>
                   <!-- {{-- <p class="card-text">{{$announcement->body}}</p> --}} -->
-                  <p class="text-secondary">{{product.productCategory.name}}</p>
+                  <p class="text-secondary">{{like.categoryName}}</p>
 
                   <div class="justify-content-between d-flex align-items-center">
-                    <a [routerLink]="['/singlepage/', product.productId]" class="btn btn-dark bgMain border-0 rounded-0 my-2">Visualizza</a>
-                    <a (click)="like(product.name, product.standardCost.toString(), 2, product.productId, product.productCategory.name)" class="btn btn-dark bgMain border-0 rounded-0 my-2">Like</a>
-
-                      <small class="fst-italic">{{product.ModifiedDate}}</small>
+                    <a [routerLink]="['/singlepage/', like.productId]" class="btn btn-dark bgMain border-0 rounded-0 my-2">Visualizza</a>
                   </div>
 
               </div>

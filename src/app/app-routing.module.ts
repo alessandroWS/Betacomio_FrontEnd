@@ -7,6 +7,8 @@ import { RegisterComponent } from './register/register.component';
 import { IndexComponent } from './ann/index/index.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { ZonarevisioneComponent } from './zonarevisione/zonarevisione.component';
+import { LikeComponent } from './like/like.component';
+import { SinglepageComponent } from './ann/singlepage/singlepage.component';
 
 
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'index', component: IndexComponent },
   { path: 'orders', component: OrderListComponent },
   { path: 'zonarevisione', component: ZonarevisioneComponent },
+  { path: 'singlepage/:productId', component: SinglepageComponent },
+  { path: 'like', component: LikeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ]
 

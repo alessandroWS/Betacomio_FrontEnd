@@ -64,6 +64,7 @@ export class ZonarevisioneComponent implements OnInit {
     this.http.put<any>('http://localhost:5067/AdminRequest?id='+idRequest, PutReqDto).subscribe(
     (response) => {
       console.log('welaa');
+      this.loadRequestAdmin();
 
     },
     (error) => {

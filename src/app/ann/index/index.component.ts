@@ -55,6 +55,32 @@ onPaginateChange(data:any) {
       this.pageslice = this.products.slice(startIndex, endIndex);
     }
   }
+
+
+  like(productName: string, price: string, userId: number, productNumber: number, categoryName: string) : void {
+
+    const addlikedto = {
+      productName : productName,
+      price : price,
+      productNumber : productNumber,
+      userId : userId,
+      categoryName: categoryName
+
+    }
+
+
+    this.http.post<Response>('http://localhost:5067/Likes', addlikedto, { observe: "response"}).subscribe(
+      (response) => {
+        console.log(response);
+
+      },
+      (error) => {
+        console.error('Errore nel recupero dei dati:', error);
+      }
+    );
+  }
+
+
 }
 
 

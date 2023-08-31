@@ -23,6 +23,7 @@ import { AuthInterceptor } from './auth.interceptor';
 
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { ZonarevisioneComponent } from './zonarevisione/zonarevisione.component';
+import { LikeComponent } from './like/like.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ZonarevisioneComponent } from './zonarevisione/zonarevisione.component'
     IndexComponent,
     SinglepageComponent,
     OrderListComponent,
-    ZonarevisioneComponent
+    ZonarevisioneComponent,
+    LikeComponent
   ],
   imports: [
     MatPaginatorModule,
