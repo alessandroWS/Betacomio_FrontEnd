@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CategoryProductsComponent {
   products: Product[] | undefined = [];
   productCategoryId: number | null = null;
-
+  productCategory: ProductCategory | undefined;
 
 
   constructor(private route: ActivatedRoute, private http:HttpClient) {}
@@ -25,7 +25,23 @@ export class CategoryProductsComponent {
       }
     });
     this.loadProducts();
+    this.loadProductCategory();
+
   }
+
+  private loadProductCategory(): void {
+    this.http.get<responseProductCategory>('http://localhost:5067/api/ProductCategory/'+this.productCategoryId, { observe: 'response' }).subscribe(
+      (response) => {
+        this.productCategory = response.body?.data;
+        console.log(this.productCategory);
+
+      },
+      (error) => {
+        console.error('Errore nel recupero dei dati:', error);
+      }
+    );
+  }
+
 
 
   private loadProducts(): void {
@@ -95,6 +111,12 @@ export interface ProductCategory {
 
 export interface responseProduct {
   data: Product[],
+  success: boolean,
+  message: string
+}
+
+export interface responseProductCategory {
+  data: ProductCategory,
   success: boolean,
   message: string
 }

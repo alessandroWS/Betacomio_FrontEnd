@@ -1,16 +1,15 @@
 <header class="headerMargin container-fluid bgGrey min-vh-100">
 
-  <div class="row align-items-center shadow bgWhite mb-5 p-4" *ngIf="products && products.length; else noProducts">>
+  <div class="row align-items-center shadow bgWhite mb-5 p-4" *ngIf="products && products.length; else noProducts">
       <div class="col-12 px-5 d-flex">
-          <h2 class="py-3 p ps-3 textMain ms-5 roundContent">TUTTI GLI ANNUNCI DELLA CATEGORIA </h2>
-            <h2 class="py-3 textMain text-uppercase roundContent" *ngIf="products && products.length && products[0].productCategory.name">{{ products[0].productCategory.name }}</h2>
+          <h2 class="p-3 textMain ms-5 roundContent text-uppercase">TUTTI GLI ANNUNCI DELLA CATEGORIA - {{ productCategory?.name }}</h2>
       </div>
   </div>
 
   <ng-template #noProducts>
     <div class="row align-items-center shadow bgWhite mb-5 p-4">
       <div class="col-12 px-5 d-flex">
-        <h2 class="py-3 ps-3 textMain ms-5 text-uppercase roundContent">Non ci sono annunci per la categoria - </h2>
+        <h2 class="p-3 textMain ms-5 text-uppercase roundContent">Non ci sono annunci per la categoria - {{ productCategory?.name }}</h2>
       </div>
     </div>
   </ng-template>
@@ -22,7 +21,7 @@
 
 
 
-  <div class="row px-5 justify-content-center" >
+  <div class="row px-5 justify-content-center" *ngIf="products && products.length" >
 
 
 
