@@ -124,7 +124,7 @@
 
                 <p class="textBlue fw-bold">€ {{product.standardCost}}</p>
 
-                <a href="" class="textMain" style="font-size:1rem">View</a>
+                <a [routerLink]="['/singlepage/', product.productId]" class="textMain" style="font-size:1rem">View</a>
 
                 <!-- <small class="textGrey">Pubblicato il: data</small> -->
               </div>
@@ -218,8 +218,4 @@
   </div>
 
 </footer>
-<br><br><br><br><br><br><br><br>
-<hr>
-<app-order-list></app-order-list>
-<br>
-<hr>
+

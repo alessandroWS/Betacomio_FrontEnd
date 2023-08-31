@@ -8,15 +8,15 @@ import { GetOrderDto, ServiceResponse } from './order.model';
   templateUrl: './order-list.component.html',
   styleUrls: ['./order-list.component.css']
 })
-export class OrderListComponent {
+export class OrderListComponent implements OnInit{
   orders: GetOrderDto[] = [];
 
   constructor(private orderService: OrderService) { }
-  
-  loadOrders(): void {
-    // Carica gli ordini quando l'utente clicca sul pulsante
+
+  ngOnInit(): void {
     this.getOrders();
   }
+
 
   getOrders(): void {
     this.orderService.getAllOrders().subscribe((response: ServiceResponse<GetOrderDto[]>) => {

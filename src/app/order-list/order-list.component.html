@@ -1,7 +1,92 @@
-<h2>Ordini</h2>
-<ul>
-  <li *ngFor="let order of orders">
-    {{ order.productName }} - {{ order.quantity }} - {{ order.price }} - {{ order.dateOrder | date }} - {{ order.phone }}
-  </li>
-</ul>
-<button (click)="loadOrders()">Carica Ordini</button>
+<header class="headerMargin container-fluid bgGrey min-vh-100">
+
+  <div class="row align-items-center shadow bgWhite mb-5 p-4" *ngIf="orders && orders.length; else noOrders">
+      <div class="col-12 px-5 d-flex">
+          <h2 class="p-3 textMain ms-5 roundContent text-uppercase">TUTTI I TUOI ORDINI</h2>
+      </div>
+  </div>
+
+  <ng-template #noOrders>
+    <div class="row align-items-center shadow bgWhite mb-5 p-4">
+      <div class="col-12 px-5 d-flex">
+        <h2 class="p-3 textMain ms-5 text-uppercase roundContent">Non ci sono ordini effettuati</h2>
+      </div>
+    </div>
+  </ng-template>
+
+
+
+
+
+
+
+
+  <div class="row px-5 justify-content-center" *ngIf="orders && orders.length" >
+
+
+
+      <div class="col-12 col-md-3 p-2 mt-3 d-flex justify-content-center" *ngFor="let order of orders">
+
+
+          <div class="card rounded-0 border-0" style="width: 16rem;">
+
+              <img src="/src/assets/media/bottombrackets.jpg" class="card-img-top rounded-0" alt="">
+
+              <div class="card-body ps-3 mt-2">
+                  <h5 class="textBlue text-end">{{ order.price }}€</h5>
+                  <h5 class="card-title fs-6 text-uppercase">{{ order.productName }}</h5>
+                  <p class="card-text">Quantità: {{ order.quantity }}</p>
+                  <p class="text-secondary">Tel: {{ order.phone }}</p>
+
+                  <div class="justify-content-between d-flex align-items-center">
+                    <!-- <a [routerLink]="['/singlepage/', product.productId]" class="btn btn-dark bgMain border-0 rounded-0 my-2">Visualizza</a> -->
+
+                      <small class="fst-italic">Effettuato il {{ order.dateOrder | date }}</small>
+
+              </div>
+
+
+        </div>
+
+      </div>
+
+
+
+  </div>
+</div>
+
+
+
+
+</header>
+
+<!-- {{-- 𝗙𝗢𝗢𝗧𝗘𝗥 --}} -->
+
+<footer class="container-fluid footer bgGrey pt-5">
+
+  <div class="row justify-content-center">
+      <hr style="width:90%">
+      <div class="col-6">
+          <ul class="list-unstyled d-flex justify-content-around" style="font-size: 0.7rem">
+              <li><a href="">Copyright © GoodsSports Inc.</a></li>
+              <li> | </li>
+              <li><a href="">Privacy Policy</a></li>
+              <li> | </li>
+              <li><a href="">Termini di utilizzo</a></li>
+              <li> | </li>
+              <li><a href="">Legale</a></li>
+          </ul>
+      </div>
+
+  </div>
+
+</footer>
+
+
+
+
+
+
+
+
+
