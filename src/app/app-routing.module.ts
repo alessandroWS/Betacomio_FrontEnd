@@ -9,6 +9,7 @@ import { OrderListComponent } from './order-list/order-list.component';
 import { ZonarevisioneComponent } from './zonarevisione/zonarevisione.component';
 import { LikeComponent } from './like/like.component';
 import { SinglepageComponent } from './ann/singlepage/singlepage.component';
+import { CategoryProductsComponent } from './ann/category-products/category-products.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'orders', component: OrderListComponent },
   { path: 'zonarevisione', component: ZonarevisioneComponent },
   { path: 'singlepage/:productId', component: SinglepageComponent },
+  { path: 'categoryProducts/:productCategoryId', component: CategoryProductsComponent },
   { path: 'like', component: LikeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ]

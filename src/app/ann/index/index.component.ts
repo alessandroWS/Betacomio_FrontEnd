@@ -16,7 +16,7 @@ export class IndexComponent implements OnInit {
   paginator!: MatPaginator;
   filteredArray: any[] | undefined = []
 
-defaultRecords: any = 8;
+defaultRecords: any = 12;
 
 
 onPaginateChange(data:any) {
@@ -37,7 +37,7 @@ onPaginateChange(data:any) {
       (response) => {
         this.products = response.body?.data;
         console.log('Fetched products:', this.products);
-        this.pageslice = this.products?.slice(0, 8); // Imposta la paginazione iniziale
+        this.pageslice = this.products?.slice(0, 12); // Imposta la paginazione iniziale
       },
       (error) => {
         console.error('Errore nel recupero dei dati:', error);

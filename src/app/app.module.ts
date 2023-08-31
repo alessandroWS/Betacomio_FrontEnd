@@ -24,6 +24,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { ZonarevisioneComponent } from './zonarevisione/zonarevisione.component';
 import { LikeComponent } from './like/like.component';
+import { CategoryProductsComponent } from './ann/category-products/category-products.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { LikeComponent } from './like/like.component';
     SinglepageComponent,
     OrderListComponent,
     ZonarevisioneComponent,
-    LikeComponent
+    LikeComponent,
+    CategoryProductsComponent
   ],
   imports: [
     MatPaginatorModule,

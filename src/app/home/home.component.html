@@ -65,10 +65,10 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide" *ngFor="let category of categories">
           <div class="d-flex flex-column align-items-center">
-            <a href="/show-category/1" class="btn p-0">
+            <a [routerLink]="['/categoryProducts/', category.productCategoryId]" class="btn p-0">
               <img [src]="'assets/media/' + category.img + '.jpg'" alt="basket" class="imgCategory img-fluid rounded-3">
             </a>
-            <a href="/show-category/1" class="btn p-0">
+            <a [routerLink]="['/categoryProducts/', category.productCategoryId]" class="btn p-0">
               <h5 class="pt-3 text-uppercase">{{category.name}}</h5>
             </a>
           </div>
