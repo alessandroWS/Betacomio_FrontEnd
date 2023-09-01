@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 import {ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -20,17 +21,28 @@ export class LoginComponent {
   pswField = new FormControl('', Validators.required);
 
   loginFailed: boolean = false;
+  private routeSubscription: Subscription = new Subscription();
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     // Check if the login failed query parameter is present
+
+
+    
     this.route.queryParams.subscribe(params => {
       if (params['loginFailed']) {
         this.loginFailed = true;
       }
+      else {
+        // Reimposta loginFailed a false al refresh della pagina
+        this.loginFailed = false;
+      }
     });
   }
+
+
+  
 
 
   onLogin() {
