@@ -53,6 +53,7 @@
 
           <li><button class="btn btn-dark my-2 rounded-0"
              *ngIf="BasicAuth.isLogged()" routerLink="/home" (click)="Logout.clearUser()">Logout</button>
+             
             <form method="POST" action="" id="form-logout" class="d-none"></form>
           </li>
 

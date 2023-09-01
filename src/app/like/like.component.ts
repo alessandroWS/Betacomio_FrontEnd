@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 
 import { MatPaginator } from '@angular/material/paginator';
 
 import { PageEvent } from '@angular/material/paginator';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-like',
@@ -30,7 +31,6 @@ onPaginateChange(data:any) {
   ngOnInit(): void {
     this.loadlikes(); // Chiamata per caricare i prodotti iniziali
     this.filteredArray = this.likes?.slice(0, this.defaultRecords);
-
   }
 
   private loadlikes(): void {
@@ -56,7 +56,7 @@ onPaginateChange(data:any) {
       this.pageslice = this.likes.slice(startIndex, endIndex);
     }
   }
-
+  
 
 
 
