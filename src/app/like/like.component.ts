@@ -57,7 +57,16 @@ onPaginateChange(data:any) {
     }
   }
   
-
+  deleteLike(likeId: number) {
+    this.http.delete(`http://localhost:5067/Likes/${likeId}`).subscribe(
+      (response) => {
+        // Gestisci la risposta qui, ad esempio, aggiornando l'array di likes dopo l'eliminazione
+        this.loadlikes(); // Aggiorna l'elenco dei likes dopo l'eliminazione
+      },
+      (error) => {
+        console.error('Errore nell\'eliminazione del like:', error);
+      }
+    );}
 
 
 

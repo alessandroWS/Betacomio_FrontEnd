@@ -70,7 +70,6 @@ export class CategoryProductsComponent {
     this.http.post<Response>('http://localhost:5067/Likes', addlikedto, { observe: "response"}).subscribe(
       (response) => {
         console.log(response);
-
       },
       (error) => {
         console.error('Errore nel recupero dei dati:', error);

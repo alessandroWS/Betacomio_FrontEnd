@@ -73,7 +73,6 @@ onPaginateChange(data:any) {
     this.http.post<Response>('http://localhost:5067/Likes/AddLike', addlikedto, { observe: "response"}).subscribe(
       (response) => {
         console.log(response);
-
       },
       (error) => {
         console.error('Errore nel recupero dei dati:', error);
