@@ -9,24 +9,27 @@ import { AuthService } from '../login/auth.service';
 })
 export class NavbarComponent implements OnInit {
   categories: Category[] | undefined = [];
-  requestAdminCount: number | undefined = 0;
+  nAllReq: number | undefined = 0;
   isAdmin: boolean = false; // Aggiungi una variabile per memorizzare il valore "isAdmin"
-
+  sIsAdmin: string = "";
+  nReq: number | undefined = 0;
   constructor(private http: HttpClient, public BasicAuth: AuthService, public Logout: AuthService) {}
 
   ngOnInit() {
     this.loadCategories();
-
+    this.userRequestCount();
     // Verifica se l'utente è un amministratore
     const token = this.BasicAuth.getJwtToken();
     if (token) {
       const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decodifica il token JWT
       this.isAdmin = decodedToken.IsAdmin === 'True'; // Imposta la variabile "isAdmin"
+      
+      this.sIsAdmin=this.isAdmin.valueOf.toString(); 
     }
 
     // Esegui la funzione loadRequestAdminCount solo se l'utente è un amministratore
     if (this.isAdmin) {
-      this.loadRequestAdminCount();
+      this.getAllCount();
     }
 
     const createAnnouncementButton = document.querySelector('#createAnnouncement') as HTMLElement | null;
@@ -57,10 +60,10 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  private loadRequestAdminCount(): void {
+  private getAllCount(): void {
     this.http.get<responseRequestAdminCount>('http://localhost:5067/AdminRequest/GetAllCount', { observe: "response"}).subscribe(
       (response) => {
-        this.requestAdminCount = response.body?.data;
+        this.nAllReq = response.body?.data;
       },
       (error) => {
         console.error('Errore nel recupero dei dati:', error);
@@ -74,6 +77,61 @@ export class NavbarComponent implements OnInit {
       },
       (error) => {
         console.error('Errore nel recupero dei dati:', error);
+      });
+  }
+      //
+      //
+      //
+      //
+  addReq(): void {
+    this.http.post<any>('http://localhost:5067/AdminRequest/AddReq', {}).subscribe(
+      (response) => {
+        if (response.success) {
+          
+          this.userRequestCount();
+          window.location.reload();
+          // La richiesta è stata eseguita con successo, puoi mostrare un messaggio di successo o eseguire altre azioni
+        } else {
+          // La richiesta è fallita, puoi mostrare un messaggio di errore o eseguire altre azioni
+          console.error('Richiesta di amministratore fallita:', response.message);
+        }
+      },
+      (error) => {
+        console.error('Errore durante la richiesta di amministratore:', error);
+      }
+    );
+  }
+  deleteReq(): void {
+    this.http.delete<any>('http://localhost:5067/AdminRequest/DeleteReq').subscribe(
+      (response) => {
+        if (response.success) {
+          console.log('Richiesta eliminata con successo.');
+          // this.getAllCount();
+          this.userRequestCount();
+          
+          window.location.reload();
+        } else {
+          // La richiesta di eliminazione è fallita, puoi mostrare un messaggio di errore o eseguire altre azioni
+          console.error('Eliminazione richiesta fallita:', response.message);
+          
+          window.location.reload();
+        }
+      },
+      (error) => {
+
+        console.error("Errore durante l'eliminazione della richiesta:", error);
+        
+        window.location.reload();
+      }
+    );
+  }
+  private userRequestCount(): void {
+    this.http.get<responseRequestAdminCount>('http://localhost:5067/AdminRequest/UserRequestCount', { observe: 'response' }).subscribe(
+      (response) => {
+        this.nReq = response.body?.data;
+      },
+      (error) => {
+        console.error('Errore nel recupero del conteggio delle richieste:', error);
       });
   }
 }

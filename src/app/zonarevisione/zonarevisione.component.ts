@@ -19,6 +19,7 @@ export class ZonarevisioneComponent implements OnInit {
     this.isAdmin = this.authService.isAdminUser();
 
     if (!this.isAdmin) {
+      alert("NON SEI ADMIN");
       console.log("NON SEI ADMIN");
       this.router.navigate(['/home']);
     } else {

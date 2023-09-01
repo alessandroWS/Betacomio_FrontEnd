@@ -56,7 +56,9 @@ export class LoginComponent {
       (response: ServiceResponse<string>) => {
         if (response.success) {
           console.log('Login success:', response.data);
-          this.router.navigate(['/home']);
+          //this.router.navigate(['/home']);
+          //window.location.reload();
+          window.location.href="/home";
         } else {
           // Gestisci l'errore di login
           if (response.message === 'Credenziali non valide') {
@@ -66,8 +68,10 @@ export class LoginComponent {
             // Altro errore dal server
             alert('Si è verificato un errore durante il login');
             console.error('Login failed:', response.message);
+            
           }
         }
+        //location.reload();
       },
       (error: HttpErrorResponse) => {
         // Gestisci altri tipi di errori, come problemi di connessione o errori HTTP
