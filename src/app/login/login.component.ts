@@ -3,10 +3,9 @@ import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 import { UserLoginDto, ServiceResponse } from './auth.models';
 import { FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-import { refresh, refreshHard } from 'aos';
 
 @Component({
   selector: 'app-login',
@@ -16,17 +15,30 @@ import { refresh, refreshHard } from 'aos';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  
   usnameField = new FormControl('', Validators.required);
   pswField = new FormControl('', Validators.required);
 
   loginFailed: boolean = false;
-  constructor(private authService: AuthService, private router: Router) { }
+
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    // Check if the login failed query parameter is present
+    this.route.queryParams.subscribe(params => {
+      if (params['loginFailed']) {
+        this.loginFailed = true;
+      }
+    });
+  }
+
 
   onLogin() {
     const user: UserLoginDto = {
       username: this.username,
       password: this.password
     };
+    
 
     this.authService.login(user).subscribe(
       (response: ServiceResponse<string>) => {
@@ -52,7 +64,8 @@ export class LoginComponent {
         //alert('Utente non trovato');
         console.error('HTTP Error:', error);
 
-        this.router.navigate(['/register'], { queryParams: { loginFailed: 'true' } });
+        this.router.navigate(['/login'], { queryParams: { loginFailed: 'true' } });
+        //window.location.reload();
       }
     );
   }

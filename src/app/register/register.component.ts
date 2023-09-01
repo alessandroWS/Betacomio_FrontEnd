@@ -25,14 +25,14 @@ export class RegisterComponent {
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
 
-  ngOnInit() {
-    // Check if the login failed query parameter is present
-    this.route.queryParams.subscribe(params => {
-      if (params['loginFailed']) {
-        this.loginFailed = true;
-      }
-    });
-  }
+  // ngOnInit() {
+  //   // Check if the login failed query parameter is present
+  //   this.route.queryParams.subscribe(params => {
+  //     if (params['loginFailed']) {
+  //       this.loginFailed = true;
+  //     }
+  //   });
+  // }
 
   
 
@@ -61,7 +61,7 @@ export class RegisterComponent {
         password: '',
         password_confirmation: '',
       };
-      this.router.navigate(['/register']);
+      //this.router.navigate(['/login']);
     }
     
   }

@@ -43,6 +43,16 @@
           </div>
   
           <button type="submit" class="btn btn-log-reg btn-outline-dark borderMain rounded-0 textMain p-2" [disabled]="!username || !password">Invia</button>
+
+
+          <div *ngIf="loginFailed" class="text-center mt-5">
+            <div class="avv-log">
+              Il login non è riuscito. Controlla le credenziali e riprova. 
+              <br>
+              Altrimenti, registrati!
+            </div>
+          </div>
+          
         </form>
   
   
@@ -51,6 +61,7 @@
   
       <div class="col-12 col-md-6 text-center p-5">
   
+        
         <h2 class="p-3">NON HAI UN ACCOUNT ?</h2>
         <p class="textMain my-4">Effettua la registrazione per usufruire al meglio dei nostri servizi e scoprire le ultime
           novità</p>
