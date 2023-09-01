@@ -11,7 +11,7 @@ import { UserLoginDto, UserRegisterDto, ServiceResponse } from './auth.models';
 export class AuthService {
   private apiUrl = 'http://localhost:5067/Auth'; 
   private jwtTokenKey = 'jwtToken'; // Chiave utilizzata per il salvataggio del token nel localStorage
-
+  isAdmin: boolean = false;
   constructor(private http: HttpClient) { }
 
   // register(user: UserRegisterDto): Observable<ServiceResponse<number>> {
@@ -45,4 +45,12 @@ export class AuthService {
   clearUser = (): void => localStorage.removeItem(this.jwtTokenKey); //metodo che toglie il token (logout)
 
   clearAll = (): void => localStorage.clear(); //metodo che pulisce tutto
+  isAdminUser(): boolean {
+    const token = this.getJwtToken();
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decodifica il token JWT
+      return decodedToken.IsAdmin === 'True';
+    }
+    return false;
+  }
 }

@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../login/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-zonarevisione',
@@ -9,11 +11,19 @@ import { Component, OnInit } from '@angular/core';
 export class ZonarevisioneComponent implements OnInit {
 
   requestAdmins: RequestAdmin[] | undefined;
+  isAdmin: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.loadRequestAdmin();
+    this.isAdmin = this.authService.isAdminUser();
+
+    if (!this.isAdmin) {
+      console.log("NON SEI ADMIN");
+      this.router.navigate(['/home']);
+    } else {
+      this.loadRequestAdmin();
+    }
   }
 
   private loadRequestAdmin(): void {
@@ -61,7 +71,7 @@ export class ZonarevisioneComponent implements OnInit {
     console.log(PutReqDto);
 
 
-    this.http.put<any>('http://localhost:5067/AdminRequest?id='+idRequest, PutReqDto).subscribe(
+    this.http.put<any>('http://localhost:5067/AdminRequest/'+idRequest, PutReqDto).subscribe(
     (response) => {
       console.log('welaa');
       this.loadRequestAdmin();

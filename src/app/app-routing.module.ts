@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'categoryProducts/:productCategoryId', component: CategoryProductsComponent },
   { path: 'like', component: LikeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  
 ]
 
 @NgModule({

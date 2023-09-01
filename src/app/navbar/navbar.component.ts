@@ -8,15 +8,26 @@ import { AuthService } from '../login/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
   categories: Category[] | undefined = [];
   requestAdminCount: number | undefined = 0;
+  isAdmin: boolean = false; // Aggiungi una variabile per memorizzare il valore "isAdmin"
 
   constructor(private http: HttpClient, public BasicAuth: AuthService, public Logout: AuthService) {}
 
   ngOnInit() {
     this.loadCategories();
-    this.loadRequestAdminCount();
+
+    // Verifica se l'utente è un amministratore
+    const token = this.BasicAuth.getJwtToken();
+    if (token) {
+      const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decodifica il token JWT
+      this.isAdmin = decodedToken.IsAdmin === 'True'; // Imposta la variabile "isAdmin"
+    }
+
+    // Esegui la funzione loadRequestAdminCount solo se l'utente è un amministratore
+    if (this.isAdmin) {
+      this.loadRequestAdminCount();
+    }
 
     const createAnnouncementButton = document.querySelector('#createAnnouncement') as HTMLElement | null;
     const imagesInput = document.querySelector('#images') as HTMLInputElement | null;
@@ -26,7 +37,6 @@ export class NavbarComponent implements OnInit {
         imagesInput.value = '';
       });
     }
-
 
     let mainNav = document.querySelector('#mainNav') as HTMLElement | null;
     let navContainer = document.querySelector('#navContainer') as HTMLElement | null;
@@ -47,8 +57,6 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-
-
   private loadRequestAdminCount(): void {
     this.http.get<responseRequestAdminCount>('http://localhost:5067/AdminRequest/GetAllCount', { observe: "response"}).subscribe(
       (response) => {
@@ -58,7 +66,6 @@ export class NavbarComponent implements OnInit {
         console.error('Errore nel recupero dei dati:', error);
       });
   }
-
 
   private loadCategories(): void {
     this.http.get<responseCategory>('http://localhost:5067/api/ProductCategory/GetAll', { observe: "response"}).subscribe(
@@ -71,20 +78,20 @@ export class NavbarComponent implements OnInit {
   }
 }
 
-export interface Category{
+export interface Category {
   productCategoryId: number;
   name: string;
   img: string;
 }
 
 export interface responseCategory {
-  data: Category[],
-  success: boolean,
-  message: string
+  data: Category[];
+  success: boolean;
+  message: string;
 }
 
 export interface responseRequestAdminCount {
-  data: number,
-  success: boolean,
-  message: string
+  data: number;
+  success: boolean;
+  message: string;
 }
