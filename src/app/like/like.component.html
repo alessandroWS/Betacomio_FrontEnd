@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+
 <header class="headerMargin container-fluid bgGrey min-vh-100">
 
   <div class="row align-items-center shadow bgWhite mb-5 p-4">
@@ -26,7 +28,7 @@
 
                   <div class="justify-content-between d-flex align-items-center">
                     <a [routerLink]="['/singlepage/', like.productId]" class="btn btn-dark bgMain border-0 rounded-0 my-2">Visualizza</a>
-                  
+
     <button class="btn btn-danger rounded-0" (click)="deleteLike(like.productId)">Elimina</button>
                 </div>
 

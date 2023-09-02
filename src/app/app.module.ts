@@ -23,12 +23,15 @@ import { AuthService } from './login/auth.service';
 import { BuyComponent } from './buy/buy.component';
 
 import { JwtModule } from '@auth0/angular-jwt';
-import { SearchComponent } from './search/search.component';
+
+
+import { NavbarFilterComponent } from './navbarfilter/navbarfilter.component';
 
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
+    NavbarFilterComponent,
     AppComponent,
     HomeComponent,
     NavbarComponent,
@@ -41,7 +44,6 @@ import { SearchComponent } from './search/search.component';
     LikeComponent,
     CategoryProductsComponent,
     BuyComponent,
-    SearchComponent,
   ],
   imports: [
     JwtModule.forRoot({

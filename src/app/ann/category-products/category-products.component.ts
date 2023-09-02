@@ -8,12 +8,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./category-products.component.css']
 })
 export class CategoryProductsComponent {
-  products: Product[] | undefined = [];
-  productCategoryId: number | null = null;
+
+  searchText: string = '';
   productCategory: ProductCategory | undefined;
 
-
-  constructor(private route: ActivatedRoute, private http:HttpClient) {}
+  constructor(private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -21,20 +20,25 @@ export class CategoryProductsComponent {
       if (productIdParam !== null) {
         this.productCategoryId = +productIdParam;
         console.log(this.productCategoryId);
-      } else {
       }
     });
-    this.loadProducts();
+    this.filterProducts(); // Chiamata per caricare i prodotti iniziali
     this.loadProductCategory();
-
   }
 
+  onSearchTextEntered(searchValue: string) {
+    this.searchText = searchValue;
+    this.filterProducts();
+  }
+
+  products: Product[] | undefined = [];
+  productCategoryId: number | null = null;
+
   private loadProductCategory(): void {
-    this.http.get<responseProductCategory>('http://localhost:5067/api/ProductCategory/'+this.productCategoryId, { observe: 'response' }).subscribe(
+    this.http.get<responseProductCategory>('http://localhost:5067/api/ProductCategory/' + this.productCategoryId, { observe: 'response' }).subscribe(
       (response) => {
         this.productCategory = response.body?.data;
         console.log(this.productCategory);
-
       },
       (error) => {
         console.error('Errore nel recupero dei dati:', error);
@@ -42,10 +46,12 @@ export class CategoryProductsComponent {
     );
   }
 
+  private filterProducts(): void {
+    const apiUrl = this.searchText
+      ? `http://localhost:5067/api/Product/category/${this.productCategoryId}?search=${this.searchText}`
+      : `http://localhost:5067/api/Product/category/${this.productCategoryId}`;
 
-
-  private loadProducts(): void {
-    this.http.get<responseProduct>('http://localhost:5067/api/Product/category/'+this.productCategoryId, { observe: 'response' }).subscribe(
+    this.http.get<responseProduct>(apiUrl, { observe: 'response' }).subscribe(
       (response) => {
         this.products = response.body?.data;
       },
@@ -55,19 +61,16 @@ export class CategoryProductsComponent {
     );
   }
 
-  like(productName: string, price: string, userId: number, productId: number, categoryName: string) : void {
-
+  like(productName: string, price: string, userId: number, productId: number, categoryName: string): void {
     const addlikedto = {
-      productName : productName,
-      price : price,
-      productId : productId,
-      userId : userId,
+      productName: productName,
+      price: price,
+      productId: productId,
+      userId: userId,
       categoryName: categoryName
-
     }
 
-
-    this.http.post<Response>('http://localhost:5067/Likes', addlikedto, { observe: "response"}).subscribe(
+    this.http.post<Response>('http://localhost:5067/Likes', addlikedto, { observe: "response" }).subscribe(
       (response) => {
         console.log(response);
       },
@@ -76,9 +79,6 @@ export class CategoryProductsComponent {
       }
     );
   }
-
-
-
 }
 
 
@@ -88,34 +88,34 @@ export interface Product {
   name: string;
   standardCost: number;
   ProductNumber: string;
-  Color:string;
-  ListPrice:number;
-  Size:string;
+  Color: string;
+  ListPrice: number;
+  Size: string;
   Weight: string;
-  ProductCategoryID:number;
-  ProductModelID:number;
+  ProductCategoryID: number;
+  ProductModelID: number;
   SellStartDate: Date;
   SellEndDate: Date;
   DiscontinuedDate: Date;
   ThumbNailPhoto: string;
   ThumbnailPhotoFileName: string;
   modifiedDate: Date;
-  productCategory: ProductCategory
+  productCategory: ProductCategory;
 }
 
 export interface ProductCategory {
-  productCategoryId : number;
-  name : string;
+  productCategoryId: number;
+  name: string;
 }
 
 export interface responseProduct {
-  data: Product[],
-  success: boolean,
-  message: string
+  data: Product[];
+  success: boolean;
+  message: string;
 }
 
 export interface responseProductCategory {
-  data: ProductCategory,
-  success: boolean,
-  message: string
+  data: ProductCategory;
+  success: boolean;
+  message: string;
 }

@@ -5,7 +5,14 @@
       <a class="navbar-brand p-3 img-fluid" href=""><img src="assets/media/logoBetacomio.png" alt=""
           style="width: 8rem"></a>
     </div>
-
+    <!-- Barra di ricerca -->
+    <div class="d-none d-md-block">
+      <div class="searchform">
+        <input name="searched" [(ngModel)]="enteredSearchValue" class="form-control me-2 inputsearch" type="search" placeholder="What can we help you find?" aria-label="Search" (ngModelChange)="onSearchTextChanged()">
+        <button class="btn bgBlack textWhite p-3 btnsearch" type="submit"><i
+            class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </div>
     <!-- Menu utente, Inserisci annuncio e pulsante del menu -->
     <div class="d-flex justify-content-center align-items-center ms-auto">
       <div class="dropdown mx-2">
@@ -109,7 +116,13 @@
         <li class="d-block d-md-none nav-item my-2">
           <a class="nav-link" href="">INSERISCI ANNUNCIO</a>
         </li>
-
+        <div class="d-none d-md-block" *ngIf="showMobileSearch == true">
+          <div class="searchform">
+            <input name="searched" [(ngModel)]="enteredSearchValue" class="form-control me-2 inputsearch" type="search" placeholder="What can we help you find?" aria-label="Search" (ngModelChange)="onSearchTextChanged()">
+            <button class="btn bgBlack textWhite p-3 btnsearch" type="submit"><i
+                class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+        </div>
       </ul>
     </div>
   </div>

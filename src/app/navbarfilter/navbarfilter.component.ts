@@ -3,11 +3,11 @@ import { Component,Input, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../login/auth.service';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: 'app-navbarfilter',
+  templateUrl: './navbarfilter.component.html',
+  styleUrls: ['./navbarfilter.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarFilterComponent implements OnInit {
   @Input() showMobileSearch: boolean = false // Imposta il valore predefinito a true
 
 
