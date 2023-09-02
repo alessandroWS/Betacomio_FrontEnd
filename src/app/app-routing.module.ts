@@ -10,6 +10,8 @@ import { ZonarevisioneComponent } from './zonarevisione/zonarevisione.component'
 import { LikeComponent } from './like/like.component';
 import { SinglepageComponent } from './ann/singlepage/singlepage.component';
 import { CategoryProductsComponent } from './ann/category-products/category-products.component';
+import { BuyComponent } from './buy/buy.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
@@ -22,8 +24,10 @@ const routes: Routes = [
   { path: 'singlepage/:productId', component: SinglepageComponent },
   { path: 'categoryProducts/:productCategoryId', component: CategoryProductsComponent },
   { path: 'like', component: LikeComponent },
+  { path: 'buy/:productId', component: BuyComponent },
+  { path: 'search', component: SearchComponent }, // Crea un componente "SearchComponent" per visualizzare i risultati di ricerca
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  
+
 ]
 
 @NgModule({

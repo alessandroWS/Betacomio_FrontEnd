@@ -7,20 +7,21 @@
     </div>
     <!-- Barra di ricerca -->
     <div class="d-none d-md-block">
-      <form method="GET" action="" class="searchform" role="search">
-        <input name="searched" class="form-control me-2 inputsearch" type="search"
+      <form (ngSubmit)="searchProducts()" class="searchform" role="search">
+        <input name="searched" [(ngModel)]="searchTerm" class="form-control me-2 inputsearch" type="search"
           placeholder="What can we help you find?" aria-label="Search">
         <button class="btn bgBlack textWhite p-3 btnsearch" type="submit"><i
             class="fa-solid fa-magnifying-glass"></i></button>
       </form>
     </div>
+
     <!-- Menu utente, Inserisci annuncio e pulsante del menu -->
     <div class="d-flex justify-content-center align-items-center ms-auto">
       <div class="dropdown mx-2">
         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-person-walking fa-xl textBlue userIcon"></i>
         </a>
-        
+
         <ul class="dropdown-menu shadow rounded-0 borderBlack text-center drop-user">
           <!-- Login e registrazione -->
           <li><a class="btn btn-dark rounded-0 my-2 px-4 text-white" routerLink="/login" *ngIf="!BasicAuth.isLogged()">Login</a></li>
@@ -32,7 +33,7 @@
             <span class="text-success">Admin</span>
             <a class="dropdown-item my-2" routerLink="/zonarevisione">
               Area Revisore
-              <span class="badge textWhite bgMain" 
+              <span class="badge textWhite bgMain"
               [ngClass]="{ 'vibrate-1': nAllReq && nAllReq > 0 }">{{ nAllReq }}
               </span>
             </a>
@@ -40,23 +41,23 @@
 
 
           <!-- NO ADMIN -->
-          <li *ngIf="!isAdmin && nReq === 0 && BasicAuth.isLogged()">  
+          <li *ngIf="!isAdmin && nReq === 0 && BasicAuth.isLogged()">
             <span class="text-warning">NESSUNA RICHIESTA</span>
             <button class="btn btn-success btn-sm" (click)="addReq()">INVIA RICHIESTA</button>
           </li>
           <!-- RIFIUTATO O IN SOSPESO -->
-          <li *ngIf="!isAdmin && nReq === 1 && BasicAuth.isLogged()">  
+          <li *ngIf="!isAdmin && nReq === 1 && BasicAuth.isLogged()">
             <span class="text-warning">RIFIUTATO O IN SOSPESO</span>
             <button class="btn btn-success btn-sm" (click)="deleteReq()">ELIMINA RICHIESTA</button>
           </li>
 
           <!-- Logout -->
-          <li><button class="btn btn-dark my-2 rounded-0" 
-            *ngIf="BasicAuth.isLogged()" routerLink="/home" 
+          <li><button class="btn btn-dark my-2 rounded-0"
+            *ngIf="BasicAuth.isLogged()" routerLink="/home"
             (click)="Logout.clearUser()">Logout</button>
             <form method="POST" action="" id="form-logout" class="d-none"></form>
           </li>
-          <li><button class="btn btn-dark my-2 rounded-0 d-none" 
+          <li><button class="btn btn-dark my-2 rounded-0 d-none"
             *ngIf="!BasicAuth.isLogged()">Logout</button>
             <form method="POST" action="" id="form-logout" class="d-none"></form>
           </li>

@@ -1,0 +1,97 @@
+<header class="headerMargin container-fluid bgGrey" style="min-height: 100vh;">
+
+  <div class="row align-items-center shadow bgWhite mb-5 p-4">
+      <div class="col-12 px-5">
+          <h2 class="p-3 textMain ms-5 roundContent">PAGAMENTO</h2>
+      </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+
+  <div class="container">
+    <div class="row m-0  d-flex justify-content-center">
+      <div class="col-6 p-0">
+        <div class="p-4 bg-white">
+          <h5>PAESE DI SPEDIZIONE:</h5>
+          <div class="d-flex align-items-center mt-3">
+            <img src="/assets/media/italy.png" width="35px" alt="">
+            <p class="p-0 m-0 ms-3">Italy</p>
+          </div>
+        </div>
+        <div class="p-4 bg-white mt-4">
+          <h5>INDIRIZZO E-MAIL:</h5>
+            <p class="p-0 m-0 mt-3 fb-light" formControlName="emailAddress">{{nameUser}}</p>
+        </div>
+        <div class="p-4 bg-white mt-4">
+          <h5>NUMERO DI TELEFONO:</h5>
+            <input type="text" class="form-control mt-3 " formControlName="phone">
+        </div>
+        <p class="mt-4">Cliccando ACQUISTA ORA, si conferma di aver letto, compreso e accettato i nostri Termini e Condizioni.
+        </p>
+        <button type="submit" style="letter-spacing: 2px;" class="w-100 p-3 btn btn-success rounded-0 border-0 mt-4 fw-bold">ACQUISTA ORA</button>
+
+      </div>
+      <div class="col-4 p-4 ms-4 bg-white" style="height: fit-content">
+        <h5 class="mb-1">PRODOTTO</h5>
+        <hr class="mb-4">
+        <div class="d-flex">
+          <img src="/assets/media/bikes.jpg" class="w-25" alt="">
+          <div class="ms-3">
+            <p class="fw-bold">€ {{product?.standardCost}} </p>
+            <p class="">{{product?.name}}</p>
+
+            <input type="number" formControlName="quantita" class="w-25 text-center">
+
+        </div>
+        </div>
+      </div>
+
+
+      </div>
+  </div>
+  </form>
+
+
+
+      <!-- @empty
+
+      <div class="col-12">
+          <div class="alert alert-warning py-3 shadow">
+              <p class="lead">Non sono disponibili annunci per questa ricerca</p>
+          </div>
+      </div>
+
+      @endforelse
+
+      {{$announcements->links()}} -->
+
+
+
+
+
+</header>
+
+<!-- {{-- 𝗙𝗢𝗢𝗧𝗘𝗥 --}} -->
+
+<footer class="container-fluid footer bgGrey pt-5">
+
+  <div class="row justify-content-center">
+      <hr style="width:90%">
+      <div class="col-6">
+          <ul class="list-unstyled d-flex justify-content-around" style="font-size: 0.7rem">
+              <li><a href="">Copyright © GoodsSports Inc.</a></li>
+              <li> | </li>
+              <li><a href="">Privacy Policy</a></li>
+              <li> | </li>
+              <li><a href="">Termini di utilizzo</a></li>
+              <li> | </li>
+              <li><a href="">Legale</a></li>
+          </ul>
+      </div>
+
+  </div>
+
+</footer>
+
+
+

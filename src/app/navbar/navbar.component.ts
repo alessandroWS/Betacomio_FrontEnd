@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../login/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,15 @@ export class NavbarComponent implements OnInit {
   isAdmin: boolean = false; // Aggiungi una variabile per memorizzare il valore "isAdmin"
   sIsAdmin: string = "";
   nReq: number | undefined = 0;
-  constructor(private http: HttpClient, public BasicAuth: AuthService, public Logout: AuthService) {}
+  constructor(private router:Router, private http: HttpClient, public BasicAuth: AuthService, public Logout: AuthService) {}
+
+  searchTerm: string = '';
+
+
+  searchProducts() {
+    // Esegui la navigazione alla pagina di ricerca dei prodotti con il termine di ricerca come parametro
+    this.router.navigate(['/search'], { queryParams: { term: this.searchTerm } });
+  }
 
   ngOnInit() {
     this.loadCategories();
@@ -23,8 +32,8 @@ export class NavbarComponent implements OnInit {
     if (token) {
       const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decodifica il token JWT
       this.isAdmin = decodedToken.IsAdmin === 'True'; // Imposta la variabile "isAdmin"
-      
-      this.sIsAdmin=this.isAdmin.valueOf.toString(); 
+
+      this.sIsAdmin=this.isAdmin.valueOf.toString();
     }
 
     // Esegui la funzione loadRequestAdminCount solo se l'utente è un amministratore
@@ -87,7 +96,7 @@ export class NavbarComponent implements OnInit {
     this.http.post<any>('http://localhost:5067/AdminRequest/AddReq', {}).subscribe(
       (response) => {
         if (response.success) {
-          
+
           this.userRequestCount();
           window.location.reload();
           // La richiesta è stata eseguita con successo, puoi mostrare un messaggio di successo o eseguire altre azioni
@@ -108,19 +117,19 @@ export class NavbarComponent implements OnInit {
           console.log('Richiesta eliminata con successo.');
           // this.getAllCount();
           this.userRequestCount();
-          
+
           window.location.reload();
         } else {
           // La richiesta di eliminazione è fallita, puoi mostrare un messaggio di errore o eseguire altre azioni
           console.error('Eliminazione richiesta fallita:', response.message);
-          
+
           window.location.reload();
         }
       },
       (error) => {
 
         console.error("Errore durante l'eliminazione della richiesta:", error);
-        
+
         window.location.reload();
       }
     );

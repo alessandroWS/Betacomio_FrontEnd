@@ -20,6 +20,11 @@ import { CategoryProductsComponent } from './ann/category-products/category-prod
 import { SinglepageComponent } from './ann/singlepage/singlepage.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { AuthService } from './login/auth.service';
+import { BuyComponent } from './buy/buy.component';
+
+import { JwtModule } from '@auth0/angular-jwt';
+import { SearchComponent } from './search/search.component';
+
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -35,8 +40,17 @@ import { AuthService } from './login/auth.service';
     ZonarevisioneComponent,
     LikeComponent,
     CategoryProductsComponent,
+    BuyComponent,
+    SearchComponent,
   ],
   imports: [
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('token'), // Funzione per ottenere il token dalla tua sorgente (es. localStorage)
+        allowedDomains: ['example.com'], // Domini consentiti (opzionale)
+        disallowedRoutes: ['example.com/api/auth'], // Rotte escluse (opzionale)
+      },
+    }),
     MatPaginatorModule,
     RouterModule,
     BrowserModule,
