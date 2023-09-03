@@ -19,20 +19,24 @@ export class RegisterComponent {
   };
   loginFailed: boolean = false;
 
+  regNum: number = 0;
+
 
   nameField = new FormControl('', Validators.required);
   pswField = new FormControl('', Validators.required);
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
 
-  // ngOnInit() {
-  //   // Check if the login failed query parameter is present
-  //   this.route.queryParams.subscribe(params => {
-  //     if (params['loginFailed']) {
-  //       this.loginFailed = true;
-  //     }
-  //   });
-  // }
+  ngOnInit() {
+   
+    this.regNum = 0;
+
+    this.route.queryParams.subscribe(params => {
+      if (params['reg'] === 'email ex') {
+        this.regNum = 1;
+      }
+    });
+  }
 
   
 
@@ -45,12 +49,15 @@ export class RegisterComponent {
         (response: any) => {
           console.log('Registration successful:', response);
           this.router.navigate(['/home'], {
-            queryParams: { msg: 'ti sei registrato' }, // Passa il messaggio tramite queryParams
+            queryParams: { reg: 'success reg' }, // Passa il messaggio tramite queryParams
           });
         },
         (error) => {
           console.error('Registration failed:', error);
           // Gestione degli errori
+          this.router.navigate(['/register'], {
+            queryParams: { reg: 'email ex' }, // Passa il messaggio tramite queryParams
+          });
         }
       );
 

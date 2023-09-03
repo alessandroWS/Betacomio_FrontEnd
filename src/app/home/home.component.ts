@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
   categories: Category[] | undefined = [];
 
   logNum: number = 0;
+  regNum: number = 0;
+
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, public BasicAuth: AuthService, public Logout: AuthService) { }
 
   ngOnInit(): void {
@@ -55,6 +57,21 @@ export class HomeComponent implements OnInit {
 
       }   
     });
+
+
+    this.route.queryParams.subscribe(params => {
+      if (params['reg'] === 'success reg') {
+        //this.showLogMessage = true;
+        this.regNum = 1;
+        setTimeout(() => {
+          
+          this.regNum = 0;
+        }, 5000);
+
+      
+      }
+    });
+
   }
 
 
