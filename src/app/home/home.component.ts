@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import AOS from 'aos'; // Supponendo che 'aos' sia importabile da ES6
 import { Pagination, Autoplay } from 'swiper/modules'
 import SwiperCore from 'swiper'
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../login/auth.service';
 
 SwiperCore.use([Autoplay]);
 
@@ -17,14 +19,44 @@ export class HomeComponent implements OnInit {
   products: Product[] | undefined = [];
   categories: Category[] | undefined = [];
 
-  constructor(private http: HttpClient) {}
+  logNum: number = 0;
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, public BasicAuth: AuthService, public Logout: AuthService) { }
 
   ngOnInit(): void {
     this.loadCategories();
     this.loadProducts();
     this.initializeSwiper();
     this.initializeAOS();
+
+
+    this.logNum = 0;
+   
+
+    this.route.queryParams.subscribe(params => {
+      if (params['log'] === 'Logged in') {
+        //this.showLogMessage = true;
+        this.logNum = 1;
+        setTimeout(() => {
+          
+          this.logNum = 0;
+        }, 5000);
+
+      
+      }
+      else if(params['log'] === 'Logged out') {
+        // Reimposta loginFailed a false al refresh della pagina
+        //this.showLogMessage = false;
+
+        this.logNum = 2;
+        setTimeout(() => {
+          
+          this.logNum = 0;
+        }, 5000);
+
+      }   
+    });
   }
+
 
   //  this.products = response.body?.data.slice(-5);
 

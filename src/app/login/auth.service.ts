@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators'; // Importa il tap operator per la gestione del token
 import { UserLoginDto, UserRegisterDto, ServiceResponse } from './auth.models';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
   private apiUrl = 'http://localhost:5067/Auth'; 
   private jwtTokenKey = 'jwtToken'; // Chiave utilizzata per il salvataggio del token nel localStorage
   isAdmin: boolean = false;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   // register(user: UserRegisterDto): Observable<ServiceResponse<number>> {
   //   return this.http.post<ServiceResponse<number>>(`${this.apiUrl}/Register`, user);
@@ -52,5 +53,10 @@ export class AuthService {
       return decodedToken.IsAdmin === 'True';
     }
     return false;
+  }
+  
+  onLogout() {
+    this.clearUser();
+    this.router.navigate(['/home'], { queryParams: { log : "Logged out"} });
   }
 }

@@ -8,7 +8,19 @@
 <header class="container-fluid headerCus">
 
   <div class="row vh-100 justify-content-center align-items-center pt-5 px-3 position-relative">
-
+    <div *ngIf="logNum === 1" class="text-center">
+      <div class="log-ok">
+        Login effettuato. 
+        <br>
+        Benvenut*!
+      </div>
+    </div>
+    
+    <div *ngIf="logNum === 2" class="text-center">
+      <div class="log-out">
+        Logout effettuato correttamente
+      </div>
+    </div>
     <!-- @if(session('access.denied'))
 
          <div class="col-3 message-alert alert alert-dismissible alert-light shadow text-center alertCus shadow" role="alert">

@@ -58,7 +58,8 @@ export class LoginComponent {
           console.log('Login success:', response.data);
           //this.router.navigate(['/home']);
           //window.location.reload();
-          window.location.href="/home";
+          //window.location.href="/home";
+          this.router.navigate(['/home'], { queryParams: { log : "Logged in"} });
         } else {
           // Gestisci l'errore di login
           if (response.message === 'Credenziali non valide') {

@@ -45,7 +45,7 @@
           <!-- Logout -->
           <li><button class="btn btn-dark my-2 rounded-0"
             *ngIf="BasicAuth.isLogged()" routerLink="/home"
-            (click)="Logout.clearUser()">Logout</button>
+            (click)="Logout.onLogout()">Logout</button>
             <form method="POST" action="" id="form-logout" class="d-none"></form>
           </li>
           <li><button class="btn btn-dark my-2 rounded-0 d-none"
@@ -109,7 +109,6 @@
         <li class="d-block d-md-none nav-item my-2">
           <a class="nav-link" href="">INSERISCI ANNUNCIO</a>
         </li>
-
       </ul>
     </div>
   </div>
