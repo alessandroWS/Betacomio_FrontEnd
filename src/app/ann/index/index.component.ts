@@ -27,6 +27,7 @@ export class IndexComponent implements OnInit {
   filteredArray: any[] | undefined = [];
 
   defaultRecords: any = 12;
+  likeId: number | null = null; // Aggiunto per gestire l'ID del like
 
   loadPageData(pageIndex: number, pageSize: number) {
     if (this.products) {
@@ -103,7 +104,34 @@ export class IndexComponent implements OnInit {
   }
 
   public pageslice: Product[] | undefined = [];
+  liked: boolean = false;
 
+  unlike(productId: number): void {
+    if (this.likeId !== null) {
+      this.http.delete(`http://localhost:5067/Likes/${this.likeId}`).subscribe(
+        () => {
+          this.liked = false; // Imposta lo stato "mi piace" su false
+          this.likeId = null; // Resetta l'ID del like
+          // Aggiorna l'aspetto dell'icona a cuore vuoto
+        },
+        (error) => {
+          console.error('Errore nell\'eliminazione del like:', error);
+        }
+      );
+    }
+  }
+  deleteLike(likeId: number): void {
+    this.http.delete(`http://localhost:5067/Likes/${likeId}`).subscribe(
+      () => {
+        // Eliminazione riuscita, ora ricarica i like
+        this.loadProducts(); // Aggiorna l'elenco dei like dopo l'eliminazione
+      },
+      (error) => {
+        console.error('Errore nell\'eliminazione del like:', error);
+      }
+    );
+  }
+  
   like(
     productName: string,
     price: string,
@@ -120,17 +148,21 @@ export class IndexComponent implements OnInit {
     };
 
     this.http
-      .post<Response>('http://localhost:5067/Likes/AddLike', addlikedto, {
-        observe: 'response',
-      })
-      .subscribe(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          console.error('Errore nel recupero dei dati:', error);
+    .post<number>('http://localhost:5067/Likes/AddLike', addlikedto, {
+      observe: 'response',
+    })
+    .subscribe(
+      (response) => {
+        console.log(response);
+        if (response.body) {
+          this.likeId = response.body; // Imposta l'ID del like
+          this.liked = true; // Imposta lo stato "mi piace" su true
         }
-      );
+      },
+      (error) => {
+        console.error('Errore nel recupero dei dati:', error);
+      }
+    );
   }
 }
 

@@ -7,6 +7,10 @@
   --white:rgb(253, 253, 253);
   --blue: rgb(8, 10, 44);
 }
+/* Stili per l'icona "mi piace" quando è attiva (color rosso) */
+.liked i.bi-heart {
+  color: red;
+}
 
 @font-face {
   font-family: bradon;
