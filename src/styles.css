@@ -1,4 +1,5 @@
 /* 𝗟𝗘 𝗕𝗔𝗦𝗜 */
+@import "./mediaQuery.css";
 :root{
   --main: rgb(228, 170, 59);
   --sec: rgba(241, 241, 241, 0.925);
@@ -11,6 +12,7 @@
   font-family: bradon;
   src: url(src/assets/font/BrandonGrotesque-Bold.ttf);
 }
+
 .bgMain{
   background-color: var(--main);
 }
