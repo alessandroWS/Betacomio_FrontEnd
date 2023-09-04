@@ -1,0 +1,12 @@
+/* Stili hover per i link */
+.fa-facebook:hover {
+    color: blue;
+  }
+
+  .fa-instagram:hover {
+    color: orange;
+  }
+
+  .fa-linkedin:hover {
+    color: lightblue;
+  }

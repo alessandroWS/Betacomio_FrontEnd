@@ -26,11 +26,12 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 
 import { NavbarFilterComponent } from './navbarfilter/navbarfilter.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [
+  declarations: [	
     NavbarFilterComponent,
     AppComponent,
     HomeComponent,
@@ -44,7 +45,8 @@ import { NavbarFilterComponent } from './navbarfilter/navbarfilter.component';
     LikeComponent,
     CategoryProductsComponent,
     BuyComponent,
-  ],
+      FooterComponent
+   ],
   imports: [
     JwtModule.forRoot({
       config: {
