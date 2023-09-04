@@ -21,10 +21,17 @@
           <label for="exampleInputEmail" class="form-label">Indirizzo email (USERNAME)</label>
           <input type="email" name="email" class="form-control" id="exampleInputEmail" [(ngModel)]="userData.username"
             required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" [formControl]="nameField" />
-          <div *ngIf="!userData.username.includes('@') && nameField.invalid && (nameField.dirty || nameField.touched)">
-            <div class="text-danger" *ngIf="nameField.errors">
-              L'indirizzo email deve contenere il carattere @
+          <div *ngIf="nameField.invalid && (nameField.dirty || nameField.touched)">
+
+            
+            <div class="registrationForm.get('email').hasError('required')" *ngIf="nameField.errors">
+              L'indirizzo email è obbligatorio
             </div>
+
+            <div class="registrationForm.get('email').hasError('email')" *ngIf="nameField.errors">
+              Inserisci un indirizzo email valido
+            </div>
+
           </div>
           <div id="emailHelp" class="form-text">
             Non condivideremo la tua mail con nessun'altro.

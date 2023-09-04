@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router'; // Importa il Router per il reindirizzamento
-import { FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -25,7 +25,14 @@ export class RegisterComponent {
   nameField = new FormControl('', Validators.required);
   pswField = new FormControl('', Validators.required);
 
-  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {}
+  registrationForm: FormGroup;
+
+
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+    this.registrationForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
+  }
 
   ngOnInit() {
    
