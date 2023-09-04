@@ -3,34 +3,34 @@
     <!-- Logo -->
     <div class="me-auto">
       <a class="navbar-brand p-3 img-fluid" href=""><img src="assets/media/logoBetacomio.png" alt=""
-          style="width: 8rem"></a>
-    </div>
-
-    <!-- Menu utente, Inserisci annuncio e pulsante del menu -->
-    <div class="d-flex justify-content-center align-items-center ms-auto">
-      <div class="dropdown mx-2">
-        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-solid fa-person-walking fa-xl textBlue userIcon"></i>
-        </a>
-
-        <ul class="dropdown-menu shadow rounded-0 borderBlack text-center drop-user">
-          <!-- Login e registrazione -->
-          <li><a class="btn btn-dark rounded-0 my-2 px-4 text-white" routerLink="/login" *ngIf="!BasicAuth.isLogged()">Login</a></li>
-          <li><a class="btn btn-dark rounded-0 my-2 px-4 text-white d-none" routerLink="/login" *ngIf="BasicAuth.isLogged()">Login</a></li>
-          <li><a class="dropdown-item my-2" routerLink="/register" *ngIf="!BasicAuth.isLogged()">Registrati</a></li>
-          <li><a class="dropdown-item my-2 d-none" routerLink="/register" *ngIf="BasicAuth.isLogged()">Registrati</a></li>
-          <!-- ADMIN -->
-          <li *ngIf="isAdmin && BasicAuth.isLogged()">
-            <span class="text-success">Admin</span>
-            <a class="dropdown-item my-2" routerLink="/zonarevisione">
-              Area Revisore
-              <span class="badge textWhite bgMain"
-              [ngClass]="{ 'vibrate-1': nAllReq && nAllReq > 0 }">{{ nAllReq }}
+        style="width: 8rem"></a>
+      </div>
+      
+      <!-- Menu utente, Inserisci annuncio e pulsante del menu -->
+      <div class="d-flex justify-content-center align-items-center ms-auto">
+        <div class="dropdown mx-2">
+          <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-person-walking fa-xl textBlue userIcon"></i>
+          </a>
+          
+          <ul class="dropdown-menu shadow rounded-0 borderBlack text-center drop-user">
+            <!-- Login e registrazione -->
+            <li><a class="btn btn-dark rounded-0 my-2 px-4 text-white" routerLink="/login" *ngIf="!BasicAuth.isLogged()">Login</a></li>
+            <li><a class="btn btn-dark rounded-0 my-2 px-4 text-white d-none" routerLink="/login" *ngIf="BasicAuth.isLogged()">Login</a></li>
+            <li><a class="dropdown-item my-2" routerLink="/register" *ngIf="!BasicAuth.isLogged()">Registrati</a></li>
+            <li><a class="dropdown-item my-2 d-none" routerLink="/register" *ngIf="BasicAuth.isLogged()">Registrati</a></li>
+            <!-- ADMIN -->
+            <li *ngIf="isAdmin && BasicAuth.isLogged()">
+              <span class="text-success">Admin</span>
+              <a class="dropdown-item my-2" routerLink="/zonarevisione">
+                Area Revisore
+                <span class="badge textWhite bgMain"
+                [ngClass]="{ 'vibrate-1': nAllReq && nAllReq > 0 }">{{ nAllReq }}
               </span>
             </a>
           </li>
-
-
+          
+          
           <!-- NO ADMIN -->
           <li *ngIf="!isAdmin && nReq === 0 && BasicAuth.isLogged()">
             <span class="text-warning">NESSUNA RICHIESTA</span>
@@ -41,7 +41,7 @@
             <span class="text-warning">RIFIUTATO O IN SOSPESO</span>
             <button class="btn btn-success btn-sm" (click)="deleteReq()">ELIMINA RICHIESTA</button>
           </li>
-
+          
           <!-- Logout -->
           <li><button class="btn btn-dark my-2 rounded-0"
             *ngIf="BasicAuth.isLogged()" routerLink="/home"
@@ -54,62 +54,62 @@
           </li>
         </ul>
       </div>
-
+      
       <!-- Pulsante "Inserisci annuncio" -->
       <div class="d-none d-md-block mx-3">
         <a class="btn btnAnnuncio px-3 py-2 borderMain textBlue" href="">
           <i class="fa-regular fa-square-plus textBlue pe-2"></i>Inserisci annuncio</a>
-      </div>
-
-      <!-- Pulsante del menu per dispositivi mobili -->
-      <div class="d-flex me-2">
-        <button class="navbar-toggler border-0 menu-button pt-2" type="button" data-bs-toggle="offcanvas"
+        </div>
+        
+        <!-- Pulsante del menu per dispositivi mobili -->
+        <div class="d-flex me-2">
+          <button class="navbar-toggler border-0 menu-button pt-2" type="button" data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <i class="fa-solid fa-bars textBlue fa-2x"></i><span class="mt-1 textBlue">MENU</span>
         </button>
       </div>
     </div>
   </div>
-
+  
   <!-- Menu laterale per dispositivi mobili -->
   <div class="offcanvas offcanvas-end bgWhite p-0" tabindex="-1" id="offcanvasNavbar"
-    aria-labelledby="offcanvasNavbarLabel">
-    <div class="offcanvas-header position-relative">
-      <h2 class="offcanvas-title textBlue p-2" id="offcanvasNavbarLabel">MENU</h2>
-      <div class="close-modale">
-        <button type="button" class="btn-close btn-close-white position-absolute" data-bs-dismiss="offcanvas"
-          aria-label="Close"></button>
-      </div>
-    </div>
-    <div class="offcanvas-body">
-      <ul class="navbar-nav justify-content-end flex-grow-1 p-3">
-        <!-- Elementi del menu -->
-        <li class="nav-item my-2">
-          <a class="nav-link" aria-current="page" routerLink="/home">HOME</a>
-        </li>
-        <li class="nav-item my-2">
-          <a class="nav-link" routerLink="/index">TUTTI GLI ANNUNCI</a>
-        </li>
-        <li class="nav-item my-2">
-          <a class="nav-link" routerLink="/like">PREFERITI</a>
-        </li>
-        <li class="nav-item my-2">
-          <a class="nav-link" routerLink="/orders">TUTTI GLI ORDINI</a>
-        </li>
-        <li class="nav-item dropdown my-2">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-            id="categoryDropdown">TUTTE LE CATEGORIE</a>
-          <ul class="dropdown-menu rounded-0 border-0" *ngFor="let category of categories">
-            <li>
-              <a class="dropdown-item dropCategory" href="">{{ category.name }}</a>
-            </li>
-          </ul>
-        </li>
-        <!-- Elementi del menu responsivi -->
-        <li class="d-block d-md-none nav-item my-2">
-          <a class="nav-link" href="">INSERISCI ANNUNCIO</a>
-        </li>
-      </ul>
+  aria-labelledby="offcanvasNavbarLabel">
+  <div class="offcanvas-header position-relative">
+    <h2 class="offcanvas-title textBlue p-2" id="offcanvasNavbarLabel">MENU</h2>
+    <div class="close-modale">
+      <button type="button" class="btn-close btn-close-white position-absolute" data-bs-dismiss="offcanvas"
+      aria-label="Close"></button>
     </div>
   </div>
+  <div class="offcanvas-body">
+    <ul class="navbar-nav justify-content-end flex-grow-1 p-3">
+      <!-- Elementi del menu -->
+      <!-- Elementi del menu responsivi -->
+      <li class="d-block d-md-none nav-item my-2">
+        <a class="nav-link insAnnuncioMobile" href="">INSERISCI ANNUNCIO</a>
+      </li>
+      <li class="nav-item my-2">
+        <a class="nav-link" aria-current="page" routerLink="/home">HOME</a>
+      </li>
+      <li class="nav-item my-2">
+        <a class="nav-link" routerLink="/index">TUTTI GLI ANNUNCI</a>
+      </li>
+      <li class="nav-item my-2">
+        <a class="nav-link" routerLink="/like">PREFERITI</a>
+      </li>
+      <li class="nav-item my-2">
+        <a class="nav-link" routerLink="/orders">TUTTI GLI ORDINI</a>
+      </li>
+      <li class="nav-item dropdown my-2">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+        id="categoryDropdown">TUTTE LE CATEGORIE</a>
+        <ul class="dropdown-menu rounded-0 border-0" *ngFor="let category of categories">
+          <li>
+            <a class="dropdown-item dropCategory" href="">{{ category.name }}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
 </nav>
