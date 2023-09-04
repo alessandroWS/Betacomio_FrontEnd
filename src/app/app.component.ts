@@ -1,5 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { SessionService } from './session.service';
+import { Router } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,7 @@ import { SessionService } from './session.service';
 })
 export class AppComponent {
   title = 'betacomioAngular';
-  constructor(private sessionService: SessionService){
+  constructor(private sessionService: SessionService, private router: Router, public hideFoot: AppRoutingModule){
 
   }
   ngOnInit(): void {
@@ -19,4 +21,7 @@ export class AppComponent {
   onUserInteraction(event: MouseEvent) {
     // Reimposta il timer di inattività quando l'utente interagisce
     this.sessionService.resetInactivityTimer();}
+
+
+
 }

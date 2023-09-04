@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, HostListener } from '@angular/core';
 
 
@@ -18,12 +18,12 @@ export class LikeComponent {
   paginator!: MatPaginator;
   filteredArray: any[] | undefined = []
 
-defaultRecords: any = 8;
+  defaultRecords: any = 8;
 
 
-onPaginateChange(data:any) {
-  this.filteredArray = this.likes?.slice(0, data.pageSize);
-}
+  onPaginateChange(data: any) {
+    this.filteredArray = this.likes?.slice(0, data.pageSize);
+  }
   public pageslice: Like[] | undefined = []; // Inizializza pageslice con un array vuoto
 
   constructor(private http: HttpClient) { }
@@ -40,9 +40,12 @@ onPaginateChange(data:any) {
         console.log('Fetched likes:', this.likes);
         this.pageslice = this.likes?.slice(0, 8); // Imposta la paginazione iniziale
       },
-      (error) => {
+      (error: HttpErrorResponse) => {
         console.error('Errore nel recupero dei dati:', error);
+        //alert() inserire messaggio di errore dal back
+        alert('ciaociao' + error.message);
       }
+
     );
   }
 
@@ -56,7 +59,7 @@ onPaginateChange(data:any) {
       this.pageslice = this.likes.slice(startIndex, endIndex);
     }
   }
-  
+
   deleteLike(likeId: number) {
     this.http.delete(`http://localhost:5067/Likes/${likeId}`).subscribe(
       (response) => {
@@ -66,7 +69,8 @@ onPaginateChange(data:any) {
       (error) => {
         console.error('Errore nell\'eliminazione del like:', error);
       }
-    );}
+    );
+  }
 
 
 

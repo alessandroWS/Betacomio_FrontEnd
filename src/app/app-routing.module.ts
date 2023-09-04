@@ -11,6 +11,7 @@ import { LikeComponent } from './like/like.component';
 import { SinglepageComponent } from './ann/singlepage/singlepage.component';
 import { CategoryProductsComponent } from './ann/category-products/category-products.component';
 import { BuyComponent } from './buy/buy.component';
+import { ErrorComponent } from './error/error.component';
 
 
 const routes: Routes = [
@@ -27,9 +28,12 @@ const routes: Routes = [
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
+  { path: '**', component: ErrorComponent },
 ]
 
 @NgModule({
   imports: [BrowserModule, RouterModule.forRoot(routes)],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+  hideFooter: boolean = false;
+}

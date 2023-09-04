@@ -25,6 +25,7 @@ export class OrderListComponent implements OnInit{
       } else {
         // Gestisci il messaggio di errore o comportati di conseguenza
         console.error('Failed to get orders:', response.message);
+        //alert() inserire messaggio di errore dal back
       }
     });
   }

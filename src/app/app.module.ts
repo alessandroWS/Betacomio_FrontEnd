@@ -27,6 +27,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 import { NavbarFilterComponent } from './navbarfilter/navbarfilter.component';
 import { FooterComponent } from './footer/footer.component';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { FooterComponent } from './footer/footer.component';
     LikeComponent,
     CategoryProductsComponent,
     BuyComponent,
-      FooterComponent
+      FooterComponent,
+      ErrorComponent
    ],
   imports: [
     JwtModule.forRoot({
