@@ -1,0 +1,26 @@
+                            /* CSS MOBILE  */
+
+@media (max-width: 767px){
+
+.insAnnuncioMobile{
+color: orange !important;
+}
+.insAnnuncioMobile:hover{
+    color: black !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+}
