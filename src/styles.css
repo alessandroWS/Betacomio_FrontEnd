@@ -8,6 +8,14 @@
   --blue: rgb(8, 10, 44);
 }
 /* Stili per l'icona "mi piace" quando è attiva (color rosso) */
+.acqusita{
+  color: black !important;
+}
+.acqusita:hover{
+  background-color:orange !important;
+color: white !important;
+border: orange !important;
+}
 .liked i.bi-heart {
   color: red;
 }

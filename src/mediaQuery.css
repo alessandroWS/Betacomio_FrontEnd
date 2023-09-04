@@ -8,6 +8,14 @@ color: orange !important;
 .insAnnuncioMobile:hover{
     color: black !important;
 }
+.acqusita{
+    color: black !important;
+  }
+  .acqusita:hover{
+    background-color:orange !important;
+  color: white !important;
+  border: orange !important;
+  }
 
 
 
