@@ -25,7 +25,7 @@ export class BuyComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private jwtHelper: JwtHelperService, private route: ActivatedRoute, private http:HttpClient) {
     this.form = this.formBuilder.group({
       phone: [''], // Valore iniziale vuoto
-      quantity: ['', [Validators.min(0), Validators.max(10)]],
+      quantity: ['1', [Validators.min(0), Validators.max(10)]],
       price: [''],
       productName: [''],
       address: [''],
