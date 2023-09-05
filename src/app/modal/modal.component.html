@@ -1,1 +1,15 @@
-<p>{{data.message}}</p>
+<div class="m-4">
+    <div class="m-2">
+        <div class="d-flex justify-content-center">
+            <img class="m-3 text-center" src="https://100dayscss.com/codepen/alert.png" width="44" height="38" />
+            
+        </div>
+        <div class="title text-center">OOPS!</div>
+        <p class="text-center">{{data.message}}</p>
+
+
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-outline-danger" (click)="modalService.closeModal()">Close</button>
+        </div>
+    </div>
+</div>

@@ -9,12 +9,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./modal.component.css']
 })
 export class ModalComponent {
-  constructor(public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { message: string }
+  constructor(public modalService: ModalServiceService, public dialogRef: MatDialogRef<ModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { message: string },
   ) {}
 
   
 
+  
   // openError(): void {
     
   //   this.modalService.openErrorModal(this.buyCom.errorMessage);

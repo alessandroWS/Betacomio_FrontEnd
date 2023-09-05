@@ -140,7 +140,7 @@ export class BuyComponent implements OnInit {
       //alert('articolo aggiunto: ')
 
     }
-    else if (!this.form.valid) {
+    else if (this.form.get('quantity')?.value <= 0) {
       //alert('Hai sbagliato broo')
 
       this.errorMessage = 'Numero pezzi non valido.';

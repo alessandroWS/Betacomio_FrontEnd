@@ -17,4 +17,8 @@ export class ModalServiceService {
       data: { message }, // Passa il testo dinamico come parametro
     });
   }
+
+  closeModal(): void {
+    this.dialogRef?.close();
+  }
 }
