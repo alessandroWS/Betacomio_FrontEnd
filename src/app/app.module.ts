@@ -28,11 +28,13 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { NavbarFilterComponent } from './navbarfilter/navbarfilter.component';
 import { FooterComponent } from './footer/footer.component';
 import { ErrorComponent } from './error/error.component';
+import { ModalComponent } from './modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [	
+  declarations: [
     NavbarFilterComponent,
     AppComponent,
     HomeComponent,
@@ -46,9 +48,10 @@ import { ErrorComponent } from './error/error.component';
     LikeComponent,
     CategoryProductsComponent,
     BuyComponent,
-      FooterComponent,
-      ErrorComponent
-   ],
+    FooterComponent,
+    ErrorComponent,
+    ModalComponent
+  ],
   imports: [
     JwtModule.forRoot({
       config: {
@@ -65,6 +68,7 @@ import { ErrorComponent } from './error/error.component';
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [
     AuthService,
@@ -81,4 +85,4 @@ import { ErrorComponent } from './error/error.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

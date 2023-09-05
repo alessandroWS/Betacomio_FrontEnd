@@ -2,44 +2,45 @@
 
 <header class="headerMargin container-fluid bgGrey min-vh-100">
 
-  <div class="row align-items-center shadow bgWhite mb-5 p-4">
-      <div class="col-12 px-5">
-          <h2 class="p-3 textMain ms-5 roundContent">TUTTI I TUOI PREFERITI</h2>
-      </div>
-  </div>
+    <div class="row align-items-center shadow bgWhite mb-5 p-4">
+        <div class="col-12 px-5">
+            <h2 class="p-3 textMain ms-5 roundContent">TUTTI I TUOI PREFERITI</h2>
+        </div>
+    </div>
 
 
-  <div class="row px-5 justify-content-center" >
+    <div class="row px-5 justify-content-center">
 
 
 
-      <div class="col-12 col-md-3 p-2 mt-3 d-flex justify-content-center" *ngFor="let like of likes">
+        <div class="col-12 col-md-3 p-2 mt-3 d-flex justify-content-center" *ngFor="let like of likes">
 
 
-          <div class="card rounded-0 border-0" style="width: 16rem;">
+            <div class="card rounded-0 border-0" style="width: 16rem;">
 
-              <img src="/src/assets/media/bottombrackets.jpg" class="card-img-top rounded-0" alt="">
+                <img src="/src/assets/media/bottombrackets.jpg" class="card-img-top rounded-0" alt="">
 
-              <div class="card-body ps-3 mt-2">
-                  <h5 class="textBlue text-end">{{like.price}}€</h5>
-                  <h5 class="card-title fs-6 text-uppercase">{{like.productName}}</h5>
-                  <!-- {{-- <p class="card-text">{{$announcement->body}}</p> --}} -->
-                  <p class="text-secondary">{{like.categoryName}}</p>
+                <div class="card-body ps-3 mt-2">
+                    <h5 class="textBlue text-end">{{like.price}}€</h5>
+                    <h5 class="card-title fs-6 text-uppercase">{{like.productName}}</h5>
+                    <!-- {{-- <p class="card-text">{{$announcement->body}}</p> --}} -->
+                    <p class="text-secondary">{{like.categoryName}}</p>
 
-                  <div class="justify-content-between d-flex align-items-center">
-                    <a [routerLink]="['/singlepage/', like.productId]" class="btn btn-dark bgMain border-0 rounded-0 my-2">Visualizza</a>
+                    <div class="justify-content-between d-flex align-items-center">
+                        <a [routerLink]="['/singlepage/', like.productId]"
+                            class="btn btn-dark bgMain border-0 rounded-0 my-2">Visualizza</a>
 
-    <button class="btn btn-danger rounded-0" (click)="deleteLike(like.productId)">Elimina</button>
+                        <button class="btn btn-danger rounded-0" (click)="deleteLike(like.productId)">Elimina</button>
+                    </div>
+
                 </div>
 
-              </div>
 
+            </div>
 
         </div>
 
-      </div>
-
-      <!-- @empty
+        <!-- @empty
 
       <div class="col-12">
           <div class="alert alert-warning py-3 shadow">
@@ -51,14 +52,12 @@
 
       {{$announcements->links()}} -->
 
-  </div>
+    </div>
 
-  <mat-paginator [length]="100" [pageSize]="defaultRecords" [pageSizeOptions]="[6,12,24,32]" (page)="onPageChange($event)">
-  </mat-paginator>
+    <mat-paginator [length]="100" [pageSize]="defaultRecords" [pageSizeOptions]="[6,12,24,32]"
+        (page)="onPageChange($event)">
+    </mat-paginator>
 
 
 
 </header>
-
-
-

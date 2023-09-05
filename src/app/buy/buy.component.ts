@@ -1,10 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as jQuery from 'jquery';
+import { Injectable, Optional } from '@angular/core';
 
 import { JwtHelperService } from '@auth0/angular-jwt'; // Assicurati di importare JwtHelperService
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalServiceService } from '../modal-service.service';
+import { ModalComponent } from '../modal/modal.component';
 
 
 @Component({
@@ -22,7 +25,7 @@ export class BuyComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private jwtHelper: JwtHelperService, private route: ActivatedRoute, private http:HttpClient) {
+  constructor(private formBuilder: FormBuilder, private jwtHelper: JwtHelperService, private route: ActivatedRoute, private http: HttpClient, @Optional() public modalService: ModalServiceService) {
     this.form = this.formBuilder.group({
       phone: [''], // Valore iniziale vuoto
       quantity: ['', [Validators.min(0), Validators.max(10)]],
@@ -31,6 +34,8 @@ export class BuyComponent implements OnInit {
     });
 
     const token = localStorage.getItem('jwtToken');
+
+
 
     if (token !== null) {
       const decodedToken = this.jwtHelper.decodeToken(token);
@@ -46,6 +51,7 @@ export class BuyComponent implements OnInit {
     }
   }
 
+  errorMessage: string = "";
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -58,10 +64,10 @@ export class BuyComponent implements OnInit {
     });
     this.loadProducts();
 
-    (function() {
-    // @ts-ignore
+    (function () {
+      // @ts-ignore
 
-      window['inputNumber'] = function(el: JQuery<HTMLInputElement>) {
+      window['inputNumber'] = function (el: JQuery<HTMLInputElement>) {
         const min = el.attr('min') || false;
         const max = el.attr('max') || false;
 
@@ -70,7 +76,7 @@ export class BuyComponent implements OnInit {
         els['dec'] = el.prev();
         els['inc'] = el.next();
 
-        el.each(function() {
+        el.each(function () {
           init($(this));
         });
 
@@ -107,7 +113,7 @@ export class BuyComponent implements OnInit {
   productId: number | null = null;
 
   private loadProducts(): void {
-    this.http.get<responseProduct>('http://localhost:5067/api/Product/'+this.productId, { observe: 'response' }).subscribe(
+    this.http.get<responseProduct>('http://localhost:5067/api/Product/' + this.productId, { observe: 'response' }).subscribe(
       (response) => {
         this.product = response.body?.data;
         this.form.patchValue({
@@ -122,10 +128,22 @@ export class BuyComponent implements OnInit {
   }
 
   submitForm() {
+
     if (this.form.valid) {
       const phone = this.form.get('phone')?.value.toString();
       const quantity = this.form.get('quantity')?.value;
+      //alert('articolo aggiunto: ')
 
+    }
+    else if (!this.form.valid) {
+      //alert('Hai sbagliato broo')
+
+      this.errorMessage = 'Numero pezzi non valido.';
+      this.modalService.openModal(this.errorMessage);
+
+      // this.errorMessage = 'Si è verificato un errore!';
+      // this.modalService.openErrorModal(this.errorMessage);
+    
     }
 
     this.http.post<Response>('http://localhost:5067/api/Order', this.form.value).subscribe(
@@ -133,7 +151,7 @@ export class BuyComponent implements OnInit {
         console.log(this.form);
 
       },
-      (error) => {
+      (error: HttpErrorResponse) => {
         console.error('Errore nel recupero dei dati:', error);
         console.log(this.form);
 
@@ -154,12 +172,12 @@ export interface Product {
   name: string;
   standardCost: number;
   ProductNumber: string;
-  Color:string;
-  ListPrice:number;
-  Size:string;
+  Color: string;
+  ListPrice: number;
+  Size: string;
   Weight: string;
-  ProductCategoryID:number;
-  ProductModelID:number;
+  ProductCategoryID: number;
+  ProductModelID: number;
   SellStartDate: Date;
   SellEndDate: Date;
   DiscontinuedDate: Date;
@@ -170,8 +188,8 @@ export interface Product {
 }
 
 export interface ProductCategory {
-  productCategoryId : number;
-  name : string;
+  productCategoryId: number;
+  name: string;
 }
 
 export interface responseProduct {
