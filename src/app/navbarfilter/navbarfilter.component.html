@@ -64,7 +64,7 @@
 
       <!-- Pulsante "Inserisci annuncio" -->
       <div class="d-none d-md-block mx-3">
-        <a class="btn btnAnnuncio px-3 py-2 borderMain textBlue" href="">
+        <a class="btn btnAnnuncio px-3 py-2 borderMain textBlue" routerLink="/create">
           <i class="fa-regular fa-square-plus textBlue pe-2"></i>Inserisci annuncio</a>
       </div>
 
@@ -97,24 +97,24 @@
         <li class="nav-item my-2">
           <a class="nav-link" routerLink="/index">TUTTI GLI ANNUNCI</a>
         </li>
-        <li class="nav-item my-2">
-          <a class="nav-link" routerLink="/like">PREFERITI</a>
+        <li class="nav-item my-2"  *ngIf="BasicAuth.isLogged()">
+          <a class="nav-link" routerLink="/like">I TUOI PREFERITI</a>
         </li>
-        <li class="nav-item my-2">
-          <a class="nav-link" routerLink="/orders">TUTTI GLI ORDINI</a>
+        <li class="nav-item my-2"  *ngIf="BasicAuth.isLogged()">
+          <a class="nav-link" routerLink="/orders">I TUOI ORDINI</a>
         </li>
         <li class="nav-item dropdown my-2">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
             id="categoryDropdown">TUTTE LE CATEGORIE</a>
           <ul class="dropdown-menu rounded-0 border-0" *ngFor="let category of categories">
             <li>
-              <a class="dropdown-item dropCategory" href="">{{ category.name }}</a>
+              <a class="dropdown-item dropCategory" [routerLink]="['/categoryProducts/', category.productCategoryId]">{{ category.name }}</a>
             </li>
           </ul>
         </li>
         <!-- Elementi del menu responsivi -->
         <li class="d-block d-md-none nav-item my-2">
-          <a class="nav-link" href="">INSERISCI ANNUNCIO</a>
+          <a class="nav-link" routerLink="/create">INSERISCI ANNUNCIO</a>
         </li>
         <div class="d-none d-md-block" *ngIf="showMobileSearch == true">
           <div class="searchform">

@@ -28,6 +28,11 @@ export class BuyComponent implements OnInit {
       quantity: ['', [Validators.min(0), Validators.max(10)]],
       price: [''],
       productName: [''],
+      address: [''],
+      city: [''],
+      firstName: [''],
+      surname: [''],
+      cap: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
     });
 
     const token = localStorage.getItem('jwtToken');
@@ -143,8 +148,37 @@ export class BuyComponent implements OnInit {
   }
 
 
+  nameDestinatario: string | undefined;
+  nameInput(event: Event){
+    this.nameDestinatario = (<HTMLInputElement>event.target).value
+
+  }
+
+  surnameDestinatario: string | undefined;
+  surnameInput(event: Event){
+    this.surnameDestinatario = (<HTMLInputElement>event.target).value
+  }
 
 
+  addressDestinatario: string | undefined;
+  isAddressEmpty: boolean = true;
+  hasUserInteracted: boolean = false;
+
+  addressInput(event: Event) {
+    this.addressDestinatario = (<HTMLInputElement>event.target).value;
+    this.hasUserInteracted = true; // Imposta hasUserInteracted su true quando l'utente inizia a scrivere
+    this.isAddressEmpty = this.addressDestinatario.trim() === '' || !/^\D+$/.test(this.addressDestinatario);
+  }
+
+  cityDestinatario: string | undefined;
+  cityInput(event: Event){
+    this.cityDestinatario = (<HTMLInputElement>event.target).value
+  }
+
+  CAPDestinatario: string | undefined;
+  CAPInput(event: Event){
+    this.CAPDestinatario = (<HTMLInputElement>event.target).value
+  }
 }
 
 

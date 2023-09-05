@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class LoginComponent {
   username: string = '';
   password: string = '';
-  
+
   usnameField = new FormControl('', Validators.required);
   pswField = new FormControl('', Validators.required);
 
@@ -29,7 +29,7 @@ export class LoginComponent {
     // Check if the login failed query parameter is present
 
 
-    
+
     this.route.queryParams.subscribe(params => {
       if (params['loginFailed']) {
         this.loginFailed = true;
@@ -42,7 +42,7 @@ export class LoginComponent {
   }
 
 
-  
+
 
 
   onLogin() {
@@ -50,12 +50,13 @@ export class LoginComponent {
       username: this.username,
       password: this.password
     };
-    
+
 
     this.authService.login(user).subscribe(
       (response: ServiceResponse<string>) => {
         if (response.success) {
           console.log('Login success:', response.data);
+          localStorage.setItem('islog','true');
           //this.router.navigate(['/home']);
           //window.location.reload();
           //window.location.href="/home";
@@ -69,15 +70,15 @@ export class LoginComponent {
             // Altro errore dal server
             alert('Si è verificato un errore durante il login');
             console.error('Login failed:', response.message);
-            
+
           }
         }
         //location.reload();
       },
       (error: HttpErrorResponse) => {
         // Gestisci altri tipi di errori, come problemi di connessione o errori HTTP
-        //this.loginFailed = true; 
-        
+        //this.loginFailed = true;
+
         //alert('Utente non trovato');
         console.error('HTTP Error:', error);
 
