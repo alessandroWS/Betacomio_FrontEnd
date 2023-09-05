@@ -1,0 +1,112 @@
+<app-navbar></app-navbar>
+
+<header class="headerMargin container-fluid bgGrey">
+
+  <div>
+
+
+    <div class="row justify-content-center p-3">
+      <div class="col-12 col-md-6 text-center mt-5">
+        <h3>INSERISCI UN ANNUNCIO</h3>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+
+      <div class="col-12 col-md-8 p-3">
+
+        <form [formGroup]="annuncioForm" (ngSubmit)="submitForm()" enctype="multipart/form-data">
+
+          <div class="p-4 bgWhite border-bottom d-flex justify-content-between align-items-center">
+
+            <label for="exampleInputTitle" class="form-label textBlue w-25 m-0 p-0" >Titolo annuncio</label>
+
+
+
+            <input type="text" class="form-control" id="exampleInputTitle" formControlName="name" aria-describedby="titleHelp"
+              placeholder="ad es. tenda da campeggio">
+
+          </div>
+
+          <div class="mb-4 bgWhite p-4 d-flex justify-content-between">
+            <label for="exampleInputDescription" class="form-label textBlue w-25">Descrizione</label>
+
+
+            <textarea type="text" class="form-control" id="exampleInputDescription" rows="5"
+              placeholder="ad es. articolo in buone condizioni" formControlName="description">
+              </textarea>
+
+          </div>
+
+          <div class="mb-4 bgWhite p-4 d-flex justify-content-between align-items-center">
+            <label for="exampleInputPrice" class="form-label textBlue m-0 p-0">Prezzo</label>
+
+
+
+            <input type="text" class="form-control inputAd" id="exampleInputPrice" placeholder="0.00 €" formControlName="standardCost">
+
+          </div>
+
+          <div class="mb-4 p-4 bgWhite d-flex justify-content-between">
+            <label for="productCategoryName" class="form-label textBlue">Categorie</label>
+            <select id="productCategoryName" class="form-select inputAd" aria-label="Default select example" formControlName="productCategoryName" (change)="onCategoryChange($event)">
+              <option value="" disabled>Scegli la categoria</option>
+              <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+            </select>
+          </div>
+
+          <div class="mb-4 bgWhite p-4">
+            <label for="exampleInputPrice" class="form-label textBlue">Inserisci immagini</label>
+
+            <input type="file" id="images" multiple class="form-control" placeholder="img"
+              accept=".jpg,.jpeg,.png,.webp" />
+
+
+
+          </div>
+
+
+
+
+          <div class="text-end">
+            <button type="submit" id="createAnnouncement"
+              class="btn btn-dark bgMain border-0 rounded-0 px-5">Inserisci</button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+</header>
+
+<!-- {{-- 𝗙𝗢𝗢𝗧𝗘𝗥 --}} -->
+
+<footer class="container-fluid footer bgGrey pt-5">
+
+  <div class="row justify-content-center">
+    <hr style="width:90%">
+    <div class="col-6">
+      <ul class="list-unstyled d-flex justify-content-around" style="font-size: 0.7rem">
+        <li><a href="">Copyright © GoodsSports Inc.</a></li>
+        <li> | </li>
+        <li><a href="">Privacy Policy</a></li>
+        <li> | </li>
+        <li><a href="">Termini di utilizzo</a></li>
+        <li> | </li>
+        <li><a href="">Legale</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+</footer>

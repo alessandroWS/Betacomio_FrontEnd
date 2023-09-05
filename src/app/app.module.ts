@@ -28,8 +28,10 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { NavbarFilterComponent } from './navbarfilter/navbarfilter.component';
 import { FooterComponent } from './footer/footer.component';
 import { ErrorComponent } from './error/error.component';
+import { CreateComponent } from './ann/create/create.component';
 import { ModalComponent } from './modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -50,6 +52,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     BuyComponent,
     FooterComponent,
     ErrorComponent,
+    CreateComponent,
     ModalComponent
   ],
   imports: [

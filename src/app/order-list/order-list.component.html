@@ -2,9 +2,9 @@
 
 <header class="headerMargin container-fluid bgGrey min-vh-100">
 
-  <div class="row align-items-center shadow bgWhite mb-5 p-4" *ngIf="orders && orders.length; else noOrders">
+  <div class="row align-items-center shadow bgWhite mb-5 p-4" *ngIf="orders && orders.length || oldOders && oldOders.length; else noOrders">
       <div class="col-12 px-5 d-flex">
-          <h2 class="p-3 textMain ms-5 roundContent text-uppercase">TUTTI I TUOI ORDINI</h2>
+          <h2 class="p-3 textMain ms-5 roundContent text-uppercase" >TUTTI I TUOI ORDINI</h2>
       </div>
   </div>
 
@@ -23,7 +23,7 @@
 
 
 
-  <div class="row px-5 justify-content-center" *ngIf="orders && orders.length" >
+  <div class="row px-5 justify-content-center" *ngIf="orders && orders.length || oldOders && oldOders.length" >
 
 
 
@@ -55,6 +55,35 @@
 
 
   </div>
+
+  <div class="col-12 col-md-3 p-2 mt-3 d-flex justify-content-center" *ngFor="let oldOder of oldOders">
+
+
+    <div class="card rounded-0 border-0" style="width: 16rem;">
+
+        <img src="/src/assets/media/bottombrackets.jpg" class="card-img-top rounded-0" alt="">
+
+        <div class="card-body ps-3 mt-2">
+            <h5 class="textBlue text-end">{{ oldOder.price }}€</h5>
+            <h5 class="card-title fs-6 text-uppercase">{{ oldOder.name }}</h5>
+            <p class="card-text">Quantità: {{ oldOder.orderQty }}</p>
+            <p class="text-secondary">aaaaaaw</p>
+
+            <div class="justify-content-between d-flex align-items-center">
+              <!-- <a [routerLink]="['/singlepage/', product.productId]" class="btn btn-dark bgMain border-0 rounded-0 my-2">Visualizza</a> -->
+
+                <small class="fst-italic">Effettuato il {{ oldOder.orderDate | date }}</small>
+
+        </div>
+
+
+  </div>
+
+</div>
+
+
+
+</div>
 </div>
 
 

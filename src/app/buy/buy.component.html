@@ -23,7 +23,45 @@
         </div>
         <div class="p-4 bg-white mt-4">
           <h5>INDIRIZZO E-MAIL:</h5>
-            <p class="p-0 m-0 mt-3 fb-light" formControlName="emailAddress">{{nameUser}}</p>
+            <p class="p-0 m-0 mt-3 fb-light"  formControlName="emailAddress">{{nameUser}}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <div class="p-4 bg-white mt-4">
+
+            <h5>NOME:</h5>
+            <input type="text" class="form-control mt-3 " (input)="nameInput($event)" formControlName="firstName">
+
+          </div>
+
+          <div class="p-4 bg-white mt-4">
+
+            <h5>COGNOME:</h5>
+            <input type="text" class="form-control mt-3 " (input)="surnameInput($event)" formControlName="surname">
+
+          </div>
+        </div>
+
+
+
+        <div class="p-4 bg-white mt-4">
+          <h5>VIA:</h5>
+          <input type="text" class="form-control mt-3 " (input)="addressInput($event)" formControlName="address">
+          <p class="text-danger mt-2" *ngIf="hasUserInteracted && !isAddressEmpty">Non dimenticarti di inserire il numero civico</p>
+        </div>
+        <div class="d-flex">
+          <div class="p-4 bg-white w-75">
+
+            <h5>CITTA:</h5>
+            <input type="text" class="form-control mt-3 " (input)="cityInput($event)" formControlName="city">
+
+          </div>
+
+          <div class="p-4 bg-white ">
+
+            <h5>CAP:</h5>
+            <input type="text" class="form-control mt-3 " (input)="CAPInput($event)" formControlName="cap">
+            <p class="text-danger mt-2" *ngIf="form.get('cap')?.hasError('pattern')">Inserisci solo numeri nel CAP</p>
+          </div>
         </div>
         <div class="p-4 bg-white mt-4">
           <h5>NUMERO DI TELEFONO:</h5>
@@ -47,6 +85,15 @@
 
         </div>
         </div>
+
+        <h5 class="mb-1 mt-4">DESTINATARIO</h5>
+        <hr class="mb-4">
+        <div>
+          <p class="m-0 p-0">{{ nameDestinatario }} {{ surnameDestinatario }}</p>
+          <p class="m-0 p-0">{{ addressDestinatario }}</p>
+          <p class="m-0 p-0">{{ cityDestinatario }}<span *ngIf="cityDestinatario">,</span> {{ CAPDestinatario }}</p>
+        </div>
+
       </div>
 
 

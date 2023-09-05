@@ -12,6 +12,7 @@ import { SinglepageComponent } from './ann/singlepage/singlepage.component';
 import { CategoryProductsComponent } from './ann/category-products/category-products.component';
 import { BuyComponent } from './buy/buy.component';
 import { ErrorComponent } from './error/error.component';
+import { CreateComponent } from './ann/create/create.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'categoryProducts/:productCategoryId', component: CategoryProductsComponent },
   { path: 'like', component: LikeComponent },
   { path: 'buy/:productId', component: BuyComponent },
+  { path: 'create', component: CreateComponent },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
@@ -34,6 +36,6 @@ const routes: Routes = [
 @NgModule({
   imports: [BrowserModule, RouterModule.forRoot(routes)],
 })
-export class AppRoutingModule { 
+export class AppRoutingModule {
   hideFooter: boolean = false;
 }

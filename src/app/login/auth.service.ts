@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5067/Auth'; 
+  private apiUrl = 'http://localhost:5067/Auth';
   private jwtTokenKey = 'jwtToken'; // Chiave utilizzata per il salvataggio del token nel localStorage
   isAdmin: boolean = false;
   constructor(private http: HttpClient, private router: Router) { }
@@ -38,7 +38,7 @@ export class AuthService {
     localStorage.setItem(this.jwtTokenKey, token);
   }
 
-  
+
   loggedUser = (): string | null => (localStorage.getItem(this.jwtTokenKey)) ? localStorage.getItem(this.jwtTokenKey) : "";
 
   isLogged = (): boolean => (localStorage.getItem(this.jwtTokenKey)) ? true : false;
@@ -54,7 +54,7 @@ export class AuthService {
     }
     return false;
   }
-  
+
   onLogout() {
     this.clearUser();
     this.router.navigate(['/home'], { queryParams: { log : "Logged out"} });

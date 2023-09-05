@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   enteredSearchValue= '';
 
 
-  categories: Category[] | undefined = [];
+  categories: Category[] = [];
   nAllReq: number | undefined = 0;
   isAdmin: boolean = false; // Aggiungi una variabile per memorizzare il valore "isAdmin"
   sIsAdmin: string = "";
@@ -88,7 +88,7 @@ onSearchTextChanged() {
   private loadCategories(): void {
     this.http.get<responseCategory>('http://localhost:5067/api/ProductCategory/GetAll', { observe: "response"}).subscribe(
       (response) => {
-        this.categories = response.body?.data;
+        this.categories = response.body!.data;
       },
       (error) => {
         console.error('Errore nel recupero dei dati:', error);
