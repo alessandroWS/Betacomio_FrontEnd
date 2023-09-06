@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 
 import { PageEvent } from '@angular/material/paginator';
+import { AuthService } from 'src/app/login/auth.service';
 
 @Component({
   selector: 'app-index',
@@ -53,7 +54,7 @@ export class IndexComponent implements OnInit {
     this.loadPageData(dati.pageIndex, dati.pageSize);
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public BasicAuth: AuthService) {}
 
   ngOnInit(): void {
     this.loadProducts(); // Chiamata per caricare i prodotti iniziali

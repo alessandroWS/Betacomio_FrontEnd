@@ -11,7 +11,7 @@
 
   <form [formGroup]="form" (ngSubmit)="submitForm()">
 
-  <div class="container">
+  <div *ngIf="BasicAuth.isLogged()"class="container">
     <div class="row m-0  d-flex justify-content-center">
       <div class="col-6 p-0">
         <div class="p-4 bg-white">
@@ -100,24 +100,5 @@
       </div>
   </div>
   </form>
-
-
-
-      <!-- @empty
-
-      <div class="col-12">
-          <div class="alert alert-warning py-3 shadow">
-              <p class="lead">Non sono disponibili annunci per questa ricerca</p>
-          </div>
-      </div>
-
-      @endforelse
-
-      {{$announcements->links()}} -->
-
-
-
-
-
 </header>
 

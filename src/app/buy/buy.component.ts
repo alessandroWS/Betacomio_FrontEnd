@@ -8,6 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt'; // Assicurati di importar
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalServiceService } from '../modal-service.service';
 import { ModalComponent } from '../modal/modal.component';
+import { AuthService } from '../login/auth.service';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class BuyComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private jwtHelper: JwtHelperService, private route: ActivatedRoute, private http: HttpClient, @Optional() public modalService: ModalServiceService) {
+  constructor(private formBuilder: FormBuilder, private jwtHelper: JwtHelperService, private route: ActivatedRoute, private http: HttpClient, @Optional() public modalService: ModalServiceService, public BasicAuth: AuthService) {
     this.form = this.formBuilder.group({
       phone: [''], // Valore iniziale vuoto
       quantity: ['1', [Validators.min(0), Validators.max(10)]],
