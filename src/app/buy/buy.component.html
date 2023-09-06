@@ -31,7 +31,9 @@
               <h5>NOME:</h5>
               <input type="text" class="form-control mt-3 " (input)="nameInput($event)" formControlName="firstName">
 
-              <p class="text-danger mt-2" *ngIf="form.get('firstName')?.hasError('required') && ((form.get('firstName')?.dirty || form.get('firstName')?.touched))">Il nome è obbligatorio</p>
+              <p class="text-danger mt-2"
+                *ngIf="form.get('firstName')?.hasError('required') && ((form.get('firstName')?.dirty || form.get('firstName')?.touched))">
+                Il nome è obbligatorio</p>
 
             </div>
 
@@ -40,7 +42,9 @@
               <h5>COGNOME:</h5>
               <input type="text" class="form-control mt-3 " (input)="surnameInput($event)" formControlName="surname">
 
-              <p class="text-danger mt-2" *ngIf="form.get('surname')?.hasError('required') && ((form.get('surname')?.dirty || form.get('surname')?.touched))">Il cognome è obbligatorio</p>
+              <p class="text-danger mt-2"
+                *ngIf="form.get('surname')?.hasError('required') && ((form.get('surname')?.dirty || form.get('surname')?.touched))">
+                Il cognome è obbligatorio</p>
 
             </div>
           </div>
@@ -51,7 +55,9 @@
             <h5>VIA:</h5>
             <input type="text" class="form-control mt-3 " (input)="addressInput($event)" formControlName="address">
 
-            <p class="text-danger mt-2" *ngIf="form.get('address')?.hasError('required') && ((form.get('address')?.dirty || form.get('address')?.touched))">L'indirizzo è obbligatorio</p>
+            <p class="text-danger mt-2"
+              *ngIf="form.get('address')?.hasError('required') && ((form.get('address')?.dirty || form.get('address')?.touched))">
+              L'indirizzo è obbligatorio</p>
 
             <p class="text-danger mt-2" *ngIf="hasUserInteracted && !isAddressEmpty">Non dimenticarti di inserire il
               numero civico</p>
@@ -63,27 +69,26 @@
               <h5>CITTA:</h5>
               <input type="text" class="form-control mt-3 " (input)="cityInput($event)" formControlName="city">
 
-              <p class="text-danger mt-2" *ngIf="form.get('city')?.hasError('required') && ((form.get('city')?.dirty || form.get('city')?.touched))">La città è obbligatoria</p>
+              <p class="text-danger mt-2"
+                *ngIf="form.get('city')?.hasError('required') && ((form.get('city')?.dirty || form.get('city')?.touched))">
+                La città è obbligatoria</p>
 
             </div>
 
             <div class="p-4 bg-white ">
 
               <h5>CAP:</h5>
-              <input type="text" class="form-control mt-3 " (input)="CAPInput($event)" formControlName="cap">
-
-              <p class="text-danger mt-2" *ngIf="form.get('cap')?.hasError('required') && ((form.get('cap')?.dirty || form.get('cap')?.touched))">Il cap è obbligatorio</p>
-
+              <input type="number" class="form-control mt-3 " (input)="CAPInput($event)" formControlName="cap">
               <p class="text-danger mt-2" *ngIf="form.get('cap')?.hasError('pattern')">Inserisci solo numeri nel CAP</p>
             </div>
           </div>
           <div class="p-4 bg-white mt-4">
-
-
             <h5>NUMERO DI TELEFONO:</h5>
             <input type="text" class="form-control mt-3 " formControlName="phone">
 
-            <p class="text-danger mt-2" *ngIf="form.get('phone')?.hasError('required') && ((form.get('phone')?.dirty || form.get('phone')?.touched))">Il numero di telefono è obbligatorio</p>
+            <p class="text-danger mt-2"
+              *ngIf="form.get('phone')?.hasError('required') && ((form.get('phone')?.dirty || form.get('phone')?.touched))">
+              Il numero di telefono è obbligatorio</p>
 
           </div>
 

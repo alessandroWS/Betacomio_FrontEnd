@@ -78,6 +78,7 @@ export class LikeComponent {
 
 
 export interface Like {
+  IdLike: number,
   productName: string,
   price: string,
   productId: number,

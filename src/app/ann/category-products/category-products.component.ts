@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/login/auth.service';
 
 @Component({
   selector: 'app-category-products',
@@ -12,7 +13,7 @@ export class CategoryProductsComponent {
   searchText: string = '';
   productCategory: ProductCategory | undefined;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router:Router, public BasicAuth: AuthService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -29,6 +30,20 @@ export class CategoryProductsComponent {
   onSearchTextEntered(searchValue: string) {
     this.searchText = searchValue;
     this.filterProducts();
+  }
+
+  liked: boolean = false;
+
+  deleteLike(likeId: number): void {
+    this.http.delete(`http://localhost:5067/Likes/${likeId}`).subscribe(
+      () => {
+        // Eliminazione riuscita, ora ricarica i like
+        this.loadProductCategory(); // Aggiorna l'elenco dei like dopo l'eliminazione
+      },
+      (error) => {
+        console.error('Errore nell\'eliminazione del like:', error);
+      }
+    );
   }
 
   products: Product[] | undefined = [];
@@ -78,6 +93,10 @@ export class CategoryProductsComponent {
         console.error('Errore nel recupero dei dati:', error);
       }
     );
+  }
+
+  redirectToLogin() {
+    this.router.navigate(['/login']);
   }
 }
 

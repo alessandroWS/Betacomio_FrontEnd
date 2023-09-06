@@ -282,6 +282,16 @@ h5 {
   transition: linear 0.3s;
 }
 
+
+.imgProducts{
+  cursor: pointer;
+}
+
+.imgProducts:hover {
+  opacity: 70%;
+  transition: linear 0.3s;
+}
+
 /* 𝗙𝗢𝗢𝗧𝗘𝗥 */
 .footer {
   position: absolute;
