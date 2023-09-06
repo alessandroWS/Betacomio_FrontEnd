@@ -55,7 +55,7 @@ export class IndexComponent implements OnInit {
     this.loadPageData(dati.pageIndex, dati.pageSize);
   }
 
-  constructor(private http: HttpClient, private router: Router, public BasicAuth: AuthService) {}
+  constructor(private http: HttpClient, private router: Router, public BasicAuth: AuthService) { }
 
 
   ngOnInit(): void {
@@ -63,6 +63,7 @@ export class IndexComponent implements OnInit {
   }
 
   loadProducts() {
+    debugger;
     this.http
       .get<responseProduct>('http://localhost:5067/api/Product/GetAll', {
         observe: 'response',
