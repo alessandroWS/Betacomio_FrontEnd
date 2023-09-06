@@ -84,7 +84,7 @@
               *ngIf="form.get('cap')?.hasError('required') && ((form.get('cap')?.dirty || form.get('cap')?.touched))">
               Il CAP è obbligatorio</p>
 
-              <p class="text-danger mt-2" *ngIf="form.get('cap')?.hasError('pattern')">Inserisci solo numeri positivi nel CAP</p>
+              <p class="text-danger mt-2" *ngIf="form.get('cap')?.hasError('pattern')">Inserisci un CAP valido</p>
             </div>
           </div>
           <div class="p-4 bg-white mt-4">
@@ -94,6 +94,8 @@
             <p class="text-danger mt-2"
               *ngIf="form.get('phone')?.hasError('required') && ((form.get('phone')?.dirty || form.get('phone')?.touched))">
               Il numero di telefono è obbligatorio</p>
+
+              <p class="text-danger mt-2" *ngIf="form.get('phone')?.hasError('pattern')">Inserisci solo numeri</p>
 
           </div>
 

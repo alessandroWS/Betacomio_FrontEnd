@@ -28,7 +28,7 @@ export class BuyComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private jwtHelper: JwtHelperService, private route: ActivatedRoute, private http: HttpClient, @Optional() public modalService: ModalServiceService, public BasicAuth: AuthService) {
     this.form = this.formBuilder.group({
-      phone: ['', [Validators.required]], // Valore iniziale vuoto
+      phone: ['', [Validators.required, Validators.pattern(/^\d+$/)]], // Valore iniziale vuoto
       quantity: ['1', [Validators.min(0), Validators.max(10)]],
       price: ['', [Validators.required]],
       productName: ['',[Validators.required]],
@@ -36,7 +36,7 @@ export class BuyComponent implements OnInit {
       city: ['',[Validators.required]],
       firstName: ['',[Validators.required]],
       surname: ['', [Validators.required]],
-      cap: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
+      cap: ['', [Validators.required, Validators.pattern(/^[0-9]{5}$/)]],
     });
 
     const token = localStorage.getItem('jwtToken');
