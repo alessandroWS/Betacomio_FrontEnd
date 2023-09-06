@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 
 import { PageEvent } from '@angular/material/paginator';
+import { Router, RouterConfigOptions } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -53,10 +54,12 @@ export class IndexComponent implements OnInit {
     this.loadPageData(dati.pageIndex, dati.pageSize);
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.loadProducts(); // Chiamata per caricare i prodotti iniziali
+
+
   }
 
   loadProducts() {
@@ -131,7 +134,7 @@ export class IndexComponent implements OnInit {
       }
     );
   }
-  
+
   like(
     productName: string,
     price: string,
@@ -148,21 +151,21 @@ export class IndexComponent implements OnInit {
     };
 
     this.http
-    .post<number>('http://localhost:5067/Likes/AddLike', addlikedto, {
-      observe: 'response',
-    })
-    .subscribe(
-      (response) => {
-        console.log(response);
-        if (response.body) {
-          this.likeId = response.body; // Imposta l'ID del like
-          this.liked = true; // Imposta lo stato "mi piace" su true
+      .post<number>('http://localhost:5067/Likes/AddLike', addlikedto, {
+        observe: 'response',
+      })
+      .subscribe(
+        (response) => {
+          console.log(response);
+          if (response.body) {
+            this.likeId = response.body; // Imposta l'ID del like
+            this.liked = true; // Imposta lo stato "mi piace" su true
+          }
+        },
+        (error) => {
+          console.error('Errore nel recupero dei dati:', error);
         }
-      },
-      (error) => {
-        console.error('Errore nel recupero dei dati:', error);
-      }
-    );
+      );
   }
 }
 

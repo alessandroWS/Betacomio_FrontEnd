@@ -58,6 +58,8 @@ export class BuyComponent implements OnInit {
 
   errorMessage: string = "";
 
+  okMessage: string = "";
+
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const productIdParam = params.get('productId');
@@ -150,6 +152,11 @@ export class BuyComponent implements OnInit {
       // this.modalService.openErrorModal(this.errorMessage);
     
     }
+    else if (this.form.get('quantity')?.value > 0) {
+      this.okMessage = 'Articolo acquistato correttamente!';
+      this.modalService.openModalOk(this.okMessage);
+    }
+
 
     this.http.post<Response>('http://localhost:5067/api/Order', this.form.value).subscribe(
       (response) => {

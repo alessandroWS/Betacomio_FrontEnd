@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div *ngIf="logNum === 2"  class="text-center p-3" style="position: absolute; top: 90px; width: fit-content;">
+    <div *ngIf="logNum === 2" class="text-center p-3" style="position: absolute; top: 90px; width: fit-content;">
       <div class="log-out">
         Logout effettuato correttamente
       </div>
@@ -125,31 +125,33 @@
       <div class="row p-4 justify-content-center vw-50">
 
 
-          <div *ngFor="let product of products" class="col-6 col-md-4 p-2 justify-content-center d-flex">
+        <div *ngFor="let product of products" class="col-6 col-md-4 p-2 justify-content-center d-flex">
 
-            <div class="card p-2 rounded-0" style="width: 11rem;">
+          <div class="card p-2 rounded-0" style="width: 11rem;">
 
-              <div class="card-img-top rounded-0 w-100" style="height: 140px; background-image: url('assets/media/bottombrackets.jpg'); background-position: center; background-size: cover;"></div>
-
-              <!-- <img src="/assets/media/bottombrackets.jpg" style="height: 140px;" class="card-img-top rounded-0 w-100"> -->
-
-              <div class="card-body p-2 d-flex flex-column justify-content-between align-items-center text-center"
-                style="overflow: hidden; height: 190px">
-
-
-
-                <h5 class="card-title mt-2 text-uppercase fs-6">{{product.name}}</h5>
-
-                <p class="textBlue fst-italic">{{product.productCategory.name}}</p>
-
-                <p class="textBlue fw-bold">€ {{product.standardCost}}</p>
-
-                <a [routerLink]="['/singlepage/', product.productId]" class="textMain" style="font-size:1rem">View</a>
-
-                <!-- <small class="textGrey">Pubblicato il: data</small> -->
-              </div>
-
+            <div class="card-img-top rounded-0 w-100"
+              style="height: 140px; background-image: url('assets/media/bottombrackets.jpg'); background-position: center; background-size: cover;">
             </div>
+
+            <!-- <img src="/assets/media/bottombrackets.jpg" style="height: 140px;" class="card-img-top rounded-0 w-100"> -->
+
+            <div class="card-body p-2 d-flex flex-column justify-content-between align-items-center text-center"
+              style="overflow: hidden; height: 190px">
+
+
+
+              <h5 class="card-title mt-2 text-uppercase fs-6">{{product.name}}</h5>
+
+              <p class="textBlue fst-italic">{{product.productCategory.name}}</p>
+
+              <p class="textBlue fw-bold">€ {{product.standardCost}}</p>
+
+              <a [routerLink]="['/singlepage/', product.productId]" class="textMain" style="font-size:1rem">View</a>
+
+              <!-- <small class="textGrey">Pubblicato il: data</small> -->
+            </div>
+
+          </div>
 
         </div>
 
@@ -161,9 +163,3 @@
   </div>
 
 </main>
-
-
-
-
-
-
