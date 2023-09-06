@@ -41,9 +41,15 @@
                   <p class="text-secondary">{{product.productCategory.name}}</p>
 
                   <div class="justify-content-between d-flex align-items-center">
-                    <a [routerLink]="['/singlepage/', product.productId]" class="btn btn-dark bgMain border-0 rounded-0 my-2">Visualizza</a>
-                    <a (click)="like(product.name, product.standardCost.toString(), 2, product.productId, product.productCategory.name)" class="btn btn-dark bgMain border-0 rounded-0 my-2">Like</a>
-                    <a [routerLink]="['/buy/', product.productId]" class="btn btn-dark bg-success border-0 rounded-0 my-2">Acquista</a>
+                    <a [routerLink]="['/singlepage/', product.productId]" class="linkView border-0 rounded-0 m-0 p-0 btn">Dettagli</a>
+                    <a (click)="BasicAuth.isLogged() ? like(product.name, product.standardCost.toString(), 0, product.productId, product.productCategory.name) : redirectToLogin()" class="linkLike border-0 rounded-0 my-2">
+                      <i class="bi bi-heart"></i>
+                    </a>
+
+                    <a (click)="BasicAuth.isLogged() ? deleteLike(product.productId) : redirectToLogin()" class="linkLike border-0 rounded-0 my-2">
+                      <i class="bi bi-heart-fill" [ngClass]="{'liked': liked}"></i>
+                    </a>
+                    <a [routerLink]="BasicAuth.isLogged() ? ['/buy/', product.productId] : '/login'" class="linkBuy border-0 rounded-0 my-2" ><i class="rounded-3 acqusita p-2 border border-black bi bi-bag"></i></a>
 
                       <!-- <small class="fst-italic">{{product.modifiedDate}}</small> -->
                   </div>

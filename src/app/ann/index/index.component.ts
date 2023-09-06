@@ -168,6 +168,11 @@ export class IndexComponent implements OnInit {
         }
       );
   }
+
+
+  redirectToLogin() {
+    this.router.navigate(['/login']);
+  }
 }
 
 export interface ProductCategory {
