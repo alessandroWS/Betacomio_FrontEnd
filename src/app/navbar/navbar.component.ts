@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component,Input, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, Input, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../login/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ export class NavbarComponent implements OnInit {
   @Input() showMobileSearch: boolean = false // Imposta il valore predefinito a true
 
 
-  enteredSearchValue= '';
+  enteredSearchValue = '';
 
 
   categories: Category[] = [];
@@ -19,15 +20,21 @@ export class NavbarComponent implements OnInit {
   isAdmin: boolean = false; // Aggiungi una variabile per memorizzare il valore "isAdmin"
   sIsAdmin: string = "";
   nReq: number | undefined = 0;
-  constructor(private http: HttpClient, public BasicAuth: AuthService, public Logout: AuthService) {}
+
+  constructor(private http: HttpClient, public BasicAuth: AuthService, public Logout: AuthService, private router: Router) { }
 
   @Output() searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
 
 
 
-onSearchTextChanged() {
-  this.searchTextChanged.emit(this.enteredSearchValue);
-}
+  onSearchTextChanged() {
+    this.searchTextChanged.emit(this.enteredSearchValue);
+  }
+
+  // reload() {
+  //   location.href
+
+  // }
 
 
   ngOnInit() {
@@ -39,7 +46,7 @@ onSearchTextChanged() {
       const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decodifica il token JWT
       this.isAdmin = decodedToken.IsAdmin === 'True'; // Imposta la variabile "isAdmin"
 
-      this.sIsAdmin=this.isAdmin.valueOf.toString();
+      this.sIsAdmin = this.isAdmin.valueOf.toString();
     }
 
     // Esegui la funzione loadRequestAdminCount solo se l'utente è un amministratore
@@ -76,7 +83,7 @@ onSearchTextChanged() {
   }
 
   private getAllCount(): void {
-    this.http.get<responseRequestAdminCount>('http://localhost:5067/AdminRequest/GetAllCount', { observe: "response"}).subscribe(
+    this.http.get<responseRequestAdminCount>('http://localhost:5067/AdminRequest/GetAllCount', { observe: "response" }).subscribe(
       (response) => {
         this.nAllReq = response.body?.data;
       },
@@ -86,7 +93,7 @@ onSearchTextChanged() {
   }
 
   private loadCategories(): void {
-    this.http.get<responseCategory>('http://localhost:5067/api/ProductCategory/GetAll', { observe: "response"}).subscribe(
+    this.http.get<responseCategory>('http://localhost:5067/api/ProductCategory/GetAll', { observe: "response" }).subscribe(
       (response) => {
         this.categories = response.body!.data;
       },
@@ -94,10 +101,10 @@ onSearchTextChanged() {
         console.error('Errore nel recupero dei dati:', error);
       });
   }
-      //
-      //
-      //
-      //
+  //
+  //
+  //
+  //
   addReq(): void {
     this.http.post<any>('http://localhost:5067/AdminRequest/AddReq', {}).subscribe(
       (response) => {
@@ -149,6 +156,9 @@ onSearchTextChanged() {
         console.error('Errore nel recupero del conteggio delle richieste:', error);
       });
   }
+
+
+
 }
 
 export interface Category {

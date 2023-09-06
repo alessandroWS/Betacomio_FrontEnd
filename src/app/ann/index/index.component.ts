@@ -4,8 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { MatPaginator } from '@angular/material/paginator';
 
 import { PageEvent } from '@angular/material/paginator';
-import { AuthService } from 'src/app/login/auth.service';
+import { Router, RouterConfigOptions } from '@angular/router';
 
+import { AuthService } from 'src/app/login/auth.service';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -54,10 +55,12 @@ export class IndexComponent implements OnInit {
     this.loadPageData(dati.pageIndex, dati.pageSize);
   }
 
-  constructor(private http: HttpClient, public BasicAuth: AuthService) {}
+  constructor(private http: HttpClient, private router: Router, public BasicAuth: AuthService) {}
 
   ngOnInit(): void {
     this.loadProducts(); // Chiamata per caricare i prodotti iniziali
+
+
   }
 
   loadProducts() {
@@ -132,7 +135,7 @@ export class IndexComponent implements OnInit {
       }
     );
   }
-  
+
   like(
     productName: string,
     price: string,
@@ -149,21 +152,21 @@ export class IndexComponent implements OnInit {
     };
 
     this.http
-    .post<number>('http://localhost:5067/Likes/AddLike', addlikedto, {
-      observe: 'response',
-    })
-    .subscribe(
-      (response) => {
-        console.log(response);
-        if (response.body) {
-          this.likeId = response.body; // Imposta l'ID del like
-          this.liked = true; // Imposta lo stato "mi piace" su true
+      .post<number>('http://localhost:5067/Likes/AddLike', addlikedto, {
+        observe: 'response',
+      })
+      .subscribe(
+        (response) => {
+          console.log(response);
+          if (response.body) {
+            this.likeId = response.body; // Imposta l'ID del like
+            this.liked = true; // Imposta lo stato "mi piace" su true
+          }
+        },
+        (error) => {
+          console.error('Errore nel recupero dei dati:', error);
         }
-      },
-      (error) => {
-        console.error('Errore nel recupero dei dati:', error);
-      }
-    );
+      );
   }
 }
 

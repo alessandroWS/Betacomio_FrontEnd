@@ -31,6 +31,7 @@ import { ErrorComponent } from './error/error.component';
 import { CreateComponent } from './ann/create/create.component';
 import { ModalComponent } from './modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { OkModalComponent } from './ok-modal/ok-modal.component';
 
 
 
@@ -53,7 +54,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     FooterComponent,
     ErrorComponent,
     CreateComponent,
-    ModalComponent
+    ModalComponent,
+    OkModalComponent
   ],
   imports: [
     JwtModule.forRoot({
