@@ -2,7 +2,7 @@
   <div class="container-fluid p-2" id="navContainer">
     <!-- Logo -->
     <div class="me-auto">
-      <a class="navbar-brand p-3 img-fluid" href=""><img src="assets/media/logoBetacomio.png" alt=""
+      <a class="navbar-brand p-3 img-fluid" routerLink="/home"><img src="assets/media/logoBetacomio.png" routerLink="/home" alt=""
           style="width: 8rem"></a>
     </div>
     <!-- Barra di ricerca -->
@@ -64,7 +64,7 @@
 
       <!-- Pulsante "Inserisci annuncio" -->
       <div class="d-none d-md-block mx-3">
-        <a class="btn btnAnnuncio px-3 py-2 borderMain textBlue" routerLink="/create">
+        <a class="btn btnAnnuncio px-3 py-2 borderMain textBlue" [routerLink]="BasicAuth.isLogged() ? '/create' : '/login'">
           <i class="fa-regular fa-square-plus textBlue pe-2"></i>Inserisci annuncio</a>
       </div>
 
