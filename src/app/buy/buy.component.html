@@ -4,101 +4,132 @@
 <header class="headerMargin container-fluid bgGrey" style="min-height: 100vh;">
 
   <div class="row align-items-center shadow bgWhite mb-5 p-4">
-      <div class="col-12 px-5">
-          <h2 class="p-3 textMain ms-5 roundContent">PAGAMENTO</h2>
-      </div>
+    <div class="col-12 px-5">
+      <h2 class="p-3 textMain ms-5 roundContent">PAGAMENTO</h2>
+    </div>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="submitForm()">
 
-  <div *ngIf="BasicAuth.isLogged()"class="container">
-    <div class="row m-0  d-flex justify-content-center">
-      <div class="col-6 p-0">
-        <div class="p-4 bg-white">
-          <h5>PAESE DI SPEDIZIONE:</h5>
-          <div class="d-flex align-items-center mt-3">
-            <img src="/assets/media/italy.png" width="35px" alt="">
-            <p class="p-0 m-0 ms-3">Italy</p>
+    <div *ngIf="BasicAuth.isLogged()" class="container">
+      <div class="row m-0  d-flex justify-content-center">
+        <div class="col-6 p-0">
+          <div class="p-4 bg-white">
+            <h5>PAESE DI SPEDIZIONE:</h5>
+            <div class="d-flex align-items-center mt-3">
+              <img src="/assets/media/italy.png" width="35px" alt="">
+              <p class="p-0 m-0 ms-3">Italy</p>
+            </div>
           </div>
-        </div>
-        <div class="p-4 bg-white mt-4">
-          <h5>INDIRIZZO E-MAIL:</h5>
-            <p class="p-0 m-0 mt-3 fb-light"  formControlName="emailAddress">{{nameUser}}</p>
-        </div>
-        <div class="d-flex justify-content-between">
           <div class="p-4 bg-white mt-4">
-
-            <h5>NOME:</h5>
-            <input type="text" class="form-control mt-3 " (input)="nameInput($event)" formControlName="firstName">
-
+            <h5>INDIRIZZO E-MAIL:</h5>
+            <p class="p-0 m-0 mt-3 fb-light" formControlName="emailAddress">{{nameUser}}</p>
           </div>
+          <div class="d-flex justify-content-between">
+            <div class="p-4 bg-white mt-4">
+
+              <h5>NOME:</h5>
+              <input type="text" class="form-control mt-3 " (input)="nameInput($event)" formControlName="firstName">
+
+              <p class="text-danger mt-2"
+                *ngIf="form.get('firstName')?.hasError('required') && ((form.get('firstName')?.dirty || form.get('firstName')?.touched))">
+                Il nome è obbligatorio</p>
+
+            </div>
+
+            <div class="p-4 bg-white mt-4">
+
+              <h5>COGNOME:</h5>
+              <input type="text" class="form-control mt-3 " (input)="surnameInput($event)" formControlName="surname">
+
+              <p class="text-danger mt-2"
+                *ngIf="form.get('surname')?.hasError('required') && ((form.get('surname')?.dirty || form.get('surname')?.touched))">
+                Il cognome è obbligatorio</p>
+
+            </div>
+          </div>
+
+
 
           <div class="p-4 bg-white mt-4">
+            <h5>VIA:</h5>
+            <input type="text" class="form-control mt-3 " (input)="addressInput($event)" formControlName="address">
 
-            <h5>COGNOME:</h5>
-            <input type="text" class="form-control mt-3 " (input)="surnameInput($event)" formControlName="surname">
+            <p class="text-danger mt-2"
+              *ngIf="form.get('address')?.hasError('required') && ((form.get('address')?.dirty || form.get('address')?.touched))">
+              L'indirizzo è obbligatorio</p>
 
-          </div>
-        </div>
-
-
-
-        <div class="p-4 bg-white mt-4">
-          <h5>VIA:</h5>
-          <input type="text" class="form-control mt-3 " (input)="addressInput($event)" formControlName="address">
-          <p class="text-danger mt-2" *ngIf="hasUserInteracted && !isAddressEmpty">Non dimenticarti di inserire il numero civico</p>
-        </div>
-        <div class="d-flex">
-          <div class="p-4 bg-white w-75">
-
-            <h5>CITTA:</h5>
-            <input type="text" class="form-control mt-3 " (input)="cityInput($event)" formControlName="city">
+            <p class="text-danger mt-2" *ngIf="hasUserInteracted && !isAddressEmpty">Non dimenticarti di inserire il
+              numero civico</p>
 
           </div>
+          <div class="d-flex">
+            <div class="p-4 bg-white w-75">
 
-          <div class="p-4 bg-white ">
+              <h5>CITTA:</h5>
+              <input type="text" class="form-control mt-3 " (input)="cityInput($event)" formControlName="city">
 
-            <h5>CAP:</h5>
-            <input type="number" class="form-control mt-3 " (input)="CAPInput($event)" formControlName="cap">
-            <p class="text-danger mt-2" *ngIf="form.get('cap')?.hasError('pattern')">Inserisci solo numeri nel CAP</p>
+              <p class="text-danger mt-2"
+                *ngIf="form.get('city')?.hasError('required') && ((form.get('city')?.dirty || form.get('city')?.touched))">
+                La città è obbligatoria</p>
+
+            </div>
+
+            <div class="p-4 bg-white ">
+
+              <h5>CAP:</h5>
+              <input type="number" class="form-control mt-3 " (input)="CAPInput($event)" formControlName="cap">
+
+              <p class="text-danger mt-2"
+              *ngIf="form.get('cap')?.hasError('required') && ((form.get('cap')?.dirty || form.get('cap')?.touched))">
+              Il CAP è obbligatorio</p>
+
+              <p class="text-danger mt-2" *ngIf="form.get('cap')?.hasError('pattern')">Inserisci solo numeri positivi nel CAP</p>
+            </div>
           </div>
-        </div>
-        <div class="p-4 bg-white mt-4">
-          <h5>NUMERO DI TELEFONO:</h5>
+          <div class="p-4 bg-white mt-4">
+            <h5>NUMERO DI TELEFONO:</h5>
             <input type="text" class="form-control mt-3 " formControlName="phone">
+
+            <p class="text-danger mt-2"
+              *ngIf="form.get('phone')?.hasError('required') && ((form.get('phone')?.dirty || form.get('phone')?.touched))">
+              Il numero di telefono è obbligatorio</p>
+
+          </div>
+
+          <p class="mt-4">Cliccando ACQUISTA ORA, si conferma di aver letto, compreso e accettato i nostri Termini e
+            Condizioni.
+          </p>
+          <button type="submit" style="letter-spacing: 2px;"
+            class="w-100 p-3 btn btn-success rounded-0 border-0 mt-4 fw-bold">ACQUISTA ORA</button>
+
         </div>
-        <p class="mt-4">Cliccando ACQUISTA ORA, si conferma di aver letto, compreso e accettato i nostri Termini e Condizioni.
-        </p>
-        <button type="submit" style="letter-spacing: 2px;" class="w-100 p-3 btn btn-success rounded-0 border-0 mt-4 fw-bold">ACQUISTA ORA</button>
+        <div class="col-4 p-4 ms-4 bg-white" style="height: fit-content">
+          <h5 class="mb-1">PRODOTTO</h5>
+          <hr class="mb-4">
+          <div class="d-flex">
+            <img src="/assets/media/bikes.jpg" class="w-25" alt="">
+            <div class="ms-3">
+              <p class="fw-bold">€ {{product?.standardCost}} </p>
+              <p class="">{{product?.name}}</p>
+
+              <input type="number" placeholder="1" formControlName="quantity" class="w-25 text-center">
+
+            </div>
+          </div>
+
+          <h5 class="mb-1 mt-4">DESTINATARIO</h5>
+          <hr class="mb-4">
+          <div>
+            <p class="m-0 p-0">{{ nameDestinatario }} {{ surnameDestinatario }}</p>
+            <p class="m-0 p-0">{{ addressDestinatario }}</p>
+            <p class="m-0 p-0">{{ cityDestinatario }}<span *ngIf="cityDestinatario">,</span> {{ CAPDestinatario }}</p>
+          </div>
+
+        </div>
+
 
       </div>
-      <div class="col-4 p-4 ms-4 bg-white" style="height: fit-content">
-        <h5 class="mb-1">PRODOTTO</h5>
-        <hr class="mb-4">
-        <div class="d-flex">
-          <img src="/assets/media/bikes.jpg" class="w-25" alt="">
-          <div class="ms-3">
-            <p class="fw-bold">€ {{product?.standardCost}} </p>
-            <p class="">{{product?.name}}</p>
-
-            <input type="number" placeholder="1" formControlName="quantity" class="w-25 text-center">
-
-        </div>
-        </div>
-
-        <h5 class="mb-1 mt-4">DESTINATARIO</h5>
-        <hr class="mb-4">
-        <div>
-          <p class="m-0 p-0">{{ nameDestinatario }} {{ surnameDestinatario }}</p>
-          <p class="m-0 p-0">{{ addressDestinatario }}</p>
-          <p class="m-0 p-0">{{ cityDestinatario }}<span *ngIf="cityDestinatario">,</span> {{ CAPDestinatario }}</p>
-        </div>
-
-      </div>
-
-
-      </div>
-  </div>
+    </div>
   </form>
 </header>
-

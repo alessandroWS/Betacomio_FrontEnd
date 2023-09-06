@@ -14,8 +14,8 @@ export class RegisterComponent {
     username: '',
     password: '',
     password_confirmation: '',
-    
-    
+
+
   };
   loginFailed: boolean = false;
 
@@ -35,7 +35,7 @@ export class RegisterComponent {
   }
 
   ngOnInit() {
-   
+
     this.regNum = 0;
 
     this.route.queryParams.subscribe(params => {
@@ -45,28 +45,27 @@ export class RegisterComponent {
     });
   }
 
-  
+
 
   register() {
-    if(this.userData.password_confirmation == this.userData.password && this.userData.username.includes('@'))
-    {
+    if (this.userData.password_confirmation == this.userData.password && this.userData.username.includes('@')) {
       this.http
-      .post('http://localhost:5067/Auth/Register', this.userData)
-      .subscribe(
-        (response: any) => {
-          console.log('Registration successful:', response);
-          this.router.navigate(['/home'], {
-            queryParams: { reg: 'success reg' }, // Passa il messaggio tramite queryParams
-          });
-        },
-        (error) => {
-          console.error('Registration failed:', error);
-          // Gestione degli errori
-          this.router.navigate(['/register'], {
-            queryParams: { reg: 'email ex' }, // Passa il messaggio tramite queryParams
-          });
-        }
-      );
+        .post('http://localhost:5067/Auth/Register', this.userData)
+        .subscribe(
+          (response: any) => {
+            console.log('Registration successful:', response);
+            this.router.navigate(['/home'], {
+              queryParams: { reg: 'success reg' }, // Passa il messaggio tramite queryParams
+            });
+          },
+          (error) => {
+            console.error('Registration failed:', error);
+            // Gestione degli errori
+            this.router.navigate(['/register'], {
+              queryParams: { reg: 'email ex' }, // Passa il messaggio tramite queryParams
+            });
+          }
+        );
 
     } else {
       alert("registrazione fallita");
@@ -77,8 +76,8 @@ export class RegisterComponent {
       };
       //this.router.navigate(['/login']);
     }
-    
+
   }
-  
+
 }
 

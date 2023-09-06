@@ -5,7 +5,7 @@ import * as jQuery from 'jquery';
 import { Injectable, Optional } from '@angular/core';
 
 import { JwtHelperService } from '@auth0/angular-jwt'; // Assicurati di importare JwtHelperService
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalServiceService } from '../modal-service.service';
 import { ModalComponent } from '../modal/modal.component';
 import { AuthService } from '../login/auth.service';
@@ -28,19 +28,18 @@ export class BuyComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private jwtHelper: JwtHelperService, private route: ActivatedRoute, private http: HttpClient, @Optional() public modalService: ModalServiceService, public BasicAuth: AuthService) {
     this.form = this.formBuilder.group({
-      phone: [''], // Valore iniziale vuoto
+      phone: ['', [Validators.required]], // Valore iniziale vuoto
       quantity: ['1', [Validators.min(0), Validators.max(10)]],
-      price: [''],
-      productName: [''],
-      address: [''],
-      city: [''],
-      firstName: [''],
-      surname: [''],
+      price: ['', [Validators.required]],
+      productName: ['',[Validators.required]],
+      address: ['', [Validators.required]],
+      city: ['',[Validators.required]],
+      firstName: ['',[Validators.required]],
+      surname: ['', [Validators.required]],
       cap: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
     });
 
     const token = localStorage.getItem('jwtToken');
-
 
 
     if (token !== null) {
@@ -56,6 +55,14 @@ export class BuyComponent implements OnInit {
       console.error('Il token non è presente nel localStorage.');
     }
   }
+
+  // fName = new FormControl('', Validators.required);
+  // sName = new FormControl('', Validators.required);
+  // addressC = new FormControl('', Validators.required);
+  // cityC = new FormControl('', Validators.required);
+  // CAP = new FormControl('', Validators.required);
+  // phoneNum = new FormControl('', Validators.required);
+
 
   errorMessage: string = "";
 
@@ -137,10 +144,13 @@ export class BuyComponent implements OnInit {
 
   submitForm() {
 
-    if (this.form.valid) {
-      const phone = this.form.get('phone')?.value.toString();
-      const quantity = this.form.get('quantity')?.value;
+    if (this.form.valid && this.form.get('quantity')?.value > 0) {
+      //const phone = this.form.get('phone')?.value.toString();
+      //const quantity = this.form.get('quantity')?.value;
       //alert('articolo aggiunto: ')
+      this.buyComponent();
+      this.okMessage = 'Articolo acquistato correttamente!';
+      this.modalService.openModalOk(this.okMessage);
 
     }
     else if (this.form.get('quantity')?.value <= 0) {
@@ -151,14 +161,19 @@ export class BuyComponent implements OnInit {
 
       // this.errorMessage = 'Si è verificato un errore!';
       // this.modalService.openErrorModal(this.errorMessage);
+    }
+    else {
+      this.errorMessage = 'Valorizza tutti i campi richiesti';
+      this.modalService.openModal(this.errorMessage);
+    }
+
     
-    }
-    else if (this.form.get('quantity')?.value > 0) {
-      this.okMessage = 'Articolo acquistato correttamente!';
-      this.modalService.openModalOk(this.okMessage);
-    }
+  }
 
 
+
+
+  buyComponent() {
     this.http.post<Response>('http://localhost:5067/api/Order', this.form.value).subscribe(
       (response) => {
         console.log(this.form);
@@ -169,19 +184,19 @@ export class BuyComponent implements OnInit {
         console.log(this.form);
 
       }
-    );
+    )
+  };
 
-  }
 
 
   nameDestinatario: string | undefined;
-  nameInput(event: Event){
+  nameInput(event: Event) {
     this.nameDestinatario = (<HTMLInputElement>event.target).value
 
   }
 
   surnameDestinatario: string | undefined;
-  surnameInput(event: Event){
+  surnameInput(event: Event) {
     this.surnameDestinatario = (<HTMLInputElement>event.target).value
   }
 
@@ -197,12 +212,12 @@ export class BuyComponent implements OnInit {
   }
 
   cityDestinatario: string | undefined;
-  cityInput(event: Event){
+  cityInput(event: Event) {
     this.cityDestinatario = (<HTMLInputElement>event.target).value
   }
 
   CAPDestinatario: string | undefined;
-  CAPInput(event: Event){
+  CAPInput(event: Event) {
     this.CAPDestinatario = (<HTMLInputElement>event.target).value
   }
 }
@@ -239,3 +254,4 @@ export interface responseProduct {
   success: boolean,
   message: string
 }
+
