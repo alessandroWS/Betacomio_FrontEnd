@@ -20,7 +20,7 @@
 
         <div *ngIf="!searchText || product.name.toLowerCase().includes(searchText)" class="card rounded-0 border-0" style="width: 16rem;">
 
-              <img src="/src/assets/media/bottombrackets.jpg" class="card-img-top rounded-0" alt="">
+          <img   [src]="'https://picsum.photos/200/300?random=' + product.productId" class="card-img-top rounded-0" alt="" >
 
               <div class="card-body ps-3 mt-2">
                   <h5 class="textBlue text-end">{{product.standardCost}}€</h5>
