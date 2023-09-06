@@ -29,7 +29,7 @@
 
       <div class="col-12 col-md-3 p-2 mt-3 d-flex justify-content-center" *ngFor="let product of products">
 
-
+        <div *ngFor="let lik of likes">
         <div *ngIf="!searchText || product.name.toLowerCase().includes(searchText)" class="card rounded-0 border-0" style="width: 16rem;">
 
           <img  [routerLink]="['/singlepage/', product.productId]" [src]="'https://picsum.photos/200/300?random=' + product.productId" class="card-img-top rounded-0 imgProducts"  alt="" >
@@ -40,7 +40,7 @@
                   <!-- {{-- <p class="card-text">{{$announcement->body}}</p> --}} -->
                   <p class="text-secondary">{{product.productCategory.name}}</p>
 
-                  <div class="justify-content-between d-flex align-items-center">
+                  <div *ngif="product.productId == lik.IdLike" class="justify-content-between d-flex align-items-center">
                     <a [routerLink]="['/singlepage/', product.productId]" class="linkView border-0 rounded-0 m-0 p-0 btn">Dettagli</a>
                     <a (click)="BasicAuth.isLogged() ? like(product.name, product.standardCost.toString(), 0, product.productId, product.productCategory.name) : redirectToLogin()" class="linkLike border-0 rounded-0 my-2">
                       <i class="bi bi-heart"></i>
@@ -72,7 +72,7 @@
       @endforelse
 
       {{$announcements->links()}} -->
-
+    </div>
   </div>
 <!--
   <mat-paginator [length]="100" [pageSize]="defaultRecords" [pageSizeOptions]="[6,12,24,32]" (page)="onPageChange($event)">

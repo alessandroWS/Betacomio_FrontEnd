@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -14,6 +14,7 @@ import { AuthService } from 'src/app/login/auth.service';
 })
 export class IndexComponent implements OnInit {
   searchText: string = '';
+  likeColor: string = '';
 
   onSearchTextEntered(searchValue: string) {
     this.searchText = searchValue;
@@ -59,8 +60,16 @@ export class IndexComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.loadlikes();
     this.loadProducts(); // Chiamata per caricare i prodotti iniziali
   }
+
+  checkLike(productId: number): boolean{
+    if((this.likes?.find(p => productId == p.productId))!= undefined){
+      return true;
+    } else return false ;
+  }
+
 
   loadProducts() {
     debugger;
@@ -107,7 +116,25 @@ export class IndexComponent implements OnInit {
     }
   }
 
-  public pageslice: Product[] | undefined = [];
+  likes: Like[] | undefined = [];
+
+
+  private loadlikes(): void {
+    this.http.get<responseLike>('http://localhost:5067/Likes/GetAllLike', { observe: 'response' }).subscribe(
+      (response) => {
+        this.likes = response.body?.data;
+        console.log('Fetched likes:', this.likes);
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Errore nel recupero dei dati:', error);
+        //alert() inserire messaggio di errore dal back
+        alert('ciaociao' + error.message);
+      }
+
+    );
+  }
+
+  public pageslice: Product[] | undefined= [];
   liked: boolean = false;
 
   unlike(productId: number): void {
@@ -128,7 +155,7 @@ export class IndexComponent implements OnInit {
     this.http.delete(`http://localhost:5067/Likes/${likeId}`).subscribe(
       () => {
         // Eliminazione riuscita, ora ricarica i like
-        this.loadProducts(); // Aggiorna l'elenco dei like dopo l'eliminazione
+        this.loadlikes(); // Aggiorna l'elenco dei like dopo l'eliminazione
       },
       (error) => {
         console.error('Errore nell\'eliminazione del like:', error);
@@ -169,6 +196,25 @@ export class IndexComponent implements OnInit {
       );
   }
 
+  manageLike(product : Product){
+    console.log(document.getElementById(product.productId.toString())?.style.color);
+    switch(document.getElementById(product.productId.toString())?.style.color){
+      case 'red' :
+        this.deleteLike(product.productId);
+        document.getElementById(product.productId.toString())?.style.setProperty('color','grey');
+        break;
+      case 'grey':
+        this.like(product.name, product.standardCost.toString(), 0, product.productId, product.productCategory.name);
+        document.getElementById(product.productId.toString())?.style.setProperty('color','red');
+        break;
+      default:
+        console.log('CODICE MALSANOOOO!');
+        break;
+    }
+  }
+
+
+
 
   redirectToLogin() {
     this.router.navigate(['/login']);
@@ -204,4 +250,20 @@ export interface responseProduct {
   data: Product[];
   success: boolean;
   message: string;
+}
+
+
+export interface responseLike {
+  data: Like[],
+  success: boolean,
+  message: string
+}
+
+export interface Like {
+  idLike: number,
+  productName: string,
+  price: string,
+  productId: number,
+  categoryName: string
+  userId: number
 }

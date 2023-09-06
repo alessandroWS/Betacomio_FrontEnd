@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/login/auth.service';
@@ -16,6 +16,7 @@ export class CategoryProductsComponent {
   constructor(private route: ActivatedRoute, private http: HttpClient, private router:Router, public BasicAuth: AuthService) { }
 
   ngOnInit(): void {
+    this.loadlikes();
     this.route.paramMap.subscribe(params => {
       const productIdParam = params.get('productCategoryId');
       if (productIdParam !== null) {
@@ -75,6 +76,25 @@ export class CategoryProductsComponent {
       }
     );
   }
+
+  likes: Like[] | undefined = [];
+
+
+  private loadlikes(): void {
+    this.http.get<responseLike>('http://localhost:5067/Likes/GetAllLike', { observe: 'response' }).subscribe(
+      (response) => {
+        this.likes = response.body?.data;
+        console.log('Fetched likes:', this.likes);
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Errore nel recupero dei dati:', error);
+        //alert() inserire messaggio di errore dal back
+        alert('ciaociao' + error.message);
+      }
+
+    );
+  }
+
 
   like(productName: string, price: string, userId: number, productId: number, categoryName: string): void {
     const addlikedto = {
@@ -137,4 +157,21 @@ export interface responseProductCategory {
   data: ProductCategory;
   success: boolean;
   message: string;
+}
+
+
+
+export interface Like {
+  IdLike: number,
+  productName: string,
+  price: string,
+  productId: number,
+  categoryName: string
+  userId: number
+}
+
+export interface responseLike {
+  data: Like[],
+  success: boolean,
+  message: string
 }
