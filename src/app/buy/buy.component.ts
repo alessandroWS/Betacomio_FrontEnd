@@ -143,33 +143,27 @@ export class BuyComponent implements OnInit {
   }
 
   submitForm() {
-
     if (this.form.valid && this.form.get('quantity')?.value > 0) {
-      //const phone = this.form.get('phone')?.value.toString();
-      //const quantity = this.form.get('quantity')?.value;
-      //alert('articolo aggiunto: ')
+      const quantity = this.form.get('quantity')?.value;
+      const pricePerUnit = this.form.get('price')?.value;
+      const totalPrice = quantity * pricePerUnit; // Calcola il prezzo totale
+  
+      this.form.patchValue({
+        price: totalPrice.toString(), // Aggiorna il campo "price" nel Reactive Form
+      });
+  
       this.buyComponent();
       this.okMessage = 'Articolo acquistato correttamente!';
       this.modalService.openModalOk(this.okMessage);
-
-    }
-    else if (this.form.get('quantity')?.value <= 0) {
-      //alert('Hai sbagliato broo')
-
+    } else if (this.form.get('quantity')?.value <= 0) {
       this.errorMessage = 'Numero pezzi non valido.';
       this.modalService.openModal(this.errorMessage);
-
-      // this.errorMessage = 'Si è verificato un errore!';
-      // this.modalService.openErrorModal(this.errorMessage);
-    }
-    else {
+    } else {
       this.errorMessage = 'Valorizza tutti i campi richiesti';
       this.modalService.openModal(this.errorMessage);
     }
-
-    
   }
-
+  
 
 
 
