@@ -57,10 +57,9 @@ export class IndexComponent implements OnInit {
 
   constructor(private http: HttpClient, private router: Router, public BasicAuth: AuthService) {}
 
+
   ngOnInit(): void {
     this.loadProducts(); // Chiamata per caricare i prodotti iniziali
-
-
   }
 
   loadProducts() {
