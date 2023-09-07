@@ -35,6 +35,8 @@
                 *ngIf="form.get('firstName')?.hasError('required') && ((form.get('firstName')?.dirty || form.get('firstName')?.touched))">
                 Il nome è obbligatorio</p>
 
+              <p class="text-danger mt-2" *ngIf="form.get('firstName')?.hasError('pattern')">Inserisci solo lettere</p>
+
             </div>
 
             <div class="p-4 bg-white mt-4">
@@ -45,6 +47,8 @@
               <p class="text-danger mt-2"
                 *ngIf="form.get('surname')?.hasError('required') && ((form.get('surname')?.dirty || form.get('surname')?.touched))">
                 Il cognome è obbligatorio</p>
+
+              <p class="text-danger mt-2" *ngIf="form.get('surname')?.hasError('pattern')">Inserisci solo lettere</p>
 
             </div>
           </div>
@@ -73,6 +77,8 @@
                 *ngIf="form.get('city')?.hasError('required') && ((form.get('city')?.dirty || form.get('city')?.touched))">
                 La città è obbligatoria</p>
 
+              <p class="text-danger mt-2" *ngIf="form.get('city')?.hasError('pattern')">Inserisci solo lettere</p>
+
             </div>
 
             <div class="p-4 bg-white ">
@@ -81,8 +87,8 @@
               <input type="number" class="form-control mt-3 " (input)="CAPInput($event)" formControlName="cap">
 
               <p class="text-danger mt-2"
-              *ngIf="form.get('cap')?.hasError('required') && ((form.get('cap')?.dirty || form.get('cap')?.touched))">
-              Il CAP è obbligatorio</p>
+                *ngIf="form.get('cap')?.hasError('required') && ((form.get('cap')?.dirty || form.get('cap')?.touched))">
+                Il CAP è obbligatorio</p>
 
               <p class="text-danger mt-2" *ngIf="form.get('cap')?.hasError('pattern')">Inserisci un CAP valido</p>
             </div>
@@ -95,14 +101,14 @@
               *ngIf="form.get('phone')?.hasError('required') && ((form.get('phone')?.dirty || form.get('phone')?.touched))">
               Il numero di telefono è obbligatorio</p>
 
-              <p class="text-danger mt-2" *ngIf="form.get('phone')?.hasError('pattern')">Inserisci solo numeri</p>
+            <p class="text-danger mt-2" *ngIf="form.get('phone')?.hasError('pattern')">Inserisci solo numeri</p>
 
           </div>
 
           <p class="mt-4">Cliccando ACQUISTA ORA, si conferma di aver letto, compreso e accettato i nostri Termini e
             Condizioni.
           </p>
-          
+
 
         </div>
         <div class="col-12 col-md-4 p-2 mt-2 mt-md-0 p-md-4 ms-0 ms-md-4 bg-white" style="height: fit-content">

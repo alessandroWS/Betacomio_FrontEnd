@@ -33,9 +33,9 @@ export class BuyComponent implements OnInit {
       price: ['', [Validators.required]],
       productName: ['',[Validators.required]],
       address: ['', [Validators.required]],
-      city: ['',[Validators.required]],
-      firstName: ['',[Validators.required]],
-      surname: ['', [Validators.required]],
+      city: ['',[Validators.required, Validators.pattern(/^[A-Za-z]+$/u)]],
+      firstName: ['',[Validators.required, Validators.pattern(/^[A-Za-z]+$/u)]],
+      surname: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/u)]],
       cap: ['', [Validators.required, Validators.pattern(/^[0-9]{5}$/)]],
     });
 
