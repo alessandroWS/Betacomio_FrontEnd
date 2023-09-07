@@ -22,14 +22,25 @@ export class CreateComponent {
   constructor(private http: HttpClient, private formBuilder: FormBuilder) {
     this.annuncioForm = this.formBuilder.group({
       name: ['', Validators.required],
-      description: [''],
+      //description: [''],
       standardCost: [0, Validators.min(0)],
+      productNumber: [generateRandomProductNumber()],
       productCategoryName: ['', Validators.required],
       productCategoryId: [null]  // Aggiungi questa riga per l'ID della categoria
     });
+    function generateRandomProductNumber(): string {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for (let i = 0; i < 5; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        result += characters.charAt(randomIndex);
+      }
+      return result;
+    }
   }
   ngOnInit(): void {
     this.loadCategories();
+    
   }
 
   private loadCategories(): void {
@@ -45,7 +56,7 @@ export class CreateComponent {
   submitForm() {
 
 
-    this.http.post<Response>('http://localhost:5067/api/Product', this.annuncioForm.value).subscribe(
+    this.http.post<Response>('http://localhost:5067/api/Product/Add', this.annuncioForm.value).subscribe(
       (response) => {
         console.log(this.annuncioForm);
 
