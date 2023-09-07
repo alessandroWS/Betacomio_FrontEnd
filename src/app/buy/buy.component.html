@@ -13,7 +13,7 @@
 
     <div *ngIf="BasicAuth.isLogged()" class="container">
       <div class="row m-0  d-flex justify-content-center">
-        <div class="col-6 p-0">
+        <div class="col-12 col-md-6 p-0">
           <div class="p-4 bg-white">
             <h5>PAESE DI SPEDIZIONE:</h5>
             <div class="d-flex align-items-center mt-3">
@@ -102,11 +102,10 @@
           <p class="mt-4">Cliccando ACQUISTA ORA, si conferma di aver letto, compreso e accettato i nostri Termini e
             Condizioni.
           </p>
-          <button type="submit" style="letter-spacing: 2px;"
-            class="w-100 p-3 btn btn-success rounded-0 border-0 mt-4 fw-bold">ACQUISTA ORA</button>
+          
 
         </div>
-        <div class="col-4 p-4 ms-4 bg-white" style="height: fit-content">
+        <div class="col-12 col-md-4 p-2 mt-2 mt-md-0 p-md-4 ms-0 ms-md-4 bg-white" style="height: fit-content">
           <h5 class="mb-1">PRODOTTO</h5>
           <hr class="mb-4">
           <div class="d-flex">
@@ -127,7 +126,8 @@
             <p class="m-0 p-0">{{ addressDestinatario }}</p>
             <p class="m-0 p-0">{{ cityDestinatario }}<span *ngIf="cityDestinatario">,</span> {{ CAPDestinatario }}</p>
           </div>
-
+          <button type="submit" style="letter-spacing: 2px;"
+            class="w-100 p-3 btn btn-success rounded-0 border-0 mt-4 fw-bold">ACQUISTA ORA</button>
         </div>
 
 

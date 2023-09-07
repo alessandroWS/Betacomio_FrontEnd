@@ -170,6 +170,7 @@ export class BuyComponent implements OnInit {
   buyComponent() {
     this.http.post<Response>('http://localhost:5067/api/Order', this.form.value).subscribe(
       (response) => {
+        this.form.reset();
         console.log(this.form);
 
       },
