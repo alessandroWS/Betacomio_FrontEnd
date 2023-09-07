@@ -60,6 +60,7 @@ export class CreateComponent {
       (response) => {
         console.log(this.annuncioForm);
 
+        window.location.reload();
       },
       (error) => {
         console.error('Errore nel recupero dei dati:', error);

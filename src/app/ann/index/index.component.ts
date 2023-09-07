@@ -72,7 +72,6 @@ export class IndexComponent implements OnInit {
 
 
   loadProducts() {
-    debugger;
     this.http
       .get<responseProduct>('http://localhost:5067/api/Product/GetAll', {
         observe: 'response',
