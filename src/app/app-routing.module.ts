@@ -13,6 +13,7 @@ import { CategoryProductsComponent } from './ann/category-products/category-prod
 import { BuyComponent } from './buy/buy.component';
 import { ErrorComponent } from './error/error.component';
 import { CreateComponent } from './ann/create/create.component';
+import { SessionExpiredComponent } from './session-expired/session-expired.component';
 
 
 const routes: Routes = [
@@ -27,10 +28,12 @@ const routes: Routes = [
   { path: 'like', component: LikeComponent },
   { path: 'buy/:productId', component: BuyComponent },
   { path: 'create', component: CreateComponent },
+  { path: 'session-expired', component: SessionExpiredComponent },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
-  { path: '**', component: ErrorComponent },
+  { path: 'not-found', component: ErrorComponent},
+  { path: '**', redirectTo: '/not-found' },
 ]
 
 @NgModule({
