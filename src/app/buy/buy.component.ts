@@ -101,6 +101,7 @@ export class BuyComponent implements OnInit {
       });
   
       this.buyComponent();
+      this.form.reset();
       this.okMessage = 'Articolo acquistato correttamente!';
       this.modalService.openModalOk(this.okMessage);
     } else if (this.form.get('quantity')?.value <= 0) {
@@ -118,7 +119,7 @@ export class BuyComponent implements OnInit {
   buyComponent() {
     this.http.post<Response>('http://localhost:5067/api/Order', this.form.value).subscribe(
       (response) => {
-        this.form.reset();
+        
         console.log(this.form);
 
       },

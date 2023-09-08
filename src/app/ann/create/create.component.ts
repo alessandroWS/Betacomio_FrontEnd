@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ModalServiceService } from 'src/app/modal-service.service';
+import { Injectable, Optional } from '@angular/core';
 
 @Component({
   selector: 'app-create',
@@ -13,20 +16,24 @@ export class CreateComponent {
 
   annuncioForm: FormGroup;
 
+  errorMessage: string = "";
+
+  okMessage: string = "";
+
 
 
 
 
   categories: Category[] | undefined = [];
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder) {
+  constructor(private http: HttpClient, private formBuilder: FormBuilder, private route: ActivatedRoute, @Optional() public modalService: ModalServiceService) {
     this.annuncioForm = this.formBuilder.group({
-      name: ['', Validators.required, Validators.minLength(3)],
-      standardCost: ['', [Validators.required, Validators.min(1)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      standardCost: ['', [Validators.required, Validators.min(1), Validators.pattern(/^[0-9@#$%^&+=!*()-_€.,]*$/)]],
       productNumber: [generateRandomProductNumber()],
       productCategoryName: ['', Validators.required],
       productCategoryId: [null],  // Aggiungi questa riga per l'ID della categoria
-      description: ['', Validators.required, Validators.minLength(8)],
+      description: ['', [Validators.required, Validators.minLength(8)]],
     });
     function generateRandomProductNumber(): string {
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -40,11 +47,11 @@ export class CreateComponent {
   }
   ngOnInit(): void {
     this.loadCategories();
-    
+
   }
 
   private loadCategories(): void {
-    this.http.get<responseCategory>('http://localhost:5067/api/ProductCategory/GetAll', { observe: "response"}).subscribe(
+    this.http.get<responseCategory>('http://localhost:5067/api/ProductCategory/GetAll', { observe: "response" }).subscribe(
       (response) => {
         this.categories = response.body?.data;
       },
@@ -55,12 +62,27 @@ export class CreateComponent {
 
   submitForm() {
 
+    if (this.annuncioForm.valid) {
 
+      this.createComponent();
+      this.annuncioForm.reset();
+      this.okMessage = 'Articolo Inserito correttamente!';
+      this.modalService.openModalOk(this.okMessage);
+    } else {
+      this.errorMessage = 'Valorizza tutti i campi richiesti';
+      this.modalService.openModal(this.errorMessage);
+    }
+
+
+  }
+
+  createComponent() {
     this.http.post<Response>('http://localhost:5067/api/Product/Add', this.annuncioForm.value).subscribe(
       (response) => {
+        
         console.log(this.annuncioForm);
 
-        window.location.reload();
+        //window.location.reload();
       },
       (error) => {
         console.error('Errore nel recupero dei dati:', error);
@@ -68,7 +90,6 @@ export class CreateComponent {
 
       }
     );
-
   }
 
   onCategoryChange(event: any) {
@@ -86,15 +107,15 @@ export class CreateComponent {
 }
 
 
-export interface Category{
+export interface Category {
   productCategoryId: number;
   name: string;
   img: string;
 }
 
 export interface ProductCategory {
-  productCategoryId : number;
-  name : string;
+  productCategoryId: number;
+  name: string;
 }
 
 export interface Product {
@@ -102,12 +123,12 @@ export interface Product {
   name: string;
   standardCost: number;
   ProductNumber: string;
-  Color:string;
-  ListPrice:number;
-  Size:string;
+  Color: string;
+  ListPrice: number;
+  Size: string;
   Weight: string;
-  ProductCategoryID:number;
-  ProductModelID:number;
+  ProductCategoryID: number;
+  ProductModelID: number;
   SellStartDate: Date;
   SellEndDate: Date;
   DiscontinuedDate: Date;

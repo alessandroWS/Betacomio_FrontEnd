@@ -35,7 +35,7 @@
                 Il titolo è obbligatorio</p>
 
               <p class="text-danger"
-                *ngIf="annuncioForm.get('name')?.value.length < 3 && ((annuncioForm.get('name')?.dirty))">
+                *ngIf="annuncioForm.get('name')?.hasError('minlength') && ((annuncioForm.get('name')?.dirty))">
                 Inserisci almeno 3 caratteri</p>
 
             </div>
@@ -65,7 +65,7 @@
                 La descrizione è obbligatoria</p>
 
               <p class="text-danger"
-                *ngIf="annuncioForm.get('description')?.value.length < 8 && ((annuncioForm.get('description')?.dirty))">
+                *ngIf="annuncioForm.get('description')?.hasError('minlength') && ((annuncioForm.get('description')?.dirty))">
                 Inserisci almeno 8 caratteri</p>
             </div>
 
@@ -91,6 +91,8 @@
             <p class="text-danger"
               *ngIf="annuncioForm.get('standardCost')?.hasError('min') && ((annuncioForm.get('standardCost')?.dirty))">
               Il prezzo deve essere maggiore di 0</p>
+
+              <p class="text-danger mt-2" *ngIf="annuncioForm.get('standardCost')?.hasError('pattern')">Inserisci solo numeri</p>
             </div>
 
           </div>
