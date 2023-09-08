@@ -21,12 +21,12 @@ export class CreateComponent {
 
   constructor(private http: HttpClient, private formBuilder: FormBuilder) {
     this.annuncioForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      //description: [''],
-      standardCost: [0, Validators.min(0)],
+      name: ['', Validators.required, Validators.minLength(3)],
+      standardCost: ['', [Validators.required, Validators.min(1)]],
       productNumber: [generateRandomProductNumber()],
       productCategoryName: ['', Validators.required],
-      productCategoryId: [null]  // Aggiungi questa riga per l'ID della categoria
+      productCategoryId: [null],  // Aggiungi questa riga per l'ID della categoria
+      description: ['', Validators.required, Validators.minLength(8)],
     });
     function generateRandomProductNumber(): string {
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
