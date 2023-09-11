@@ -16,10 +16,9 @@ import { Subscription } from 'rxjs';
 export class LoginComponent {
   username: string = '';
   password: string = '';
-
+  msg:string='';
   usnameField = new FormControl('', Validators.required);
   pswField = new FormControl('', Validators.required);
-
   loginFailed: boolean = false;
   private routeSubscription: Subscription = new Subscription();
 
@@ -63,26 +62,28 @@ export class LoginComponent {
           this.router.navigate(['/home'], { queryParams: { log : "Logged in"} });
         } else {
           // Gestisci l'errore di login
-          if (response.message === 'Credenziali non valide') {
-            // Credenziali non valide
-            alert('Credenziali non valide');
-          } else {
-            // Altro errore dal server
-            alert('Si è verificato un errore durante il login');
-            console.error('Login failed:', response.message);
-
-          }
+          
+          // if (response.message === 'Credenziali non valide') {
+          //   // Credenziali non valide
+          //   alert('Credenziali non valide');
+          // }
         }
         //location.reload();
-      },
+        
+        console.log('Login success:', response.success);
+      }
+      ,
       (error: HttpErrorResponse) => {
         // Gestisci altri tipi di errori, come problemi di connessione o errori HTTP
         //this.loginFailed = true;
 
         //alert('Utente non trovato');
         console.error('HTTP Error:', error);
+        this.msg = error.error.message
 
         this.router.navigate(['/login'], { queryParams: { loginFailed: 'true' } });
+        
+        
         //window.location.reload();
       }
     );

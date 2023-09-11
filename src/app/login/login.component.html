@@ -48,10 +48,18 @@
 
           <div *ngIf="loginFailed" class="text-center mt-5">
             <div class="avv-log">
-              Il login non è riuscito. Controlla le credenziali e riprova.
-              <br>
-              Altrimenti, registrati!
+              <!-- Il login non è riuscito. Controlla le credenziali e riprova. -->
+              ERRORE <br> 
+              {{msg}}
+              <div *ngIf="msg === 'PER MOTIVI DI SICUREZZA E\' NECCESSARIO REGISTRARSI CON UNA NUOVA PASSWORD'">
+                <br>
+                <a routerLink="/register" class="btn btn-close-white p-3 border" style="width: auto; color: white; border-radius: 50%; box-shadow: 0 0 3mm rgba(0,0,0,0.5);">OK</a>
+              
+
             </div>
+            </div>
+            
+            
           </div>
 
         </form>
