@@ -32,6 +32,7 @@ import { CreateComponent } from './ann/create/create.component';
 import { ModalComponent } from './modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { OkModalComponent } from './ok-modal/ok-modal.component';
+import { SessionExpiredComponent } from './session-expired/session-expired.component';
 
 
 
@@ -55,7 +56,8 @@ import { OkModalComponent } from './ok-modal/ok-modal.component';
     ErrorComponent,
     CreateComponent,
     ModalComponent,
-    OkModalComponent
+    OkModalComponent,
+    SessionExpiredComponent
   ],
   imports: [
     JwtModule.forRoot({

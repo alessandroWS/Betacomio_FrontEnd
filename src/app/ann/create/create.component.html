@@ -17,43 +17,110 @@
 
         <form [formGroup]="annuncioForm" (ngSubmit)="submitForm()" enctype="multipart/form-data">
 
-          <div class="p-4 bgWhite border-bottom d-flex justify-content-between align-items-center">
+          <div class="p-4 bgWhite border-bottom d-flex justify-content-between align-items-center row m-0">
 
-            <label for="exampleInputTitle" class=" m-2 m-md-0 form-label textBlue w-25 m-0 p-0" >Titolo annuncio</label>
+            <div class="col-md-6 col-6 ps-0">
+
+              <label for="exampleInputTitle" class="form-label textBlue w-25 ps-0">Titolo annuncio</label>
+
+            </div>
+
+            <div class="col-md-6 col-6">
+
+              <input type="text" class="form-control" id="exampleInputTitle" formControlName="name"
+                aria-describedby="titleHelp" placeholder="ad es. tenda da campeggio">
+
+              <p class="text-danger"
+                *ngIf="annuncioForm.get('name')?.hasError('required') && ((annuncioForm.get('name')?.dirty || annuncioForm.get('name')?.touched))">
+                Il titolo è obbligatorio</p>
+
+              <p class="text-danger"
+                *ngIf="annuncioForm.get('name')?.hasError('minlength') && ((annuncioForm.get('name')?.dirty))">
+                Inserisci almeno 3 caratteri</p>
+
+            </div>
 
 
 
-            <input type="text" class="form-control" id="exampleInputTitle" formControlName="name" aria-describedby="titleHelp"
-              placeholder="ad es. tenda da campeggio">
+
+
+
+
 
           </div>
 
-          <div class="mb-4 bgWhite p-4 d-flex justify-content-between">
-            <label for="exampleInputDescription" class="form-label textBlue textDescription m-2 m-md-0">Descrizione</label>
+          <div class="mb-4 ms-0 me-0 bgWhite p-4 d-flex justify-content-between row">
+
+            <label for="exampleInputDescription"
+              class="form-label textBlue textDescription m-2 m-md-0 col-md-6 col-3 ps-0">Descrizione</label>
 
 
-            <textarea type="text" class="form-control" id="exampleInputDescription" rows="5"
-              placeholder="ad es. articolo in buone condizioni" formControlName="description">
+            <div class="col-md-6 col-12">
+              <textarea type="text" class="form-control ms-0" id="exampleInputDescription" rows="5"
+                placeholder="ad es. articolo in buone condizioni" formControlName="description" required>
               </textarea>
 
+              <p class="text-danger"
+                *ngIf="annuncioForm.get('description')?.hasError('required') && ((annuncioForm.get('description')?.dirty || annuncioForm.get('description')?.touched))">
+                La descrizione è obbligatoria</p>
+
+              <p class="text-danger"
+                *ngIf="annuncioForm.get('description')?.hasError('minlength') && ((annuncioForm.get('description')?.dirty))">
+                Inserisci almeno 8 caratteri</p>
+            </div>
+
+
+
+
           </div>
 
-          <div class="mb-4 bgWhite p-4 d-flex justify-content-between align-items-center">
-            <label for="exampleInputPrice" class="form-label textBlue m-0 p-0">Prezzo</label>
+          <div class="mb-4 ms-0 me-0 bgWhite p-4 d-flex justify-content-between align-items-center row">
+
+            <label for="exampleInputPrice" class="form-label textBlue m-0 p-0 col-md-6 col-4 ps-0 mt-1">Prezzo</label>
 
 
 
-            <input type="text" class="form-control inputAd" id="exampleInputPrice" placeholder="0.00 €" formControlName="standardCost">
+            <div class="col-md-6 col-8">
+              <input type="text" class="form-control inputAd" id="exampleInputPrice" placeholder="0.00 €"
+              formControlName="standardCost">
+
+            <p class="text-danger"
+              *ngIf="annuncioForm.get('standardCost')?.hasError('required') && ((annuncioForm.get('standardCost')?.dirty || annuncioForm.get('standardCost')?.touched))">
+              Il prezzo è obbligatorio</p>
+
+            <p class="text-danger"
+              *ngIf="annuncioForm.get('standardCost')?.hasError('min') && ((annuncioForm.get('standardCost')?.dirty))">
+              Il prezzo deve essere maggiore di 0</p>
+
+              <p class="text-danger mt-2" *ngIf="annuncioForm.get('standardCost')?.hasError('pattern')">Inserisci solo numeri</p>
+            </div>
 
           </div>
 
-          <div class="mb-4 p-4 bgWhite d-flex justify-content-between">
-            <label for="productCategoryName" class="form-label textBlue">Categorie</label>
-            <select id="productCategoryName" class="form-select inputAd" aria-label="Default select example" formControlName="productCategoryName" (change)="onCategoryChange($event)">
-              <option value="" disabled>Scegli la categoria</option>
-              <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
-            </select>
+
+
+          <div class="mb-4 ms-0 p-4 w-100 bgWhite d-flex justify-content-between row">
+
+
+            <label for="productCategoryName" class="form-label textBlue col-md-6 col-4 ps-0 mt-1">Categorie</label>
+
+
+            <div class="col-md-6 col-8">
+              <select id="productCategoryName" class="form-select inputAd w-100" aria-label="Default select example"
+                formControlName="productCategoryName" (change)="onCategoryChange($event)">
+                <option value="" disabled>Scegli la categoria</option>
+                <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+              </select>
+
+
+              <p class="text-danger"
+                *ngIf="annuncioForm.get('productCategoryName')?.hasError('required') && ((annuncioForm.get('productCategoryName')?.dirty || annuncioForm.get('productCategoryName')?.touched))">
+                La categoria è obbligatoria</p>
+            </div>
+
           </div>
+
+
 
           <div class="mb-4 bgWhite p-4">
             <label for="exampleInputPrice" class="form-label textBlue">Inserisci immagini</label>

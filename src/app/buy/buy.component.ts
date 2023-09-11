@@ -33,9 +33,9 @@ export class BuyComponent implements OnInit {
       price: ['', [Validators.required]],
       productName: ['',[Validators.required]],
       address: ['', [Validators.required]],
-      city: ['',[Validators.required]],
-      firstName: ['',[Validators.required]],
-      surname: ['', [Validators.required]],
+      city: ['',[Validators.required, Validators.pattern(/^[A-Za-z]+$/u)]],
+      firstName: ['',[Validators.required, Validators.pattern(/^[A-Za-z]+$/u)]],
+      surname: ['', [Validators.required, Validators.pattern(/^[A-Za-z]+$/u)]],
       cap: ['', [Validators.required, Validators.pattern(/^[0-9]{5}$/)]],
     });
 
@@ -56,14 +56,6 @@ export class BuyComponent implements OnInit {
     }
   }
 
-  // fName = new FormControl('', Validators.required);
-  // sName = new FormControl('', Validators.required);
-  // addressC = new FormControl('', Validators.required);
-  // cityC = new FormControl('', Validators.required);
-  // CAP = new FormControl('', Validators.required);
-  // phoneNum = new FormControl('', Validators.required);
-
-
   errorMessage: string = "";
 
   okMessage: string = "";
@@ -78,50 +70,6 @@ export class BuyComponent implements OnInit {
       }
     });
     this.loadProducts();
-
-    (function () {
-      // @ts-ignore
-
-      window['inputNumber'] = function (el: JQuery<HTMLInputElement>) {
-        const min = el.attr('min') || false;
-        const max = el.attr('max') || false;
-
-        const els: { [key: string]: any } = {}; // Usiamo any per ora
-
-        els['dec'] = el.prev();
-        els['inc'] = el.next();
-
-        el.each(function () {
-          init($(this));
-        });
-
-        function init(el: JQuery<HTMLInputElement>) {
-          // @ts-ignore
-          (els['dec'] as JQuery<HTMLElement>).on('click', decrement);
-          // @ts-ignore
-          (els['inc'] as JQuery<HTMLElement>).on('click', increment);
-
-          function decrement() {
-            let value = parseFloat(el[0].value);
-            value--;
-            if (!min || value >= parseFloat(min)) {
-              el[0].value = value.toString();
-            }
-          }
-
-          function increment() {
-            let value = parseFloat(el[0].value);
-            value++;
-            if (!max || value <= parseFloat(max)) {
-              el[0].value = value.toString();
-            }
-          }
-        }
-      }
-    })();
-
-    // @ts-ignore
-    window['inputNumber']($('.input-number'));
   }
   product: Product | undefined;
 
@@ -153,6 +101,7 @@ export class BuyComponent implements OnInit {
       });
   
       this.buyComponent();
+      this.form.reset();
       this.okMessage = 'Articolo acquistato correttamente!';
       this.modalService.openModalOk(this.okMessage);
     } else if (this.form.get('quantity')?.value <= 0) {
@@ -170,7 +119,7 @@ export class BuyComponent implements OnInit {
   buyComponent() {
     this.http.post<Response>('http://localhost:5067/api/Order', this.form.value).subscribe(
       (response) => {
-        this.form.reset();
+        
         console.log(this.form);
 
       },
