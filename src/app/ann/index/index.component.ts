@@ -72,7 +72,6 @@ export class IndexComponent implements OnInit {
 
 
   loadProducts() {
-    debugger;
     this.http
       .get<responseProduct>('http://localhost:5067/api/Product/GetAll', {
         observe: 'response',
@@ -128,7 +127,7 @@ export class IndexComponent implements OnInit {
       (error: HttpErrorResponse) => {
         console.error('Errore nel recupero dei dati:', error);
         //alert() inserire messaggio di errore dal back
-        alert('ciaociao' + error.message);
+        
       }
 
     );

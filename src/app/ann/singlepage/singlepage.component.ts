@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import {AfterViewInit, ElementRef, ViewChild} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {register} from 'swiper/element/bundle';
-
+import { AuthService } from 'src/app/login/auth.service';
 
 import { Pagination, Autoplay } from 'swiper/modules'
 import SwiperCore from 'swiper'
@@ -22,7 +22,7 @@ export class SinglepageComponent implements AfterViewInit, OnInit {
 
   productId: number | null = null;
 
-  constructor(private route: ActivatedRoute, private http:HttpClient) {}
+  constructor(private route: ActivatedRoute, private http:HttpClient, public BasicAuth: AuthService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {

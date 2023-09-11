@@ -74,11 +74,18 @@
       <p class="text-secondary mb-5"><i class="fa-regular fa-pen-to-square"></i> da username</p>
       <hr>
 
-      <div class="d-flex p-2">
-        <p class="text-center"><i class="fa-solid fa-circle-check textMain fa-xl"></i></p>
+      <div class=" p-2 container">
+        <div class="col-12">
+           <p class="text-center"><i class="fa-solid fa-circle-check textMain fa-xl"></i></p>
         <p class="px-3"><b class="textMain">ANNUNCIO REVISIONATO</b> annuncio sottoposto a revisione da parte dei nostri
           revisor, al fine di mantenere la community in linea con gli standard di qualità e di rispetto della privacy
         </p>
+        </div>
+       
+          <div class="col-12 text-center mt-5">
+            <a [routerLink]="BasicAuth.isLogged() ? ['/buy/',productId] : '/login'" class="btn btn-success p-3 m-2 display-1">ACQUISTA</a>
+
+          </div>
       </div>
 
 
