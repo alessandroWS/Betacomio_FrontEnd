@@ -12,6 +12,7 @@ export class ModalServiceService {
 
   constructor(private dialog: MatDialog) {}
 
+  // gestisco modale di errore
   openModal(message: string): void {
     this.dialogRef = this.dialog.open(ModalComponent, {
       //width: '400px', // Imposta la larghezza della modale
@@ -19,6 +20,7 @@ export class ModalServiceService {
     });
   }
 
+  // gestisco modale di successo
   openModalOk(message: string): void {
     this.dialogRef = this.dialog.open(OkModalComponent, {
       //width: '400px', // Imposta la larghezza della modale
