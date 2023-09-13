@@ -79,6 +79,29 @@ export class CategoryProductsComponent {
 
   likes: Like[] | undefined = [];
 
+  manageLike(product : Product){
+    console.log(document.getElementById(product.productId.toString())?.style.color);
+    switch(document.getElementById(product.productId.toString())?.style.color){
+      case 'red' :
+        this.deleteLike(product.productId);
+        document.getElementById(product.productId.toString())?.style.setProperty('color','grey');
+        break;
+      case 'grey':
+        this.like(product.name, product.standardCost.toString(), 0, product.productId, product.productCategory.name);
+        document.getElementById(product.productId.toString())?.style.setProperty('color','red');
+        break;
+      default:
+        console.log('CODICE MALSANOOOO!');
+        break;
+    }
+  }
+
+
+  checkLike(productId: number): boolean{
+    if((this.likes?.find(p => productId == p.productId))!= undefined){
+      return true;
+    } else return false ;
+  }
 
   private loadlikes(): void {
     this.http.get<responseLike>('http://localhost:5067/Likes/GetAllLike', { observe: 'response' }).subscribe(
@@ -89,7 +112,6 @@ export class CategoryProductsComponent {
       (error: HttpErrorResponse) => {
         console.error('Errore nel recupero dei dati:', error);
         //alert() inserire messaggio di errore dal back
-        alert('ciaociao' + error.message);
       }
 
     );

@@ -23,16 +23,15 @@
 
 
 
-  <div class="row px-5 justify-content-center" *ngIf="products && products.length" >
+  <div class="row px-5 justify-content-center" >
 
 
 
-      <div class="col-12 col-md-3 p-2 mt-3 d-flex justify-content-center" *ngFor="let product of products">
+    <div class="col-12 col-md-6 col-lg-3 p-2 mt-3 d-flex justify-content-center" *ngFor="let product of products">
 
-        <div *ngFor="let lik of likes">
         <div *ngIf="!searchText || product.name.toLowerCase().includes(searchText)" class="card rounded-0 border-0" style="width: 16rem;">
 
-          <img  [routerLink]="['/singlepage/', product.productId]" [src]="'https://picsum.photos/200/300?random=' + product.productId" class="card-img-top rounded-0 imgProducts"  alt="" >
+          <img href="" [routerLink]="['/singlepage/', product.productId]"  [src]="'https://picsum.photos/200/300?random=' + product.productId" class="card-img-top rounded-0 imgProducts " alt="" />
 
               <div class="card-body ps-3 mt-2">
                   <h5 class="textBlue text-end">{{product.standardCost}}€</h5>
@@ -40,18 +39,17 @@
                   <!-- {{-- <p class="card-text">{{$announcement->body}}</p> --}} -->
                   <p class="text-secondary">{{product.productCategory.name}}</p>
 
-                  <div *ngif="product.productId == lik.IdLike" class="justify-content-between d-flex align-items-center">
+                  <div  class="justify-content-between d-flex align-items-center">
                     <a [routerLink]="['/singlepage/', product.productId]" class="linkView border-0 rounded-0 m-0 p-0 btn">Dettagli</a>
-                    <a (click)="BasicAuth.isLogged() ? like(product.name, product.standardCost.toString(), 0, product.productId, product.productCategory.name) : redirectToLogin()" class="linkLike border-0 rounded-0 my-2">
-                      <i class="bi bi-heart"></i>
-                    </a>
 
-                    <a (click)="BasicAuth.isLogged() ? deleteLike(product.productId) : redirectToLogin()" class="linkLike border-0 rounded-0 my-2">
-                      <i class="bi bi-heart-fill" [ngClass]="{'liked': liked}"></i>
-                    </a>
-                    <a [routerLink]="BasicAuth.isLogged() ? ['/buy/', product.productId] : '/login'" class="linkBuy border-0 rounded-0 my-2" ><i class="rounded-3 acqusita p-2 border border-black bi bi-bag"></i></a>
+                    <div >
+                      <a (click)="BasicAuth.isLogged() ? manageLike(product) : redirectToLogin()" class="linkLike border-0 rounded-0 my-2">
+                        <i id="{{product.productId}}"  class="fa-solid fa-heart" [ngStyle]="{'color': !checkLike(product.productId) ?  'grey' : 'red' }"></i>
+                      </a>
+                      </div>
+                      <a [routerLink]="BasicAuth.isLogged() ? ['/buy/', product.productId] : '/login'" class="linkBuy border-0 rounded-0 my-2" ><i class="rounded-3 acqusita p-2 border border-black bi bi-bag"></i></a>
 
-                      <!-- <small class="fst-italic">{{product.modifiedDate}}</small> -->
+                        <!-- <small class="fst-italic">{{product.ModifiedDate}}</small> -->
                   </div>
 
               </div>
@@ -73,7 +71,7 @@
 
       {{$announcements->links()}} -->
     </div>
-  </div>
+  <!-- </div> -->
 <!--
   <mat-paginator [length]="100" [pageSize]="defaultRecords" [pageSizeOptions]="[6,12,24,32]" (page)="onPageChange($event)">
   </mat-paginator> -->
