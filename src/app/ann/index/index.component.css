@@ -383,3 +383,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow:unset !important;
 }
+
+
+.fa-heart:hover{
+  color:red !important;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
