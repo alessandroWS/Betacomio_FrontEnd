@@ -32,18 +32,18 @@ export class HomeComponent implements OnInit {
 
 
     this.logNum = 0;
-   
+
 
     this.route.queryParams.subscribe(params => {
       if (params['log'] === 'Logged in') {
         //this.showLogMessage = true;
         this.logNum = 1;
         setTimeout(() => {
-          
+
           this.logNum = 0;
         }, 5000);
 
-      
+
       }
       else if(params['log'] === 'Logged out') {
         // Reimposta loginFailed a false al refresh della pagina
@@ -51,11 +51,11 @@ export class HomeComponent implements OnInit {
 
         this.logNum = 2;
         setTimeout(() => {
-          
+
           this.logNum = 0;
         }, 5000);
 
-      }   
+      }
     });
 
 
@@ -64,11 +64,11 @@ export class HomeComponent implements OnInit {
         //this.showLogMessage = true;
         this.regNum = 1;
         setTimeout(() => {
-          
+
           this.regNum = 0;
         }, 5000);
 
-      
+
       }
     });
 
@@ -91,8 +91,8 @@ export class HomeComponent implements OnInit {
   private loadProducts(): void {
     this.http.get<responseProduct>('http://localhost:5067/api/Product/GetAll', { observe: "response"}).subscribe(
       (response) => {
-        this.products = response.body?.data.slice(-6);
-        console.log(this.products);
+        this.products = response.body?.data.slice(0,6);
+        console.log(this.products); 
       },
       (error) => {
         console.error('Errore nel recupero dei dati:', error);
