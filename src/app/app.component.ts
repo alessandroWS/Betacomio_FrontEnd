@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { SessionService } from './session.service';
+import { SessionService } from './service/session.service';
 import { Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
