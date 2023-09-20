@@ -3,36 +3,51 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
+
+// Routing
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { IndexComponent } from './ann/index/index.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Component
+// core
+import { HomeComponent } from './component/core/home/home.component';
+import { NavbarComponent } from './component/core/navbar/navbar/navbar.component';
+import { NavbarFilterComponent } from './component/core/navbar/navbarfilter/navbarfilter.component';
+import { ZonarevisioneComponent } from './component/core/zonarevisione/zonarevisione.component';
+import { FooterComponent } from './component/core/footer/footer.component';
+
+// auth
+import { RegisterComponent } from './component/auth/register/register.component';
+import { LoginComponent } from './component/auth/login/login.component';
+import { AuthInterceptor } from './component/auth/auth.interceptor';
+import { AuthService } from './service/auth.service';
+
+// annunci
+import { IndexComponent } from './component/annunci/index/index.component';
+import { CategoryProductsComponent } from './component/annunci/category-products/category-products.component';
+import { OrderListComponent } from './component/core/order-list/order-list.component';
+import { SinglepageComponent } from './component/annunci/singlepage/singlepage.component';
+import { CreateComponent } from './component/annunci/create/create.component';
+
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { AuthInterceptor } from './auth.interceptor';
+
+// action
+import { LikeComponent } from './component/action/like/like.component';
+import { BuyComponent } from './component/action/buy/buy.component';
+
+// message
+import { ErrorComponent } from './component/message/error/error.component';
+import { ModalComponent } from './component/message/modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { OkModalComponent } from './component/message/ok-modal/ok-modal.component';
+
+import { SessionExpiredComponent } from './component/session-expired/session-expired.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ZonarevisioneComponent } from './zonarevisione/zonarevisione.component';
-import { LikeComponent } from './like/like.component';
-import { CategoryProductsComponent } from './ann/category-products/category-products.component';
-import { SinglepageComponent } from './ann/singlepage/singlepage.component';
-import { OrderListComponent } from './order-list/order-list.component';
-import { AuthService } from './login/auth.service';
-import { BuyComponent } from './buy/buy.component';
 
 import { JwtModule } from '@auth0/angular-jwt';
 
-
-import { NavbarFilterComponent } from './navbarfilter/navbarfilter.component';
-import { FooterComponent } from './footer/footer.component';
-import { ErrorComponent } from './error/error.component';
-import { CreateComponent } from './ann/create/create.component';
-import { ModalComponent } from './modal/modal.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { OkModalComponent } from './ok-modal/ok-modal.component';
-import { SessionExpiredComponent } from './session-expired/session-expired.component';
 
 
 
@@ -57,7 +72,8 @@ import { SessionExpiredComponent } from './session-expired/session-expired.compo
     CreateComponent,
     ModalComponent,
     OkModalComponent,
-    SessionExpiredComponent
+    SessionExpiredComponent,
+
   ],
   imports: [
     JwtModule.forRoot({
