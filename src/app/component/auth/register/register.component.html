@@ -24,11 +24,11 @@
           <div *ngIf="nameField.invalid && (nameField.dirty || nameField.touched)">
 
             
-            <div class="registrationForm.get('email').hasError('required')" *ngIf="nameField.errors">
+            <div class="registrationForm.get('email').hasError('required') text-danger" *ngIf="nameField.errors">
               L'indirizzo email è obbligatorio
             </div>
 
-            <div class="registrationForm.get('email').hasError('email')" *ngIf="nameField.errors">
+            <div class="registrationForm.get('email').hasError('email') text-danger" *ngIf="nameField.errors">
               Inserisci un indirizzo email valido
             </div>
 
