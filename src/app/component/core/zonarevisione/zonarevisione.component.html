@@ -55,24 +55,18 @@
                       <td>{{ requestAdmin.user.username }}</td>
                       <td>
 
-                          <div class="d-flex justify-content-center">
-
-
-
-                              <button (click)="acceptRequest(requestAdmin.idRequest, true, requestAdmin.userId)" type="submit" class="btn btn-success rounded-0" data-toggle="tooltip" title="Conferma l'inserimento del'annuncio">Accetta</button>
-                          </div>
-
-                      </td>
-
-                      <td>
-
-                          <div class="d-flex justify-content-center">
-
-
-
-                              <button (click)="rejectRequest(requestAdmin.idRequest, false, requestAdmin.userId)" type="submit" class="btn btn-danger rounded-0" data-toggle="tooltip" title="Rifiuta l'annuncio eliminandolo">Rifiuta</button>
-
-                          </div>
+                      <div class="container justify-content-center">
+    <div class="d-flex flex-column align-items-center d-block d-md-none">
+        <!-- Per tablet e smartphone -->
+        <button (click)="acceptRequest(requestAdmin.idRequest, true, requestAdmin.userId)" type="submit" class="col-12 col-md-5 my-2 btn btn-success rounded-0" data-toggle="tooltip" title="Conferma l'inserimento del'annuncio"><i class="bi bi-check-lg text-white"></i></button>
+        <button (click)="rejectRequest(requestAdmin.idRequest, false, requestAdmin.userId)" type="submit" class="col-12 col-md-5 my-2 btn btn-danger rounded-0 " data-toggle="tooltip" title="Rifiuta l'annuncio eliminandolo"><i class="bi bi-x-lg text-white"></i></button>
+    </div>
+    <!-- Per tablet e smartphone -->
+    <div class="d-none d-md-flex justify-content-center mt-2">
+        <button (click)="acceptRequest(requestAdmin.idRequest, true, requestAdmin.userId)" type="submit" class="col-md-5 mx-2 btn btn-success rounded-0" data-toggle="tooltip" title="Conferma l'inserimento del'annuncio">Accetta</button>
+        <button (click)="rejectRequest(requestAdmin.idRequest, false, requestAdmin.userId)" type="submit" class="col-md-5 mx-2 btn btn-danger rounded-0" data-toggle="tooltip" title="Rifiuta l'annuncio eliminandolo">Rifiuta</button>
+    </div>
+</div>
 
                       </td>
 
